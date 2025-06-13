@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>leadObras.com - Domine a Prospecção e Venda Mais na Construção!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Configurações Globais e Variáveis --- */
+        :root {
+            --cor-primaria: #c00000;
+            --cor-primaria-hover: #a00000;
+            --cor-secundaria: #495057; /* Cinza mais escuro para texto */
+            --cor-secundaria-hover: #343a40;
+            --cor-perigo: #dc3545;
+            --cor-perigo-hover: #c82333;
+            --cor-sucesso: #28a745; /* Verde para 'sim' */
+            --cor-aviso: #ffc107;  /* Amarelo para 'parcial' */
+            --cor-pix: #32BCAD; /* Cor do PIX */
+            --cor-cinza-claro: #f8f9fa;
+            --cor-cinza-borda: #dee2e6;
+            --cor-fundo-claro: #f8f9fa;
+            --cor-fundo-vermelho-claro: #fdf2f2; /* Fundo sutil para coluna leadObras */
+            --cor-texto-cinza: #adb5bd;
+            --cor-whatsapp: #25D366;
+            --cor-whatsapp-hover: #128C7E;
+            --navbar-height: 60px; /* Altura estimada do menu */
+            --duracao-transicao: 0.3s;
+            --duracao-animacao: 0.7s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--navbar-height);
+        }
+
+        body {
+            overflow-x: hidden;
+            padding-top: var(--navbar-height);
+            font-family: 'Roboto', sans-serif;
+            color: var(--cor-secundaria);
+            position: relative;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+
+        /* --- Estilos Barra de Progresso --- */
+        .progress-container { width: 100%; height: 5px; background-color: #e9ecef; position: fixed; top: var(--navbar-height); left: 0; z-index: 1029; pointer-events: none; }
+        .progress-bar-scroll { height: 100%; background-color: var(--cor-primaria); width: 0%; transition: width 0.05s linear; }
+
+        /* --- Estilos Menu Fixo (Navbar) --- */
+        .navbar { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 2px 5px rgba(0,0,0,0.1); backdrop-filter: blur(5px); min-height: var(--navbar-height); }
+        .navbar-brand { color: var(--cor-primaria) !important; font-weight: bold; font-size: 1.4rem; }
+        .navbar .nav-link { color: #343a40 !important; margin: 0 5px; padding: 8px 12px; border-radius: 4px; transition: background-color var(--duracao-transicao) ease, color var(--duracao-transicao) ease; font-weight: 500; }
+        .navbar .nav-item .nav-link.active, .navbar .nav-link:hover { color: white !important; background-color: var(--cor-primaria); }
+        .navbar-toggler { border-color: rgba(0,0,0,0.1); }
+        .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(192, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+        .navbar-collapse { background-color: rgba(255, 255, 255, 0.98); padding: 10px 0; margin-top: 5px; border-radius: 0 0 5px 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+        @media (min-width: 992px) { .navbar-collapse { background-color: transparent; padding: 0; margin-top: 0; border-radius: 0; box-shadow: none; } }
+        .navbar .btn-cta { margin-left: 10px; padding: 6px 15px; font-size: 0.9rem; font-weight: bold; }
+         @media (max-width: 991.98px) { .navbar .btn-cta { margin-left: 0; margin-top: 10px; display: block; width: 100%; text-align: center; } .navbar-nav .nav-item { margin-bottom: 5px; } }
+
+        /* --- Botões com Mais Impacto --- */
+        .btn { font-weight: 500; border-radius: 50px; padding: 0.6rem 1.5rem; transition: all 0.3s ease; }
+        .btn-lg { padding: 0.8rem 2rem; font-size: 1.1rem; }
+        .btn-primary { background-color: var(--cor-primaria); border-color: var(--cor-primaria); color: white; }
+        .btn-primary:hover { background-color: var(--cor-primaria-hover); border-color: var(--cor-primaria-hover); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(192, 0, 0, 0.3); }
+        .btn-secondary { background-color: var(--cor-secundaria); border-color: var(--cor-secundaria); color: white; }
+        .btn-secondary:hover { background-color: var(--cor-secundaria-hover); border-color: var(--cor-secundaria-hover); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .btn-danger { background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: white; }
+        .btn-danger:hover { background-color: var(--cor-perigo-hover); border-color: var(--cor-perigo-hover); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3); }
+        .btn-outline-danger { color: var(--cor-perigo); border-color: var(--cor-perigo); background-color: transparent; }
+        .btn-outline-danger:hover { color: #fff; background-color: var(--cor-perigo); border-color: var(--cor-perigo); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2); }
+        .btn-outline-light { color: white; border-color: white; background-color: transparent;}
+        .btn-outline-light:hover { color: var(--cor-primaria); background-color: white; border-color: white; transform: translateY(-3px); box-shadow: 0 4px 10px rgba(255,255,255,0.2); }
+
+        /* --- Outros Estilos (Mantidos e Ajustados) --- */
+        .text-primary { color: var(--cor-primaria) !important; }
+        .icon-red { color: var(--cor-primaria); }
+        .problem-icon-red { color: var(--cor-perigo); }
+        .check-icon-red { color: var(--cor-primaria); }
+        #cta-final { background: linear-gradient(45deg, var(--cor-primaria), var(--cor-perigo)); color: white; }
+        #faq .btn-link { color: var(--cor-primaria); text-decoration: none; transition: color var(--duracao-transicao) ease; font-weight: 500; }
+        #faq .btn-link:hover { color: var(--cor-primaria-hover); text-decoration: underline; }
+        #faq .btn-link:focus { box-shadow: none; }
+        #faq .card-header { background-color: #fff; }
+        #faq .card { border: 1px solid #e0e0e0; }
+        .section-bg-light-red { background-color: var(--cor-fundo-vermelho-claro); }
+
+        .card { transition: transform var(--duracao-transicao) ease, box-shadow var(--duracao-transicao) ease; border: none; border-radius: 10px; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #publico-alvo .card { border: 1px solid var(--cor-cinza-borda); box-shadow: none;}
+        #publico-alvo .card:hover { border-color: var(--cor-primaria); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #publico-alvo .card:hover .fas { transform: scale(1.15); transition: transform var(--duracao-transicao) ease; }
+        #publico-alvo .fas { transition: transform var(--duracao-transicao) ease; }
+        #funcionalidades img { transition: transform 0.4s ease, box-shadow 0.4s ease; border-radius: 8px; }
+        #funcionalidades .row:hover img { transform: scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
+        /* --- ESTILOS SEÇÃO DE PREÇOS COM SWITCH --- */
+        #precos .pricing-toggle { display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; }
+        #precos .pricing-toggle span { font-weight: 500; color: var(--cor-secundaria); padding: 0 0.75rem; cursor: default; transition: color 0.3s ease; }
+        #precos .pricing-toggle span.active { color: var(--cor-primaria); font-weight: bold; }
+        #precos .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        #precos .switch input { opacity: 0; width: 0; height: 0; }
+        #precos .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 26px; }
+        #precos .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        #precos input:checked + .slider { background-color: var(--cor-primaria); }
+        #precos input:checked + .slider:before { transform: translateX(24px); }
+
+        /* Desconto e Preço Anual */
+        #precos .price-container { /* Novo container para preços */
+            text-align: center;
+            margin-bottom: 0.5rem;
+            min-height: 6rem; /* Altura para acomodar tudo */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #precos .original-price {
+            text-decoration: line-through;
+            color: var(--cor-secundaria);
+            font-size: 1rem;
+            font-weight: 400;
+            display: none; /* Começa escondido */
+            height: 0; /* Não ocupa espaço */
+            opacity: 0;
+            transition: opacity 0.3s ease, height 0.3s ease;
+        }
+        #precos .original-price.show {
+            display: inline; /* Mostra quando ativo */
+            height: auto;
+            opacity: 1;
+        }
+        #precos .card-title {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+            line-height: 1.1;
+        }
+         #precos .price-freq small.text-muted {
+            font-size: 1rem;
+            font-weight: normal;
+            display: block;
+            margin-top: 0.1rem;
+        }
+        #precos .total-annual-cost {
+            font-size: 0.8rem;
+            color: var(--cor-secundaria);
+            display: none; /* Começa escondido */
+            margin-top: 0.25rem;
+            height: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease, height 0.3s ease;
+        }
+        #precos .total-annual-cost.show {
+            display: block;
+            height: auto;
+            opacity: 1;
+        }
+        #precos .annual-discount-badge { /* Selo de desconto */
+            background-color: var(--cor-sucesso);
+            color: white;
+            font-weight: bold;
+            padding: 0.3rem 0.75rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-top: 0.75rem; /* Espaço acima */
+            display: none; /* Começa escondido */
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(5px);
+        }
+        #precos .annual-discount-badge.show {
+            display: inline-block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #precos .annual-discount-badge i { margin-right: 4px; }
+
+        /* Cards de Preço */
+        #precos .card { border-radius: 10px; overflow: hidden; }
+        #precos .card-header { padding: 1.5rem 1rem; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #precos .pricing-header-red { background-color: #f8d7da; border-bottom-color: #f5c6cb; }
+        #precos .pricing-header-red-popular { background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: white; position: relative; }
+        #precos .pricing-header-red-popular .badge { position: absolute; top: 10px; right: 10px; font-size: 0.7rem; padding: 4px 8px; }
+        #precos .list-unstyled li { padding: 0.5rem 0; border-bottom: 1px solid #f1f1f1; display: flex; align-items: center; font-size: 0.9rem; }
+        #precos .list-unstyled li:last-child { border-bottom: none; }
+        #precos .list-unstyled li i { margin-right: 8px; width: 16px; text-align: center; }
+        #precos .card-body { padding: 1.5rem; }
+        #precos .btn { padding: 0.75rem 1rem; font-weight: bold; }
+        #precos .card.popular-plan { transform: scale(1.03); box-shadow: 0 8px 25px rgba(220, 53, 69, 0.2); z-index: 10; }
+        #precos .card.popular-plan:hover { transform: scale(1.05) translateY(-6px); }
+        #precos .card-header-custom { background-color: #e2e3e5; border-bottom: 1px solid #d6d8db; }
+        #precos .list-unstyled li.custom-feature { color: var(--cor-secundaria); font-style: italic; justify-content: flex-start; padding-left: 10px; }
+        #precos .list-unstyled li.custom-feature i { color: var(--cor-secundaria); }
+        /* Informação sobre PIX */
+        #precos .pix-info { color: var(--cor-secundaria); font-size: 0.9rem; margin-top: 1.5rem; }
+        #precos .pix-info svg { width: 18px; height: 18px; margin-right: 5px; vertical-align: text-bottom; }
+
+        /* --- ESTILOS PLAN BUILDER --- */
+        #precos .plan-builder-options { margin-top: 1rem; margin-bottom: 1rem; text-align: left; border-top: 1px solid #eee; padding-top: 1rem; }
+        #precos .plan-builder-options label { font-weight: 500; display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        #precos .plan-builder-options .form-group { margin-bottom: 0.75rem; }
+        #precos .plan-builder-options .form-check { margin-bottom: 0.5rem; }
+        #precos .plan-builder-options .form-check-label { font-weight: normal; margin-left: 5px; }
+        #precos .plan-builder-options input[type="number"] { max-width: 80px; display: inline-block; margin-left: 10px; padding: 0.25rem 0.5rem; font-size: 0.9rem; }
+        #precos .plan-builder-options .price-tag { font-weight: bold; color: var(--cor-primaria); }
+        #precos #builderTotalPriceContainer { text-align: center; margin-top: 0.5rem; font-size: 1.8rem; font-weight: bold; color: var(--cor-primaria); min-height: 2.5rem; /* Altura para evitar pulo */ }
+        #precos #builderTotalPriceContainer .price { font-size: 2.5rem; }
+        #precos #builderTotalPriceContainer small { font-size: 1rem; font-weight: normal; color: var(--cor-secundaria); }
+
+
+        /* --- ESTILOS TABELA COMPARATIVA COM SELETOR --- */
+        #comparativo .table { vertical-align: middle; border: 1px solid var(--cor-cinza-borda); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        #comparativo .table thead th { background-color: var(--cor-fundo-claro); border-bottom: 2px solid var(--cor-cinza-borda); padding: 1rem 0.75rem; font-weight: 600; color: #495057; white-space: nowrap; }
+        #comparativo .table .leadobras-col-header { background-color: var(--cor-fundo-vermelho-claro); color: var(--cor-primaria); font-weight: bold; }
+        #comparativo .table thead th .competitor-select { display: inline-block; width: auto; min-width: 150px; max-width: 100%; padding: 0.375rem 1.75rem 0.375rem 0.75rem; font-size: 0.9rem; font-weight: 600; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 8px 10px; }
+        #comparativo .table thead th .competitor-select:focus { border-color: var(--cor-primaria); outline: 0; box-shadow: 0 0 0 0.2rem rgba(192, 0, 0, 0.25); }
+        #comparativo .table tbody tr { transition: background-color 0.2s ease; }
+        #comparativo .table tbody tr:hover { background-color: #f8f9fa; }
+        #comparativo .table tbody td { border-top: 1px solid var(--cor-cinza-borda); padding: 0.9rem 0.75rem; }
+        #comparativo .table .feature-col { text-align: left; font-weight: 500; }
+        #comparativo .table .leadobras-col-data { background-color: var(--cor-fundo-vermelho-claro); }
+        #comparativo .table .competitor-col-data { transition: background-color 0.3s ease; }
+        #comparativo .table .comp-icon { font-size: 1.4em; vertical-align: middle; }
+        #comparativo .table .fa-check-circle { color: var(--cor-sucesso); }
+        #comparativo .table .fa-times-circle { color: var(--cor-perigo); }
+        #comparativo .table .fa-minus-circle { color: var(--cor-aviso); }
+        #comparativo .table .comp-text { display: block; font-size: 0.75rem; color: #6c757d; margin-top: 3px; }
+        @media (max-width: 767.98px) { #comparativo .table .comp-text { display: none; } #comparativo .table thead th, #comparativo .table tbody td { padding: 0.6rem 0.5rem; font-size: 0.85rem; } #comparativo .table .comp-icon { font-size: 1.2em; } #comparativo .table thead th .competitor-select { font-size: 0.8rem; min-width: 120px; } }
+        #comparativo .competitor-link { display: block; padding: 0.5rem 0.75rem; background-color: var(--cor-fundo-claro); border-radius: 5px; text-decoration: none; color: var(--cor-secundaria-hover); font-size: 0.85rem; transition: background-color 0.2s ease, color 0.2s ease; border: 1px solid var(--cor-cinza-borda); text-align: center; }
+        #comparativo .competitor-link:hover { background-color: var(--cor-primaria); color: white; border-color: var(--cor-primaria-hover); }
+        #comparativo .competitor-link i { margin-right: 5px; opacity: 0.7; }
+
+
+        /* --- ESTILOS DEMONSTRAÇÃO COM ABAS (Ajustado) --- */
+        #demonstracao .nav-tabs { border-bottom: none; justify-content: flex-end; margin-bottom: 1.5rem; }
+        #demonstracao .nav-tabs .nav-link { border: 1px solid transparent; border-radius: 50px; margin: 0 3px; padding: 0.4rem 1rem; font-size: 0.9rem; color: var(--cor-secundaria); background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all var(--duracao-transicao) ease; }
+        #demonstracao .nav-tabs .nav-link i { margin-right: 4px; }
+        #demonstracao .nav-tabs .nav-link.active { background-color: var(--cor-primaria); color: white; border-color: var(--cor-primaria); box-shadow: 0 4px 10px rgba(192, 0, 0, 0.3); }
+        #demonstracao .nav-tabs .nav-link:not(.active):hover { background-color: #e9ecef; color: #333; }
+        #demonstracao .tab-content { position: relative; }
+        #demonstracao .tab-pane { border: none; padding: 0; background-color: transparent; max-width: none; margin: 0; border-radius: 0; box-shadow: none; }
+        #demonstracao #demoMobile iframe { max-width: 375px; height: 667px; display: block; margin: auto; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        #demonstracao #demoDesktop iframe { width: 100%; height: 500px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        #demonstracao #demoMobile .mobile-description { max-width: 375px; margin: 1.5rem auto 0; font-size: 0.9rem; color: #555; background-color: var(--cor-fundo-vermelho-claro); padding: 15px; border-radius: 8px; border: 1px dashed var(--cor-primaria); text-align: left; }
+        #demonstracao #demoMobile .mobile-description strong { color: var(--cor-primaria); }
+        #demonstracao #demoMobile .mobile-description i { color: var(--cor-primaria); margin-right: 5px; }
+
+
+        /* --- Novo Botão Flutuante WhatsApp e Balão --- */
+        .whatsapp-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .whatsapp-float { background-color: var(--cor-whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); transition: transform var(--duracao-transicao) ease, background-color var(--duracao-transicao) ease; cursor: pointer; position: relative; border: none; padding: 0; }
+        .whatsapp-float:hover { background-color: var(--cor-whatsapp-hover); transform: scale(1.1); }
+        .whatsapp-float i { font-size: 1.8em; line-height: 1; }
+        .whatsapp-notification { position: absolute; top: 0px; right: 0px; width: 15px; height: 15px; background-color: red; border-radius: 50%; border: 2px solid white; }
+        .whatsapp-bubble { position: absolute; bottom: 75px; right: 0; width: 300px; background-color: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); padding: 15px; display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; color: #333; font-size: 0.9rem; }
+        .whatsapp-bubble.show { display: block; opacity: 1; transform: translateY(0); }
+        .whatsapp-bubble::after { content: ''; position: absolute; bottom: -10px; right: 20px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid white; }
+        .whatsapp-bubble-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .whatsapp-bubble-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: var(--cor-secundaria); }
+        .whatsapp-bubble-avatar i { font-size: 1.5em; }
+        .whatsapp-bubble-info h5 { margin-bottom: 0; font-size: 1rem; font-weight: bold; }
+        .whatsapp-bubble-info span { font-size: 0.8rem; color: var(--cor-secundaria); }
+        .whatsapp-bubble-body p { margin-bottom: 10px; line-height: 1.4; min-height: 3em; }
+        .whatsapp-bubble-close { position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: #aaa; line-height: 1; padding: 5px; }
+        .whatsapp-bubble-close:hover { color: #555; }
+        #whatsappMessage .typing-cursor { display: inline-block; width: 8px; height: 1em; background-color: #333; animation: blink 0.7s infinite; margin-left: 2px; vertical-align: text-bottom; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @media (max-width: 576px) { .whatsapp-container { bottom: 15px; right: 15px; } .whatsapp-float { width: 50px; height: 50px; } .whatsapp-float i { font-size: 1.5em; } .whatsapp-notification { width: 12px; height: 12px; border-width: 1px; } .whatsapp-bubble { width: calc(100vw - 30px); bottom: 65px; right: -15px; } .whatsapp-bubble::after { right: 30px; } }
+
+        /* --- ANIMAÇÕES DE SCROLL (Mantidas) --- */
+        .animate-on-scroll { opacity: 0; transition: opacity var(--duracao-animacao) ease-out, transform var(--duracao-animacao) ease-out; will-change: opacity, transform; }
+        .fade-in { transform: translateY(0); }
+        .fade-in-up { transform: translateY(30px); }
+        .fade-in-down { transform: translateY(-30px); }
+        .slide-in-left { transform: translateX(-50px); }
+        .slide-in-right { transform: translateX(50px); }
+        .zoom-in { transform: scale(0.9); }
+        .is-visible { opacity: 1; transform: translate(0, 0) scale(1); }
+
+        /* --- Acessibilidade: Movimento Reduzido --- */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .animate-on-scroll { opacity: 1; transform: none; transition: none; }
+            .btn-primary:hover, .btn-secondary:hover, .btn-danger:hover, .btn-outline-danger:hover, .btn-outline-secondary:hover,
+            #cta-final .btn-light:hover, #cta-final .btn-outline-light:hover, .card:hover, #publico-alvo .card:hover .fas,
+            #funcionalidades .row:hover img, .whatsapp-float:hover, #precos .card.popular-plan { transform: none !important; }
+            .card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+            #precos .card.popular-plan { box-shadow: 0 8px 25px rgba(220, 53, 69, 0.2); }
+            .progress-bar-scroll { transition: none; }
+            .whatsapp-float { transition: background-color var(--duracao-transicao) ease; }
+            .whatsapp-bubble { transition: none; }
+            #whatsappMessage .typing-cursor { animation: none; opacity: 0; }
+            #exit-popup { transition: none; }
+            #exit-popup .popup-content { transition: none; }
+            #precos .annual-discount-info { transition: none; }
+        }
+
+        /* --- Ajustes Gerais de Responsividade --- */
+        section { padding-top: 60px; padding-bottom: 60px; }
+        #hero { padding-top: 80px; padding-bottom: 80px; }
+        @media (max-width: 991.98px) {
+             section { padding-top: 40px; padding-bottom: 40px; }
+             #hero { padding-top: 60px; padding-bottom: 60px; }
+             h1 { font-size: 2.2rem; } h2 { font-size: 1.6rem; } h3 { font-size: 1.4rem; } h4 { font-size: 1.1rem; }
+             #precos .card.popular-plan { transform: scale(1); }
+             #precos .card.popular-plan:hover { transform: translateY(-6px); }
+        }
+        @media (max-width: 767.98px) {
+             h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.2rem; }
+             .btn-lg { font-size: 1rem; padding: 10px 20px; }
+             #funcionalidades .row { margin-bottom: 1rem !important; }
+             #funcionalidades .col-md-6 { margin-bottom: 1.5rem; }
+             #precos .card { margin-bottom: 1.5rem !important; }
+             #precos .card-title { font-size: 2rem; }
+             #precos .list-unstyled li { font-size: 0.85rem; }
+             #demonstracao .nav-tabs .nav-link { padding: 0.4rem 0.8rem; font-size: 0.8rem;}
+        }
+
+        /* --- Pop-up de Saída Otimizado --- */
+        #exit-popup { display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; backdrop-filter: blur(5px); }
+        #exit-popup .popup-content { background-color: white; padding: 2rem; border-radius: 10px; max-width: 90%; width: 500px; text-align: center; position: relative; transform: scale(0.9); transition: transform 0.4s ease, opacity 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); opacity: 0; }
+        #exit-popup .popup-icon { font-size: 2.5rem; color: var(--cor-primaria); margin-bottom: 1rem; }
+        #exit-popup h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 0.75rem; color: #333; }
+        #exit-popup p { font-size: 1rem; color: #555; margin-bottom: 1rem; line-height: 1.5; }
+        #exit-popup .offer-highlight { font-size: 1.2rem; font-weight: bold; color: var(--cor-perigo); margin-bottom: 1rem; }
+        #exit-popup .coupon-code { font-size: 1.4rem; font-weight: bold; background-color: var(--cor-fundo-claro); padding: 0.75rem 1rem; border: 2px dashed var(--cor-perigo); display: inline-block; border-radius: 5px; word-break: break-all; margin-top: 0.5rem; margin-bottom: 1.5rem; color: var(--cor-perigo); }
+        #exit-popup .btn-cta-popup { font-size: 1.1rem; padding: 0.75rem 1.5rem; font-weight: bold; width: 100%; margin-bottom: 0.5rem; }
+        #exit-popup .btn-secondary-popup { color: var(--cor-secundaria); font-size: 0.9rem; text-decoration: none; }
+        #exit-popup .btn-secondary-popup:hover { text-decoration: underline; }
+        #exit-popup .close-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.8em; cursor: pointer; color: #aaa; line-height: 1; padding: 5px; }
+        #exit-popup .close-btn:hover { color: #555; }
+        @media (max-width: 576px) { #exit-popup .popup-content { padding: 1.5rem; } #exit-popup h3 { font-size: 1.4rem; } #exit-popup p { font-size: 0.9rem; } #exit-popup .offer-highlight { font-size: 1.1rem; } #exit-popup .coupon-code { font-size: 1.2rem; padding: 0.5rem 1rem; } #exit-popup .btn-cta-popup { font-size: 1rem; padding: 0.6rem 1.2rem; } }
+
+        /* --- SEÇÃO PARCEIROS --- */
+        #parceiros { background-color: var(--cor-fundo-claro); padding: 40px 0; }
+        #parceiros h4 { text-align: center; margin-bottom: 2rem; color: var(--cor-secundaria); font-weight: 500; font-size: 1.1rem; }
+        #parceiros .partner-logo { display: flex; align-items: center; justify-content: center; height: 60px; filter: grayscale(100%); opacity: 0.7; transition: filter 0.3s ease, opacity 0.3s ease; }
+        #parceiros .partner-logo:hover { filter: grayscale(0%); opacity: 1; }
+        #parceiros .partner-logo img { max-height: 100%; max-width: 150px; width: auto; }
+        #parceiros .partner-placeholder { font-size: 1.5rem; color: #adb5bd; }
+        #parceiros .partner-placeholder span { font-size: 0.8rem; display: block; margin-top: 5px; }
+        #parceiros .pix-info { color: var(--cor-secundaria); font-size: 0.9rem; margin-top: 1.5rem; }
+        #parceiros .pix-info svg { width: 20px; height: 20px; margin-right: 5px; vertical-align: middle; fill: var(--cor-pix); }
+
+    </style>
+</head>
+<body> <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#hero">leadObras.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav"> <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#hero">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#comparativo">Comparativo</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#demonstracao">Demonstração</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#precos">Planos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">FAQ</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#parceiros">Parceiros</a> </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger btn-sm btn-cta" href="#cta-final">Comece Agora</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="progress-container">
+    <div class="progress-bar-scroll" id="scrollProgressBar"></div>
+</div>
+
+<section id="hero" style="background-color: var(--cor-fundo-claro); text-align: center;">
+    <div class="container">
+        <h1 class="animate-on-scroll fade-in-down">Pare de Perder Vendas!</h1> <h2 class="animate-on-scroll fade-in-down" style="transition-delay: 0.1s;">Unifique Sua Prospecção de Obras com Dados CNO + CRM Especialista AGORA!</h2> <p style="font-size: 1.1em; margin-top: 20px;" class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">A leadObras.com combina a inteligência dos dados oficiais do CNO (Cadastro Nacional de Obras), filtrados por cidade, com um CRM poderoso e especializado para o setor da construção. Prospete de forma mais inteligente, gerencie seu funil de vendas sem esforço e feche mais negócios.</p>
+        <div class="mt-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+            <a href="#demonstracao" class="btn btn-primary btn-lg mb-2 mb-md-0 mr-md-2"><i class="fas fa-play-circle mr-1"></i> Ver Demonstração</a> <a href="#precos" class="btn btn-secondary btn-lg mb-2 mb-md-0"><i class="fas fa-dollar-sign mr-1"></i> Conferir Planos</a> </div>
+        <img src="https://placehold.co/800x450/f8f9fa/c00000?text=Dashboard+leadObras"
+             onerror="this.onerror=null; this.src='https://placehold.co/800x450/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+             alt="Dashboard leadObras.com"
+             class="img-fluid mt-5 animate-on-scroll zoom-in"
+             style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
+             loading="lazy">
+    </div>
+</section>
+
+<section id="problema-solucao">
+ <div class="container text-center">
+  <h2 class="animate-on-scroll fade-in-down">Sua Prospecção de Obras te Deixa para Trás?</h2> <div class="row mt-5">
+   <div class="col-md-4 mb-4 animate-on-scroll fade-in-up">
+    <div class="p-4 border rounded shadow-sm h-100">
+     <i class="fas fa-table fa-3x problem-icon-red mb-3"></i>
+     <h4>Planilhas te Atrasam?</h4> <p class="mb-0">Perder tempo gerenciando leads em planilhas complexas e desorganizadas.</p>
+    </div>
+   </div>
+   <div class="col-md-4 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+    <div class="p-4 border rounded shadow-sm h-100">
+     <i class="fas fa-puzzle-piece fa-3x problem-icon-red mb-3"></i>
+     <h4>CRM Genérico te Limita?</h4> <p class="mb-0">Tentar adaptar CRMs que não entendem as etapas e necessidades da construção civil.</p>
+    </div>
+   </div>
+   <div class="col-md-4 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+    <div class="p-4 border rounded shadow-sm h-100">
+     <i class="fas fa-search-dollar fa-3x problem-icon-red mb-3"></i>
+     <h4>Prospecção Manual Custa Caro?</h4> <p class="mb-0">Gastar horas buscando obras sem a certeza de encontrar os contatos certos ou dados atualizados.</p>
+    </div>
+   </div>
+  </div>
+  <h3 class="mt-5 animate-on-scroll fade-in">A Solução Definitiva: leadObras.com</h3> <p class="lead mt-3 animate-on-scroll fade-in">Somos a plataforma <strong>tudo-em-um</strong> que centraliza sua prospecção e gestão de vendas na construção civil. Integramos dados oficiais e um CRM feito sob medida para você vender mais, com menos esforço.</p>
+ </div>
+</section>
+
+<section id="funcionalidades" style="background-color: var(--cor-fundo-claro);">
+ <div class="container">
+  <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Transforme Dados em Negócios Fechados</h2>
+   <div class="row align-items-center mb-5">
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=CRM+Especializado"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="CRM Especializado leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-right">
+     <h4><i class="fas fa-users-cog icon-red mr-2"></i>Gerencie Vendas Como um Profissional</h4> <p>Nosso CRM especializado para construção organiza seu processo comercial, da prospecção ao fechamento. Funil adaptado, campos específicos de obra, gestão de tarefas e histórico completo. Chega de adaptações!</p>
+    </div>
+   </div>
+   <div class="row align-items-center mb-5 flex-md-row-reverse"> <div class="col-md-6 animate-on-scroll slide-in-right">
+     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Dados+CNO"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="Dados CNO leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <h4><i class="fas fa-database icon-red mr-2"></i>Encontre Obras Antes da Concorrência</h4> <p>Acesse dados oficiais do CNO <strong>diretamente no CRM</strong>. Filtre oportunidades por cidade, status, tipo e mais. Encontre as obras certas, na sua área, no momento ideal. Prospecção ultra-focada com dados atualizados.</p>
+    </div>
+   </div>
+   <div class="row align-items-center mb-5">
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Mapas+e+Dashboards"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="Mapas e Dashboards leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-right">
+     <h4><i class="fas fa-chart-line icon-red mr-2"></i>Visualize Seu Sucesso</h4> <p>Planeje rotas e estratégias com mapas interativos. Acompanhe o desempenho da sua equipe e seus resultados em tempo real com dashboards intuitivos e personalizáveis. Tenha uma visão 360º da sua prospecção.</p>
+    </div>
+   </div>
+   <div class="row align-items-center flex-md-row-reverse"> <div class="col-md-6 animate-on-scroll slide-in-right">
+     <img src="https://placehold.co/600x400/f8f9fa/25D366?text=Contato+WhatsApp"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="Contato WhatsApp leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <h4><i class="fab fa-whatsapp mr-2" style="color: var(--cor-whatsapp);"></i>Suporte Rápido e Direto</h4> <p>Nosso principal canal de contato é o WhatsApp. Fale diretamente conosco para tirar dúvidas, obter suporte ou discutir planos personalizados. Respostas rápidas para você não perder tempo.</p>
+    </div>
+   </div>
+ </div>
+</section>
+
+<section id="comparativo">
+ <div class="container">
+  <h2 class="text-center mb-4 animate-on-scroll fade-in-down">A Vantagem CLARA da leadObras.com</h2> <p class="text-center lead mb-5 animate-on-scroll fade-in">Selecione um concorrente para comparar lado a lado.</p>
+  <div class="table-responsive animate-on-scroll zoom-in">
+   <table class="table table-hover text-center" id="comparisonTable">
+    <thead>
+     <tr>
+      <th scope="col" class="text-left" style="width: 34%;">Funcionalidade Chave</th>
+      <th scope="col" class="leadobras-col-header" style="width: 33%;">
+          <img src="https://placehold.co/100x30/c00000/ffffff?text=leadObras" alt="leadObras.com Logo" style="height: 25px; width: auto; margin-bottom: 5px;">
+          <br>leadObras.com
+      </th>
+      <th scope="col" style="width: 33%;">
+          <select id="competitorSelector" class="form-control form-control-sm competitor-select" aria-label="Selecione um concorrente para comparar">
+              <option value="">Selecione para Comparar</option>
+              <option value="obrasonline">Obras Online</option>
+              <option value="prospectaobras">Prospecta Obras</option>
+              <option value="obraai">Obra.ai</option>
+              <option value="intecbrasil">Intec Brasil</option>
+              <option value="rededeobras">Rede de Obras</option>
+              <option value="hoffanalytics">Hoff Analytics</option>
+              <option value="obras10">Obras10</option>
+              <option value="conectaobras">Conecta Obras</option>
+              <option value="maisobras">Mais Obras</option>
+              </select>
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr data-feature="crm">
+      <td class="feature-col">CRM Integrado e Especializado (Construção)</td>
+      <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, Nativo</span>
+      </td>
+      <td class="competitor-col-data">
+          <span class="text-muted">Selecione acima</span>
+      </td>
+     </tr>
+     <tr data-feature="cno">
+      <td class="feature-col">Dados CNO Acionáveis por Cidade (no CRM)</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, com Filtros</span>
+      </td>
+      <td class="competitor-col-data">
+          <span class="text-muted">Selecione acima</span>
+      </td>
+     </tr>
+     <tr data-feature="preco">
+      <td class="feature-col">Preços Transparentes e Públicos</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim</span>
+      </td>
+      <td class="competitor-col-data">
+          <span class="text-muted">Selecione acima</span>
+      </td>
+     </tr>
+      <tr data-feature="demo">
+      <td class="feature-col">Demonstração Interativa Online</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, Imediata</span>
+      </td>
+      <td class="competitor-col-data">
+           <span class="text-muted">Selecione acima</span>
+      </td>
+     </tr>
+      <tr data-feature="contato">
+      <td class="feature-col">Contato Primário via WhatsApp</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, Direto</span>
+      </td>
+      <td class="competitor-col-data">
+            <span class="text-muted">Selecione acima</span>
+      </td>
+     </tr>
+     <tr data-feature="mobile">
+          <td class="feature-col">App Mobile para Campo (Fotos, Geo)</td>
+          <td class="leadobras-col-data">
+              <i class="fas fa-check-circle comp-icon"></i>
+              <span class="comp-text">Sim, Completo</span>
+          </td>
+          <td class="competitor-col-data">
+               <span class="text-muted">Selecione acima</span>
+          </td>
+      </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+
+<section id="demonstracao" class="section-bg-light-red">
+ <div class="container text-center">
+  <h2 class="animate-on-scroll fade-in-down">Veja o Futuro da Sua Prospecção AGORA!</h2> <p class="lead mt-3 mb-4 animate-on-scroll fade-in">Navegue pela nossa demonstração interativa e veja na prática como a leadObras.com funciona. Escolha a visualização:</p>
+
+    <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="demoTab" role="tablist"> <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="desktop-tab" data-toggle="tab" href="#demoDesktop" role="tab" aria-controls="demoDesktop" aria-selected="true">
+          <i class="fas fa-desktop"></i> Desktop
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="mobile-tab" data-toggle="tab" href="#demoMobile" role="tab" aria-controls="demoMobile" aria-selected="false">
+          <i class="fas fa-mobile-alt"></i> Mobile
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-4" id="demoTabContent"> <div class="tab-pane fade show active" id="demoDesktop" role="tabpanel" aria-labelledby="desktop-tab">
+        <p class="text-muted small mb-3">Visualização em tela de computador:</p>
+        <iframe src="URL_DA_SUA_DEMO_DESKTOP" title="Demonstração Desktop leadObras.com" allowfullscreen loading="lazy"></iframe>
+        </div>
+      <div class="tab-pane fade" id="demoMobile" role="tabpanel" aria-labelledby="mobile-tab">
+         <p class="text-muted small mb-3">Visualização em tela de celular:</p>
+         <iframe src="URL_DA_SUA_DEMO_MOBILE" title="Demonstração Mobile leadObras.com" allowfullscreen loading="lazy"></iframe>
+         <div class="mobile-description animate-on-scroll fade-in">
+             <i class="fas fa-map-marker-alt"></i> <strong>Prospecção em Campo Simplificada:</strong> Diferente de outras soluções, nossa versão mobile é otimizada para visitas. Registre <i class="fas fa-camera"></i> <strong>fotos da obra</strong> e <i class="fas fa-compass"></i> <strong>geolocalização</strong> com facilidade, direto do celular, agilizando a qualificação e o acompanhamento dos seus leads.
+         </div>
+      </div>
+    </div>
+
+  <a href="#precos" class="btn btn-danger btn-lg mt-4 animate-on-scroll fade-in-up">Gostou? Veja os Planos!</a>
+ </div>
+</section>
+
+
+<section id="publico-alvo">
+ <div class="container">
+  <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Ideal para Quem Vende na Construção Civil</h2>
+  <div class="row text-center">
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-hard-hat fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Fornecedores de Materiais</h4>
+      <p class="card-text">Encontre obras que precisam dos seus produtos no momento certo da compra.</p>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-tools fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Prestadores de Serviços</h4>
+      <p class="card-text">Identifique projetos que necessitam de instalação, manutenção ou serviços especializados.</p>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-building fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Empreiteiros e Construtoras</h4>
+      <p class="card-text">Monitore novas obras e gerencie seu pipeline de projetos e parcerias.</p>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-user-tie fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Representantes Comerciais</h4>
+      <p class="card-text">Otimize suas rotas e abordagens com leads qualificados e informações precisas.</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="precos" style="background-color: var(--cor-fundo-claro);">
+    <div class="container">
+        <h2 class="text-center mb-4 animate-on-scroll fade-in-down">Planos Flexíveis para Turbinar Suas Vendas</h2>
+        <div class="pricing-toggle animate-on-scroll fade-in">
+            <span id="monthlyLabel" class="active">Mensal</span>
+            <label class="switch mx-2">
+                <input type="checkbox" id="pricingSwitch">
+                <span class="slider"></span>
+            </label>
+            <span id="annualLabel">Anual</span>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up">
+                <div class="card h-100 shadow-sm" data-monthly-price="59">
+                    <div class="card-header text-center pricing-header-red">
+                        <h4 class="my-0 font-weight-normal">Foco Local</h4>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="price-container">
+                            <span class="original-price">De R$ 59</span>
+                            <h1 class="card-title pricing-card-title text-center">
+                                R$ <span class="price">59</span>
+                            </h1>
+                            <small class="text-muted frequency">/mês</small>
+                            <span class="total-annual-cost"></span> <span class="annual-discount-badge"><i class="fas fa-tags"></i></span> </div>
+                        <ul class="list-unstyled mt-3 mb-4 text-left">
+                            <li><i class="fas fa-check check-icon-red"></i>CRM Básico</li> <li><i class="fas fa-check check-icon-red"></i>Dados CNO: <strong>1 Cidade</strong></li>
+                            <li><i class="fas fa-times text-muted"></i><del>Mapas Interativos</del></li> <li><i class="fas fa-check check-icon-red"></i>Dashboards Padrão</li> <li><i class="fas fa-check check-icon-red"></i>1 Usuário</li>
+                            <li><i class="fab fa-whatsapp" style="color: var(--cor-whatsapp);"></i>Suporte WhatsApp</li>
+                        </ul>
+                        <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Foco%20Local%20da%20leadObras." target="_blank" class="btn btn-lg btn-block btn-outline-danger mt-auto">Quero o Foco Local</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up popular-plan" style="transition-delay: 0.1s;">
+                <div class="card h-100 shadow border-danger" data-monthly-price="189">
+                    <div class="card-header text-center pricing-header-red-popular">
+                        <h4 class="my-0 font-weight-normal">Expansão Regional</h4>
+                        <span class="badge badge-light">Popular</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="price-container">
+                            <span class="original-price">De R$ 189</span>
+                            <h1 class="card-title pricing-card-title text-center">
+                                R$ <span class="price">189</span>
+                            </h1>
+                            <small class="text-muted frequency">/mês</small>
+                            <span class="total-annual-cost"></span> <span class="annual-discount-badge"><i class="fas fa-tags"></i></span> </div>
+                        <ul class="list-unstyled mt-3 mb-4 text-left">
+                            <li><i class="fas fa-check check-icon-red"></i>CRM Completo</li>
+                            <li><i class="fas fa-check check-icon-red"></i>Dados CNO: <strong>5 Cidades</strong></li>
+                            <li><i class="fas fa-check check-icon-red"></i>Mapas Interativos</li>
+                            <li><i class="fas fa-check check-icon-red"></i>Dashboards Padrão</li>
+                            <li><i class="fas fa-check check-icon-red"></i>3 Usuários</li>
+                            <li><i class="fab fa-whatsapp" style="color: var(--cor-whatsapp);"></i>Suporte WhatsApp</li>
+                        </ul>
+                        <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Expans%C3%A3o%20Regional%20da%20leadObras." target="_blank" class="btn btn-lg btn-block btn-danger mt-auto">Quero Expandir</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+                <div class="card h-100 shadow-sm" id="planBuilderCard">
+                     <div class="card-header text-center pricing-header-red">
+                        <h4 class="my-0 font-weight-normal">Monte Seu Plano</h4>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                         <div id="builderTotalPriceContainer">
+                            R$ <span class="price" id="builderTotalPrice">0</span> <small class="text-muted frequency">/mês</small>
+                        </div>
+
+                         <ul class="list-unstyled mt-3 mb-4 text-left">
+                            <li><i class="fas fa-check check-icon-red"></i>Mapas Interativos</li>
+                            <li><i class="fas fa-check check-icon-red"></i>5 Usuários</li>
+                            <li><i class="fab fa-whatsapp" style="color: var(--cor-whatsapp);"></i>Suporte Prioritário</li>
+                             <li><i class="fas fa-check check-icon-red"></i>Acesso API (Opcional)</li>
+                        </ul>
+
+                        <div class="plan-builder-options">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input builder-option" type="checkbox" value="19" id="builderCrm" data-cost="19">
+                                    <label class="form-check-label" for="builderCrm">
+                                        CRM Completo <span class="price-tag">(+R$ 19/mês)</span>
+                                    </label>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="builderCities">Nº de Cidades <span class="price-tag">(+R$ 10/cidade/mês)</span></label>
+                                <input type="number" class="form-control form-control-sm d-inline-block builder-option" id="builderCities" value="1" min="1" data-cost="10" style="width: 70px;">
+                            </div>
+                            <div class="form-group">
+                                 <div class="form-check">
+                                    <input class="form-check-input builder-option" type="checkbox" value="30" id="builderDashboard" data-cost="30">
+                                    <label class="form-check-label" for="builderDashboard">
+                                        Dashboard Personalizado <span class="price-tag">(+R$ 30/mês)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20montar%20um%20plano%20personalizado." target="_blank" class="btn btn-lg btn-block btn-outline-danger mt-auto">Montar Meu Plano</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header text-center card-header-custom">
+                        <h4 class="my-0 font-weight-normal">Sob Medida</h4>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h1 class="card-title pricing-card-title text-center mt-3" style="font-size: 1.5rem;">R$ 38 / hora</h1>
+                        <p class="text-center text-muted small">(Desenvolvimento e Integrações)</p>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li class="custom-feature"><i class="fas fa-map-marker-alt"></i>Precisa de mais cidades?</li>
+                            <li class="custom-feature"><i class="fas fa-users"></i>Precisa de mais usuários?</li>
+                            <li class="custom-feature"><i class="fas fa-globe-americas"></i>Necessita cobertura Nacional?</li>
+                            <li class="custom-feature"><i class="fas fa-cogs"></i>Integrações específicas?</li>
+                            <li class="custom-feature"><i class="fas fa-chalkboard-teacher"></i>Treinamento dedicado?</li>
+                            <li class="mt-3 text-center"><strong>Montamos a solução ideal para sua necessidade!</strong></li>
+                        </ul>
+                        <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20discutir%20um%20Plano%20Sob%20Medida%20da%20leadObras." target="_blank" class="btn btn-lg btn-block btn-outline-secondary mt-auto">Solicitar Orçamento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center mt-3 animate-on-scroll fade-in"><small>Planos mensais e anuais podem ser cancelados a qualquer momento, sem multa.</small></p>
+        <p class="text-center pix-info animate-on-scroll fade-in">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="#32BCAD" d="M50 0a50 50 0 1 0 50 50A50 50 0 0 0 50 0zm18.3 59.8h-9.5v13H40.2v-13h-9.5V46.6l18-18.1 18.1 18.1v13.2z"/><path fill="#FFF" d="M58.8 59.8h-9.5v13H40.2v-13h-9.5V46.6l18-18.1 18.1 18.1z"/></svg>
+            Pagamento facilitado via PIX ou boleto.
+        </p>
+    </div>
+</section>
+<section id="faq">
+ <div class="container animate-on-scroll zoom-in">
+  <h2 class="text-center mb-5">Perguntas Frequentes (FAQ)</h2>
+  <div class="accordion" id="faqAccordion">
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingOne">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+       Como a leadObras.com se diferencia?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseOne" class="collapse show" aria-labelledby="faqHeadingOne" data-parent="#faqAccordion">
+     <div class="card-body">
+      Nossa principal diferença é a <strong>combinação única</strong> de um <strong>CRM especializado</strong> para construção, <strong>dados CNO acionáveis</strong> e filtráveis por cidade, <strong>preços transparentes</strong> e uma <strong>demonstração interativa</strong>. Somos uma solução completa e integrada.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingTwo">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+       Como os dados CNO ajudam a vender?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseTwo" class="collapse" aria-labelledby="faqHeadingTwo" data-parent="#faqAccordion">
+     <div class="card-body">
+      O CNO é o registro oficial de obras. Ao integrá-lo ao CRM com filtros por cidade, garantimos que você encontre oportunidades reais e relevantes na sua área, resultando em prospecção mais precisa e leads mais qualificados.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingThree">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+       O CRM é específico para construção?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseThree" class="collapse" aria-labelledby="faqHeadingThree" data-parent="#faqAccordion">
+     <div class="card-body">
+      Sim! Ele foi desenvolvido pensando nas particularidades do ciclo de vendas da construção, com funil adaptado (Visita Técnica, Orçamento), campos específicos da obra (tipo, metragem, fase CNO), gestão de tarefas e histórico completo.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingFour">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+       Com que frequência os dados são atualizados?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseFour" class="collapse" aria-labelledby="faqHeadingFour" data-parent="#faqAccordion">
+     <div class="card-body">
+      Atualizamos nossa base constantemente, buscando informações de fontes oficiais como o CNO e outras fontes públicas. Nosso objetivo é fornecer os dados mais recentes possíveis, variando conforme a disponibilidade das fontes.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingFive">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+       Como funciona o plano por cidade? Posso trocar?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive" data-parent="#faqAccordion">
+     <div class="card-body">
+      Nossos planos são flexíveis. Você escolhe o número de cidades ao contratar (ou monta no Plano Builder). Se precisar alterar ou adicionar mais, basta entrar em contato conosco via WhatsApp para ajustarmos seu plano.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingSix">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseSix" aria-expanded="false" aria-controls="faqCollapseSix">
+       Existe um período de teste gratuito?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix" data-parent="#faqAccordion">
+     <div class="card-body">
+      A melhor forma de conhecer é através da nossa <strong>Demonstração Interativa</strong> na página! Para acesso completo, oferecemos planos mensais acessíveis e sem fidelidade, que você pode cancelar a qualquer momento.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingSeven">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseSeven" aria-expanded="false" aria-controls="faqCollapseSeven">
+       Como funciona o suporte via WhatsApp?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseSeven" class="collapse" aria-labelledby="faqHeadingSeven" data-parent="#faqAccordion">
+     <div class="card-body">
+      O WhatsApp é nosso canal principal e mais rápido. Nossa equipe está disponível em horário comercial para responder suas dúvidas, ajudar com a plataforma ou discutir ajustes no seu plano. Buscamos um atendimento ágil e direto.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingEight">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseEight" aria-expanded="false" aria-controls="faqCollapseEight">
+       Posso cancelar minha assinatura a qualquer momento?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseEight" class="collapse" aria-labelledby="faqHeadingEight" data-parent="#faqAccordion">
+     <div class="card-body">
+      Sim! Acreditamos na flexibilidade. Você pode cancelar sua assinatura mensal ou anual a qualquer momento, sem multas ou burocracia. Seu acesso permanecerá ativo até o final do período já pago.
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="parceiros">
+    <div class="container">
+        <h4 class="animate-on-scroll fade-in">Tecnologia e Dados Confiáveis</h4>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-6 col-md-3 text-center mb-4 animate-on-scroll fade-in-up">
+                <div class="partner-logo">
+                    <img src="https://logodownload.org/wp-content/uploads/2014/09/google-logo-1.png" alt="Google" style="max-height: 40px;">
+                    </div>
+            </div>
+            <div class="col-6 col-md-3 text-center mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+                 <div class="partner-logo">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini AI" style="max-height: 40px;">
+                     </div>
+            </div>
+            <div class="col-6 col-md-3 text-center mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+                 <div class="partner-logo">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Gov.br_logo.svg" alt="Governo do Brasil - Dados Abertos" style="max-height: 50px;">
+                     </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="cta-final" class="text-white" style="padding: 60px 0; text-align: center;">
+ <div class="container">
+  <h2 class="animate-on-scroll fade-in-down">Não Deixe Mais Obras Escaparem. Comece HOJE!</h2> <p class="lead mt-3 animate-on-scroll fade-in">Deixe a complexidade para trás. Comece a usar a inteligência de dados CNO e um CRM especializado para encontrar e fechar mais negócios na construção civil.</p>
+  <div class="mt-4 animate-on-scroll fade-in-up">
+   <a href="#precos" class="btn btn-light btn-lg mb-2 mb-md-0 mr-md-2"><i class="fas fa-rocket mr-1"></i> Escolha Seu Plano Agora</a>
+   <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20leadObras." target="_blank" class="btn btn-outline-light btn-lg mb-2 mb-md-0"><i class="fab fa-whatsapp mr-1"></i> Fale Conosco</a>
+  </div>
+ </div>
+</section>
+
+<footer style="background-color: #343a40; color: var(--cor-texto-cinza); padding: 40px 0; font-size: 0.9em;">
+    <div class="container text-center">
+        <p class="mb-1">&copy; 2025 leadObras.com - Todos os direitos reservados.</p>
+        <p class="mb-1">CNPJ: XX.XXX.XXX/0001-XX | Endereço: Sua Rua, 123 - Sua Cidade/UF</p>
+        <p class="mb-0"><a href="/termos-de-uso" class="text-white-50">Termos de Uso</a> | <a href="/politica-de-privacidade" class="text-white-50">Política de Privacidade</a></p>
+    </div>
+</footer>
+
+<div class="whatsapp-container">
+    <div class="whatsapp-bubble" id="whatsappBubble">
+        <button class="whatsapp-bubble-close" aria-label="Fechar balão de chat" onclick="toggleWhatsAppBubble(false)">&times;</button>
+        <div class="whatsapp-bubble-header">
+            <div class="whatsapp-bubble-avatar">
+                <i class="fas fa-headset"></i>
+                </div>
+            <div class="whatsapp-bubble-info">
+                <h5>leadObras Suporte</h5>
+                <span>Online</span>
+            </div>
+        </div>
+        <div class="whatsapp-bubble-body">
+            <p id="whatsappMessage"></p>
+            <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20leadObras." target="_blank" class="btn btn-success btn-sm mt-2 w-100">
+                <i class="fab fa-whatsapp mr-1"></i> Iniciar Conversa
+            </a>
+        </div>
+    </div>
+
+    <button class="whatsapp-float" id="whatsappBtn" aria-label="Abrir chat do WhatsApp" title="Fale Conosco!">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-notification"></span> </button>
+</div>
+
+
+<div id="exit-popup" aria-live="polite" aria-modal="true" role="dialog" aria-labelledby="exitPopupTitle">
+    <div class="popup-content">
+        <button onclick="closeExitPopup()" class="close-btn" aria-label="Fechar Pop-up">&times;</button>
+        <div class="popup-icon">
+            <i class="fas fa-gift"></i> </div>
+        <h3 id="exitPopupTitle">Quase lá! Uma Oferta Para Você</h3>
+        <p>Não perca a chance de otimizar sua prospecção. Use o cupom abaixo e comece com desconto!</p>
+        <p class="offer-highlight">Ganhe 15% OFF no seu primeiro mês!</p>
+        <p>Seu cupom:</p>
+        <p class="coupon-code">LEAD15</p>
+        <a href="#precos" onclick="closeExitPopup()" class="btn btn-danger btn-cta-popup">
+            <i class="fas fa-check mr-1"></i> Quero Meu Desconto!
+        </a>
+        <button onclick="closeExitPopup()" class="btn btn-link btn-secondary-popup mt-2">Continuar navegando</button>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // --- Script Animação de Scroll com Intersection Observer ---
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Anima apenas uma vez
+                    }
+                });
+            }, { threshold: 0.1 }); // Gatilho com 10% visível
+            animatedElements.forEach(el => observer.observe(el));
+        } else {
+            // Mostra elementos imediatamente se movimento reduzido for preferido
+            animatedElements.forEach(el => el.classList.add('is-visible'));
+        }
+
+        // --- Script Ícone do Acordeão FAQ ---
+        $('#faqAccordion .collapse').on('show.bs.collapse', function () {
+            $(this).prev('.card-header').find('.fas.fa-chevron-down, .fas.fa-chevron-up').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        }).on('hide.bs.collapse', function () {
+            $(this).prev('.card-header').find('.fas.fa-chevron-down, .fas.fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        });
+        // Garante ícone inicial correto para item já aberto
+        $('#faqAccordion .collapse.show').prev('.card-header').find('.fas.fa-chevron-down, .fas.fa-chevron-up').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+
+        // --- Script Pop-up de Saída ---
+        const exitPopup = document.getElementById('exit-popup');
+        let exitPopupShown = sessionStorage.getItem('exitPopupShown') === 'true';
+
+        // Torna as funções globais para serem acessíveis pelo onclick no HTML
+        window.showExitPopup = function() {
+            if (!exitPopupShown && exitPopup && !prefersReducedMotion) { // Não mostra se prefere movimento reduzido
+                exitPopup.style.display = 'flex';
+                setTimeout(() => {
+                    exitPopup.style.opacity = '1';
+                    exitPopup.querySelector('.popup-content').style.transform = 'scale(1)';
+                    exitPopup.querySelector('.popup-content').style.opacity = '1'; // Garante opacidade do conteúdo
+                }, 10); // Pequeno delay para transição
+                exitPopupShown = true;
+                sessionStorage.setItem('exitPopupShown', 'true');
+            }
+        }
+        window.closeExitPopup = function() {
+            if (exitPopup) {
+                exitPopup.style.opacity = '0';
+                exitPopup.querySelector('.popup-content').style.transform = 'scale(0.9)';
+                exitPopup.querySelector('.popup-content').style.opacity = '0';
+                setTimeout(() => {
+                    exitPopup.style.display = 'none';
+                }, 400); // Duração da transição CSS
+            }
+        }
+
+        // Listener de Saída do Mouse (mouseleave)
+        document.addEventListener('mouseleave', function(e) {
+            // Só ativa se o mouse sair pela parte superior da janela
+            if (e.clientY < 10) { // Ajustado para 10px do topo para mais sensibilidade
+                showExitPopup();
+            }
+        });
+        // Listener para fechar com a tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && exitPopup && exitPopup.style.display === 'flex') {
+                closeExitPopup();
+            }
+        });
+
+        // --- Script Barra de Progresso de Rolagem ---
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        function updateProgressBar() {
+            const windowHeight = document.documentElement.clientHeight; // Altura visível da janela
+            const fullHeight = document.documentElement.scrollHeight; // Altura total do documento
+            const scrolledY = window.pageYOffset; // Quanto já foi rolado
+
+            // Evita divisão por zero se a página não for rolável
+            const scrollableHeight = fullHeight - windowHeight;
+            if (scrollableHeight <= 0) {
+                 if (scrollProgressBar) scrollProgressBar.style.width = "0%";
+                 return;
+            }
+
+            const scrolledPercent = (scrolledY / scrollableHeight) * 100;
+
+            if (scrollProgressBar) {
+                // Garante que a largura não exceda 100% nem seja negativa
+                scrollProgressBar.style.width = Math.min(100, Math.max(0, scrolledPercent)) + "%";
+            }
+        }
+        window.addEventListener('scroll', updateProgressBar, { passive: true }); // Otimização
+        window.addEventListener('resize', updateProgressBar); // Recalcula se a janela for redimensionada
+        updateProgressBar(); // Calcula ao carregar a página
+
+        // --- Script Menu Ativo na Rolagem ---
+        const navLinks = document.querySelectorAll('#navbarNav .nav-link[href^="#"]');
+        const sections = [];
+        const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 60; // Pega a altura do menu do CSS
+
+        navLinks.forEach(link => {
+            const section = document.querySelector(link.getAttribute('href'));
+            if (section) {
+                sections.push({ link: link, section: section });
+            }
+        });
+
+        function activateMenuLink() {
+            let currentSectionId = null;
+            // Ponto de referência um pouco abaixo do menu fixo
+            const scrollTriggerPoint = window.pageYOffset + navbarHeight + 50;
+
+            sections.forEach(item => {
+                const sectionTop = item.section.offsetTop;
+                const sectionBottom = sectionTop + item.section.offsetHeight;
+
+                // Verifica se o ponto de gatilho está dentro desta seção
+                // Ou se a seção começa acima do ponto e termina abaixo (para seções longas)
+                if (scrollTriggerPoint >= sectionTop && scrollTriggerPoint < sectionBottom) {
+                    currentSectionId = item.section.id;
+                }
+            });
+
+             // Se nenhuma seção foi encontrada (ex: no topo antes da primeira seção ou no final após a última)
+             if (!currentSectionId) {
+                 // Se estiver perto do topo, ativa o primeiro link
+                 if (window.pageYOffset < sections[0]?.section.offsetTop - navbarHeight - 50) {
+                     currentSectionId = sections[0]?.section.id;
+                 }
+                 // Se estiver perto do fim (último pixel rolável), ativa o último link
+                 else if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 5) { // 5px de tolerância
+                     currentSectionId = sections[sections.length - 1]?.section.id;
+                 }
+             }
+
+            // Aplica a classe 'active'
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', activateMenuLink, { passive: true });
+        activateMenuLink(); // Ativa o link correto ao carregar a página
+
+
+        // --- Script Menu Fixo (Fechar menu mobile ao clicar no link) ---
+        $('.navbar-nav .nav-link').on('click', function(){
+            // Verifica se o menu está colapsado (visível em telas pequenas)
+            if ($('.navbar-toggler').is(':visible') && $('.navbar-collapse').hasClass('show')) {
+                $('.navbar-collapse').collapse('hide');
+            }
+        });
+
+        // --- Script Novo Botão WhatsApp com Balão e Efeito de Digitação ---
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const whatsappBubble = document.getElementById('whatsappBubble');
+        const whatsappMessageEl = document.getElementById('whatsappMessage');
+        const fullMessage = "Olá! 👋 Tem alguma dúvida? Fale conosco diretamente pelo WhatsApp!"; // Texto completo
+        const typingSpeed = 50; // Velocidade de digitação em milissegundos
+        let typingTimeout; // Referência para o timeout da digitação
+        let autoShowTimeout; // Referência para o timeout de aparição automática
+        let hasTyped = false; // Flag para controlar se a animação já rodou
+
+        // Função para iniciar a digitação
+        function startTyping() {
+            if (!whatsappMessageEl || hasTyped || prefersReducedMotion) { // Não digita se já digitou ou prefere movimento reduzido
+                if (whatsappMessageEl) whatsappMessageEl.innerHTML = fullMessage; // Mostra texto completo
+                return;
+            }
+
+            let i = 0;
+            whatsappMessageEl.innerHTML = ''; // Limpa o texto inicial
+            const cursorSpan = '<span class="typing-cursor"></span>'; // Cria o cursor
+            whatsappMessageEl.innerHTML = cursorSpan; // Adiciona o cursor inicial
+
+            function typeChar() {
+                if (i < fullMessage.length) {
+                    whatsappMessageEl.innerHTML = fullMessage.substring(0, i + 1) + cursorSpan;
+                    i++;
+                    typingTimeout = setTimeout(typeChar, typingSpeed);
+                } else {
+                    // Remove o cursor piscando após terminar
+                    whatsappMessageEl.innerHTML = fullMessage;
+                    hasTyped = true; // Marca que a animação terminou
+                }
+            }
+            // Inicia a digitação após um pequeno delay para o balão aparecer
+            clearTimeout(typingTimeout); // Limpa timeouts anteriores
+            typingTimeout = setTimeout(typeChar, 300); // Delay de 300ms
+        }
+
+        // Função para mostrar/esconder o balão
+        window.toggleWhatsAppBubble = function(show) {
+            clearTimeout(autoShowTimeout); // Cancela o timeout de aparição automática se o usuário interagir
+
+            if (whatsappBubble) {
+                if (show) {
+                    whatsappBubble.classList.add('show');
+                    // Se o balão está sendo aberto e a digitação ainda não ocorreu
+                    if (!hasTyped && !prefersReducedMotion) { // Só digita se não tiver digitado E não preferir movimento reduzido
+                        startTyping();
+                    } else {
+                        // Se já digitou antes ou prefere movimento reduzido, mostra texto completo
+                        if(whatsappMessageEl) whatsappMessageEl.innerHTML = fullMessage;
+                    }
+                } else {
+                    whatsappBubble.classList.remove('show');
+                    // Para a digitação se o balão for fechado no meio
+                    clearTimeout(typingTimeout);
+                     // Garante texto completo ao fechar (se o elemento existir)
+                    if (whatsappMessageEl) whatsappMessageEl.innerHTML = fullMessage;
+                }
+            }
+        }
+
+        // Evento de clique no botão principal
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Impede que o clique feche o balão imediatamente
+                toggleWhatsAppBubble(!whatsappBubble.classList.contains('show'));
+            });
+        }
+
+        // Evento para fechar o balão se clicar fora dele
+        document.addEventListener('click', function(event) {
+            if (whatsappBubble && whatsappBubble.classList.contains('show')) {
+                // Verifica se o clique foi fora do balão E fora do botão principal
+                if (!whatsappBubble.contains(event.target) && !whatsappBtn.contains(event.target)) {
+                    toggleWhatsAppBubble(false);
+                }
+            }
+        });
+
+        // Aparição automática do balão após um tempo (ex: 5 segundos)
+        // Só inicia o timeout se o usuário não preferir movimento reduzido
+        if (!prefersReducedMotion) {
+            autoShowTimeout = setTimeout(() => {
+                 // Só mostra automaticamente se não estiver já aberto
+                 if (whatsappBubble && !whatsappBubble.classList.contains('show')) {
+                     toggleWhatsAppBubble(true);
+                 }
+            }, 5000); // 5000ms = 5 segundos
+        }
+
+        // --- Script para Tabela Comparativa Dinâmica ---
+        const competitorSelector = document.getElementById('competitorSelector');
+        const comparisonTableBody = document.getElementById('comparisonTable')?.querySelector('tbody');
+        let competitorIntervalId = null; // ID do intervalo para ciclagem
+        const cycleDelay = 5000; // 5 segundos
+
+        // Dados dos concorrentes (Exemplo - preencha com dados reais)
+        const competitorData = {
+            "obrasonline": {
+                crm: { icon: "times", text: "Não Integrado" },
+                cno: { icon: "minus", text: "Limitado" },
+                preco: { icon: "times", text: "Sob Consulta" },
+                demo: { icon: "minus", text: "Vídeo/Agendado" },
+                contato: { icon: "envelope", text: "Formulário" },
+                mobile: { icon: "times", text: "Não" }
+            },
+            "prospectaobras": {
+                crm: { icon: "minus", text: "Básico" },
+                cno: { icon: "check", text: "Sim" },
+                preco: { icon: "times", text: "Sob Consulta" },
+                demo: { icon: "clock", text: "Agendamento" },
+                contato: { icon: "phone", text: "Telefone" },
+                mobile: { icon: "minus", text: "Limitado" }
+            },
+             "obraai": {
+                crm: { icon: "check", text: "Sim" },
+                cno: { icon: "check", text: "Sim" },
+                preco: { icon: "minus", text: "Variável" },
+                demo: { icon: "check", text: "Sim" },
+                contato: { icon: "envelope", text: "Formulário" },
+                mobile: { icon: "check", text: "Sim" }
+            },
+             "intecbrasil": {
+                crm: { icon: "times", text: "Não" },
+                cno: { icon: "check", text: "Sim" },
+                preco: { icon: "times", text: "Sob Consulta" },
+                demo: { icon: "times", text: "Não" },
+                contato: { icon: "phone", text: "Telefone" },
+                mobile: { icon: "times", text: "Não" }
+            },
+             "rededeobras": {
+                crm: { icon: "minus", text: "Básico" },
+                cno: { icon: "check", text: "Sim" },
+                preco: { icon: "times", text: "Sob Consulta" },
+                demo: { icon: "clock", text: "Agendamento" },
+                contato: { icon: "envelope", text: "Formulário" },
+                mobile: { icon: "minus", text: "Limitado" }
+            },
+             "hoffanalytics": {
+                crm: { icon: "times", text: "Não" },
+                cno: { icon: "check", text: "Sim" },
+                preco: { icon: "times", text: "Sob Consulta" },
+                demo: { icon: "clock", text: "Agendamento" },
+                contato: { icon: "phone", text: "Telefone" },
+                mobile: { icon: "times", text: "Não" }
+            },
+             "obras10": {
+                crm: { icon: "times", text: "Não" },
+                cno: { icon: "check", text: "Sim" },
+                preco: { icon: "check", text: "Sim" },
+                demo: { icon: "minus", text: "Limitado" },
+                contato: { icon: "envelope", text: "Formulário" },
+                mobile: { icon: "times", text: "Não" }
+            },
+             "conectaobras": {
+                 crm: { icon: "minus", text: "Básico" },
+                 cno: { icon: "check", text: "Sim" },
+                 preco: { icon: "times", text: "Sob Consulta" },
+                 demo: { icon: "clock", text: "Agendamento" },
+                 contato: { icon: "phone", text: "Telefone" },
+                 mobile: { icon: "minus", text: "Limitado" }
+             },
+             "maisobras": {
+                 crm: { icon: "times", text: "Não" },
+                 cno: { icon: "check", text: "Sim" },
+                 preco: { icon: "times", text: "Sob Consulta" },
+                 demo: { icon: "clock", text: "Agendamento" },
+                 contato: { icon: "envelope", text: "Formulário" },
+                 mobile: { icon: "times", text: "Não" }
+             }
+        };
+
+        function updateComparisonTable(selectedCompetitorKey) {
+            if (!comparisonTableBody || !selectedCompetitorKey || !competitorData[selectedCompetitorKey]) {
+                 comparisonTableBody.querySelectorAll('.competitor-col-data').forEach(cell => {
+                     cell.innerHTML = '<span class="text-muted">-</span>';
+                 });
+                return;
+            }
+
+            const data = competitorData[selectedCompetitorKey];
+
+            comparisonTableBody.querySelectorAll('tr[data-feature]').forEach(row => {
+                const featureKey = row.dataset.feature;
+                const cell = row.querySelector('.competitor-col-data');
+                const featureData = data[featureKey];
+
+                if (cell && featureData) {
+                    let iconClass = '';
+                    let iconColorClass = '';
+
+                    switch (featureData.icon) {
+                        case 'check': iconClass = 'fas fa-check-circle'; iconColorClass = 'text-success'; break;
+                        case 'times': iconClass = 'fas fa-times-circle'; iconColorClass = 'text-danger'; break;
+                        case 'minus': iconClass = 'fas fa-minus-circle'; iconColorClass = 'text-warning'; break;
+                        case 'info': iconClass = 'fas fa-info-circle'; iconColorClass = 'text-info'; break;
+                        case 'clock': iconClass = 'fas fa-clock'; iconColorClass = 'text-warning'; break;
+                        case 'video': iconClass = 'fas fa-video'; iconColorClass = 'text-secondary'; break;
+                        case 'envelope': iconClass = 'fas fa-envelope'; iconColorClass = 'text-secondary'; break;
+                        case 'phone': iconClass = 'fas fa-phone'; iconColorClass = 'text-secondary'; break;
+                        default: iconClass = 'fas fa-question-circle'; iconColorClass = 'text-muted';
+                    }
+
+                    cell.innerHTML = `
+                        <i class="${iconClass} comp-icon ${iconColorClass}"></i>
+                        ${featureData.text ? `<span class="comp-text">${featureData.text}</span>` : ''}
+                    `;
+                } else if (cell) {
+                    cell.innerHTML = '<i class="fas fa-question-circle comp-icon text-muted"></i><span class="comp-text">Não informado</span>';
+                }
+            });
+        }
+
+        function startCompetitorCycle() {
+             // Garante que o seletor e as opções existem
+            if (prefersReducedMotion || !competitorSelector || competitorSelector.options.length <= 1) return;
+
+            let currentIndex = 1; // Começa do primeiro concorrente real
+            competitorSelector.selectedIndex = currentIndex;
+            updateComparisonTable(competitorSelector.value);
+
+            // Limpa qualquer intervalo anterior para evitar múltiplos ciclos
+            clearInterval(competitorIntervalId);
+
+            competitorIntervalId = setInterval(() => {
+                currentIndex++;
+                if (currentIndex >= competitorSelector.options.length) {
+                    currentIndex = 1; // Volta para o primeiro concorrente
+                }
+                competitorSelector.selectedIndex = currentIndex;
+                updateComparisonTable(competitorSelector.value);
+            }, cycleDelay);
+        }
+
+
+        if (competitorSelector) {
+            competitorSelector.addEventListener('change', function() {
+                clearInterval(competitorIntervalId); // Para o ciclo automático quando o usuário interage manualmente
+                updateComparisonTable(this.value);
+            });
+
+            // Inicia o ciclo automático
+            startCompetitorCycle();
+        }
+
+        // --- Script para Abas da Demonstração ---
+        // O Bootstrap já cuida da troca de abas
+
+       // --- Script para Switch de Preços Mensal/Anual ---
+        const pricingSwitch = document.getElementById('pricingSwitch');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const annualLabel = document.getElementById('annualLabel');
+        const priceCards = document.querySelectorAll('#precos .card[data-monthly-price]'); // Seleciona apenas os cards com preço definido
+
+        function updatePrices() {
+            const isAnnual = pricingSwitch.checked;
+
+            monthlyLabel.classList.toggle('active', !isAnnual);
+            annualLabel.classList.toggle('active', isAnnual);
+
+            priceCards.forEach(card => {
+                const priceElement = card.querySelector('.price');
+                const frequencyElement = card.querySelector('.frequency');
+                const originalPriceElement = card.querySelector('.original-price');
+                const totalAnnualCostElement = card.querySelector('.total-annual-cost');
+                const discountInfoElement = card.querySelector('.annual-discount-badge');
+                const monthlyPrice = parseFloat(card.dataset.monthlyPrice);
+
+                if (isNaN(monthlyPrice)) return; // Pula se não for um número
+
+                // Calcula preço anual (ex: 11x mensal para dar ~8.3% de desconto)
+                const annualPrice = monthlyPrice * 11;
+                const effectiveMonthlyPrice = annualPrice / 12;
+                const discountPercent = Math.round((1 - (annualPrice / (monthlyPrice * 12))) * 100);
+
+                if (priceElement && frequencyElement) {
+                    if (isAnnual) {
+                        if (originalPriceElement) {
+                            originalPriceElement.innerHTML = `De R$ ${monthlyPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                            originalPriceElement.classList.add('show');
+                        }
+                        priceElement.textContent = effectiveMonthlyPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        frequencyElement.textContent = '/mês';
+
+                        if (totalAnnualCostElement) {
+                            totalAnnualCostElement.textContent = `Cobrado R$ ${annualPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} anualmente`;
+                            totalAnnualCostElement.classList.add('show');
+                        }
+                        if (discountInfoElement) {
+                            discountInfoElement.innerHTML = `<i class="fas fa-tags"></i>${discountPercent}% OFF`;
+                            discountInfoElement.classList.add('show');
+                        }
+                    } else {
+                        if (originalPriceElement) {
+                            originalPriceElement.classList.remove('show');
+                        }
+                        priceElement.textContent = monthlyPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        frequencyElement.textContent = '/mês';
+                        if (totalAnnualCostElement) {
+                            totalAnnualCostElement.classList.remove('show');
+                        }
+                        if (discountInfoElement) {
+                            discountInfoElement.classList.remove('show');
+                        }
+                    }
+                }
+            });
+        }
+
+         // --- Script para Plan Builder ---
+        const builderOptions = document.querySelectorAll('#planBuilderCard .builder-option');
+        const builderTotalPriceElement = document.getElementById('builderTotalPrice');
+
+        function calculateBuilderPrice() {
+            let totalPrice = 0;
+            const builderCitiesInput = document.getElementById('builderCities');
+            const builderCrmCheckbox = document.getElementById('builderCrm');
+            const builderDashboardCheckbox = document.getElementById('builderDashboard');
+
+            // Custo das cidades
+            const cityCount = parseInt(builderCitiesInput.value) || 0;
+            const cityCostPerUnit = parseFloat(builderCitiesInput.dataset.cost) || 0;
+            totalPrice += cityCount * cityCostPerUnit;
+
+            // Custo do CRM
+            if (builderCrmCheckbox.checked) {
+                totalPrice += parseFloat(builderCrmCheckbox.dataset.cost) || 0;
+            }
+
+            // Custo do Dashboard Personalizado
+            if (builderDashboardCheckbox.checked) {
+                totalPrice += parseFloat(builderDashboardCheckbox.dataset.cost) || 0;
+            }
+
+            if (builderTotalPriceElement) {
+                 builderTotalPriceElement.textContent = totalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        if (builderOptions.length > 0) {
+            builderOptions.forEach(option => {
+                option.addEventListener('change', calculateBuilderPrice);
+                option.addEventListener('input', calculateBuilderPrice); // Para o campo number
+            });
+            // Calcula o preço inicial ao carregar
+            calculateBuilderPrice();
+        }
+
+
+        // Inicializa e adiciona listener para o switch de preços (DEVE VIR DEPOIS de definir calculateBuilderPrice)
+        if (pricingSwitch) {
+            pricingSwitch.addEventListener('change', () => {
+                updatePrices();
+                // Nota: O Plan Builder não tem opção Anual/Mensal separada aqui,
+                // ele sempre mostra o preço mensal calculado.
+                // Se precisasse de lógica anual para o builder, seria adicionada aqui.
+            });
+            updatePrices(); // Chama para definir os preços iniciais corretos
+        }
+
+
+    }); // Fim do DOMContentLoaded
+</script>
+
+</body>
+</html>

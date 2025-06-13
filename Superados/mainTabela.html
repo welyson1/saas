@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>leadObras.com - Prospecção e CRM para Construção</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* --- Configurações Globais e Variáveis --- */
+        :root {
+            --cor-primaria: #c00000;
+            --cor-primaria-hover: #a00000;
+            --cor-secundaria: #6c757d;
+            --cor-secundaria-hover: #5a6268;
+            --cor-perigo: #dc3545;
+            --cor-perigo-hover: #c82333;
+            --cor-sucesso: #28a745; /* Verde para 'sim' */
+            --cor-aviso: #ffc107;  /* Amarelo para 'parcial' */
+            --cor-cinza-claro: #f8f9fa;
+            --cor-cinza-borda: #dee2e6;
+            --cor-fundo-claro: #f8f9fa;
+            --cor-fundo-vermelho-claro: #fdf2f2;
+            --cor-texto-cinza: #adb5bd;
+            --cor-whatsapp: #25D366;
+            --cor-whatsapp-hover: #128C7E;
+            --navbar-height: 60px; /* Altura estimada do menu */
+            --duracao-transicao: 0.3s;
+            --duracao-animacao: 0.7s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--navbar-height); /* Compensação para links internos com menu fixo */
+        }
+
+        body {
+            overflow-x: hidden; /* Prevenir scroll horizontal */
+            padding-top: var(--navbar-height); /* Espaço no topo para o menu fixo */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+            position: relative; /* Necessário para cálculo de offsetTop das seções */
+        }
+
+        /* --- Estilos Barra de Progresso --- */
+        .progress-container {
+            width: 100%;
+            height: 5px; /* Altura da barra */
+            background-color: #e9ecef; /* Fundo cinza claro */
+            position: fixed;
+            top: var(--navbar-height); /* Posicionado abaixo do menu */
+            left: 0;
+            z-index: 1029; /* Abaixo do z-index do navbar (1030) */
+            pointer-events: none; /* Não interfere com cliques */
+        }
+
+        .progress-bar-scroll {
+            height: 100%;
+            background-color: var(--cor-primaria); /* Cor principal */
+            width: 0%; /* Inicia vazio */
+            transition: width 0.05s linear; /* Transição mais rápida para parecer mais responsivo */
+        }
+
+        /* --- Estilos Menu Fixo (Navbar) --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.97); /* Fundo branco com leve transparência */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px); /* Efeito de desfoque (suporte variado) */
+            min-height: var(--navbar-height);
+        }
+        .navbar-brand {
+            color: var(--cor-primaria) !important;
+            font-weight: bold;
+            font-size: 1.4rem; /* Tamanho da marca */
+        }
+        .navbar .nav-link {
+            color: #343a40 !important; /* Cor escura para links */
+            margin: 0 5px;
+            padding: 8px 12px; /* Padding dos links */
+            border-radius: 4px;
+            transition: background-color var(--duracao-transicao) ease, color var(--duracao-transicao) ease;
+            font-weight: 500; /* Peso da fonte dos links */
+        }
+        /* Estilo para link ativo (será aplicado pelo JS) */
+        .navbar .nav-item .nav-link.active,
+        .navbar .nav-link:hover {
+            color: white !important;
+            background-color: var(--cor-primaria);
+        }
+        .navbar-toggler {
+            border-color: rgba(0,0,0,0.1);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(192, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Ícone do toggler vermelho */
+        }
+        /* Ajustes para o menu colapsado */
+        .navbar-collapse {
+             background-color: rgba(255, 255, 255, 0.98); /* Fundo para o menu mobile */
+             padding: 10px 0; /* Padding vertical */
+             margin-top: 5px; /* Pequeno espaço */
+             border-radius: 0 0 5px 5px; /* Cantos arredondados embaixo */
+             box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        @media (min-width: 992px) { /* Em telas grandes, remove estilos do menu colapsado */
+            .navbar-collapse {
+                background-color: transparent;
+                padding: 0;
+                margin-top: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+        .navbar .btn-cta { /* Estilo para o botão no menu */
+            margin-left: 10px;
+            padding: 6px 15px;
+            font-size: 0.9rem;
+        }
+         @media (max-width: 991.98px) { /* Estilos do botão no menu mobile */
+             .navbar .btn-cta {
+                 margin-left: 0;
+                 margin-top: 10px;
+                 display: block; /* Ocupa a largura toda */
+                 width: 100%;
+                 text-align: center;
+             }
+             .navbar-nav .nav-item {
+                 margin-bottom: 5px; /* Espaçamento entre itens mobile */
+             }
+         }
+
+        /* --- Paleta Vermelha e Estilos Base (Mantidos) --- */
+        .btn-primary { background-color: var(--cor-primaria); border-color: var(--cor-primaria); transition: background-color var(--duracao-transicao) ease, transform var(--duracao-transicao) ease; }
+        .btn-primary:hover { background-color: var(--cor-primaria-hover); border-color: var(--cor-primaria-hover); transform: translateY(-2px); }
+        .btn-secondary { background-color: var(--cor-secundaria); border-color: var(--cor-secundaria); transition: background-color var(--duracao-transicao) ease, transform var(--duracao-transicao) ease; }
+        .btn-secondary:hover { background-color: var(--cor-secundaria-hover); border-color: var(--cor-secundaria-hover); transform: translateY(-2px); }
+        .btn-danger { background-color: var(--cor-perigo); border-color: var(--cor-perigo); transition: background-color var(--duracao-transicao) ease, transform var(--duracao-transicao) ease; }
+        .btn-danger:hover { background-color: var(--cor-perigo-hover); border-color: var(--cor-perigo-hover); transform: translateY(-2px); }
+        .btn-outline-danger { color: var(--cor-perigo); border-color: var(--cor-perigo); transition: all var(--duracao-transicao) ease; }
+        .btn-outline-danger:hover { color: #fff; background-color: var(--cor-perigo); border-color: var(--cor-perigo); transform: translateY(-2px); }
+        .btn-outline-secondary { transition: all var(--duracao-transicao) ease; }
+        .btn-outline-secondary:hover { transform: translateY(-2px); }
+        .text-primary { color: var(--cor-primaria) !important; }
+        .border-danger { border-color: var(--cor-perigo) !important; }
+        .bg-danger { background-color: var(--cor-perigo) !important; }
+        .card-header.bg-danger { color: white; }
+        .icon-red { color: var(--cor-primaria); }
+        .problem-icon-red { color: var(--cor-perigo); }
+        .check-icon-red { color: var(--cor-primaria); }
+        #cta-final { background-color: var(--cor-primaria); color: white; }
+        #cta-final .btn-light { color: var(--cor-primaria); transition: background-color var(--duracao-transicao) ease, transform var(--duracao-transicao) ease; }
+        #cta-final .btn-light:hover { background-color: #e2e6ea; transform: translateY(-2px); }
+        #cta-final .btn-outline-light { color: white; border-color: white; transition: all var(--duracao-transicao) ease; }
+        #cta-final .btn-outline-light:hover { background-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+        #faq .btn-link { color: var(--cor-primaria); text-decoration: none; transition: color var(--duracao-transicao) ease; font-weight: 500; }
+        #faq .btn-link:hover { color: var(--cor-primaria-hover); text-decoration: underline; }
+        #faq .btn-link:focus { box-shadow: none; }
+        #faq .card-header { background-color: #fff; }
+        #faq .card { border: 1px solid #e0e0e0; }
+        .section-bg-light-red { background-color: var(--cor-fundo-vermelho-claro); }
+
+        /* --- Efeitos Hover Aprimorados (Mantidos) --- */
+        .card { transition: transform var(--duracao-transicao) ease, box-shadow var(--duracao-transicao) ease; border: none; /* Remover borda padrão do card */ }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        #publico-alvo .card:hover .fas { transform: scale(1.15); transition: transform var(--duracao-transicao) ease; }
+        #publico-alvo .fas { transition: transform var(--duracao-transicao) ease; }
+        #funcionalidades img { transition: transform 0.4s ease, box-shadow 0.4s ease; border-radius: 8px; }
+        #funcionalidades .row:hover img { transform: scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
+        /* --- MELHORIAS NOS CARDS DE PREÇO --- */
+        #precos .card {
+            border-radius: 10px; /* Cantos mais arredondados */
+            overflow: hidden; /* Garante que o header não ultrapasse o radius */
+        }
+        #precos .card-header {
+            padding: 1.5rem 1rem; /* Mais padding vertical */
+            font-weight: bold;
+            border-bottom: 1px solid rgba(0,0,0,0.05); /* Linha sutil */
+        }
+        #precos .pricing-header-red { background-color: #f8d7da; border-bottom-color: #f5c6cb; }
+        #precos .pricing-header-red-popular {
+            background-color: var(--cor-perigo);
+            border-color: var(--cor-perigo);
+            color: white;
+            position: relative; /* Para o badge */
+        }
+        #precos .pricing-header-red-popular .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+        }
+        #precos .card-title {
+            font-size: 2.5rem; /* Preço maior */
+            margin-bottom: 0.5rem;
+        }
+        #precos .card-title small {
+            font-size: 1rem; /* /mês menor */
+            font-weight: normal;
+        }
+        #precos .list-unstyled li {
+            padding: 0.5rem 0; /* Espaçamento entre itens da lista */
+            border-bottom: 1px solid #f1f1f1; /* Linha separadora sutil */
+            display: flex; /* Alinhar ícone e texto */
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        #precos .list-unstyled li:last-child {
+            border-bottom: none; /* Remove linha do último item */
+        }
+        #precos .list-unstyled li i {
+            margin-right: 8px; /* Espaço entre ícone e texto */
+            width: 16px; /* Largura fixa para alinhar */
+            text-align: center;
+        }
+        #precos .card-body {
+            padding: 1.5rem; /* Padding interno do corpo */
+        }
+        #precos .btn {
+            padding: 0.75rem 1rem; /* Botão ligeiramente maior */
+            font-weight: bold;
+        }
+        /* Destaque sutil para o card popular */
+        #precos .card.popular-plan {
+            transform: scale(1.03); /* Levemente maior */
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.2); /* Sombra vermelha sutil */
+            z-index: 10; /* Fica na frente dos outros */
+        }
+        #precos .card.popular-plan:hover {
+            transform: scale(1.05) translateY(-6px); /* Aumenta um pouco mais no hover */
+        }
+        /* Card Personalizado */
+        #precos .card-header-custom {
+            background-color: #e2e3e5;
+            border-bottom: 1px solid #d6d8db;
+        }
+        #precos .list-unstyled li.custom-feature {
+            color: var(--cor-secundaria);
+            font-style: italic;
+            justify-content: flex-start; /* Alinha à esquerda */
+            padding-left: 10px;
+        }
+         #precos .list-unstyled li.custom-feature i {
+             color: var(--cor-secundaria); /* Ícone cinza */
+         }
+
+        /* --- ESTILOS DA NOVA TABELA COMPARATIVA --- */
+        #comparativo .table-comparison {
+            border: 1px solid var(--cor-cinza-borda);
+            border-radius: 8px;
+            overflow: hidden; /* Para o radius funcionar */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+        #comparativo thead th {
+            background-color: var(--cor-fundo-claro);
+            color: #333;
+            font-weight: 600;
+            padding: 1rem 0.75rem;
+            vertical-align: middle;
+            border-bottom: 2px solid var(--cor-cinza-borda);
+            text-align: center;
+        }
+        #comparativo thead th:first-child {
+            text-align: left; /* Alinha a primeira coluna (Funcionalidade) */
+            background-color: #fff; /* Fundo diferente para a coluna de features */
+        }
+        /* Destaque coluna leadObras */
+        #comparativo .leadobras-col-header {
+            background-color: var(--cor-fundo-vermelho-claro) !important; /* Fundo vermelho claro */
+            color: var(--cor-primaria) !important; /* Texto vermelho */
+            border-left: 1px solid var(--cor-cinza-borda);
+            border-right: 1px solid var(--cor-cinza-borda);
+        }
+        #comparativo tbody td {
+            padding: 0.8rem 0.75rem;
+            vertical-align: middle;
+            border-top: 1px solid var(--cor-cinza-borda);
+        }
+        #comparativo tbody td:first-child {
+            font-weight: 500;
+            text-align: left;
+        }
+         /* Destaque coluna leadObras */
+        #comparativo .leadobras-col-data {
+            background-color: var(--cor-fundo-vermelho-claro);
+            border-left: 1px solid var(--cor-cinza-borda);
+            border-right: 1px solid var(--cor-cinza-borda);
+        }
+        /* Ícones de comparação */
+        #comparativo .comp-icon {
+            font-size: 1.5em; /* Tamanho dos ícones */
+        }
+        #comparativo .fa-check-circle { color: var(--cor-sucesso); }
+        #comparativo .fa-times-circle { color: var(--cor-perigo); }
+        #comparativo .fa-minus-circle { color: var(--cor-aviso); }
+        #comparativo .comp-text { /* Texto opcional abaixo do ícone */
+            display: block;
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        /* Responsividade da tabela */
+        @media (max-width: 767.98px) {
+            #comparativo .table-comparison {
+                 display: block; /* Permite rolagem horizontal */
+                 width: 100%;
+                 overflow-x: auto;
+                 -webkit-overflow-scrolling: touch; /* Rolagem suave no iOS */
+                 border-radius: 0; /* Remove radius no mobile se rolar */
+                 box-shadow: none;
+                 border: none;
+            }
+             #comparativo thead th, #comparativo tbody td {
+                 white-space: nowrap; /* Impede quebra de linha nas células */
+                 font-size: 0.85rem;
+                 padding: 0.6rem 0.5rem;
+            }
+             #comparativo thead th:first-child, #comparativo tbody td:first-child {
+                 position: sticky; /* Fixa a primeira coluna */
+                 left: 0;
+                 background-color: #fff; /* Fundo branco para cobrir */
+                 z-index: 1;
+                 border-right: 1px solid var(--cor-cinza-borda);
+            }
+             #comparativo thead th:first-child {
+                 z-index: 2; /* Garante que o header fique sobre o body */
+            }
+             #comparativo .comp-icon { font-size: 1.2em; }
+             #comparativo .comp-text { display: none; } /* Esconde texto no mobile */
+        }
+
+
+        /* --- Novo Botão Flutuante WhatsApp e Balão --- */
+        .whatsapp-container { /* Container para o botão e o balão */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .whatsapp-float {
+            background-color: var(--cor-whatsapp);
+            color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            transition: transform var(--duracao-transicao) ease, background-color var(--duracao-transicao) ease;
+            cursor: pointer; /* Mudar cursor para indicar clicável */
+            position: relative; /* Para posicionar a notificação */
+            border: none; /* Remover borda padrão de botão */
+            padding: 0; /* Remover padding padrão */
+        }
+        .whatsapp-float:hover {
+            background-color: var(--cor-whatsapp-hover);
+            transform: scale(1.1);
+        }
+         .whatsapp-float i {
+             font-size: 1.8em;
+             line-height: 1; /* Alinhar ícone verticalmente */
+         }
+        /* Ponto de Notificação */
+        .whatsapp-notification {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            border-radius: 50%;
+            border: 2px solid white; /* Borda branca para destacar */
+        }
+
+        /* Balão de Chat */
+        .whatsapp-bubble {
+            position: absolute;
+            bottom: 75px; /* Posiciona acima do botão */
+            right: 0;
+            width: 300px; /* Largura do balão */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 15px;
+            display: none; /* Começa escondido */
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        .whatsapp-bubble.show { /* Classe para mostrar o balão */
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Triângulo/Seta do balão */
+        .whatsapp-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; /* Posiciona abaixo do balão */
+            right: 20px; /* Alinha com o botão */
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white; /* Cor do balão */
+        }
+        /* Conteúdo do Balão */
+        .whatsapp-bubble-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .whatsapp-bubble-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef; /* Cor placeholder */
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 10px;
+            color: var(--cor-secundaria); /* Cor do ícone placeholder */
+        }
+        .whatsapp-bubble-avatar i { font-size: 1.5em; } /* Tamanho ícone placeholder */
+        .whatsapp-bubble-info h5 {
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .whatsapp-bubble-info span {
+            font-size: 0.8rem;
+            color: var(--cor-secundaria);
+        }
+        .whatsapp-bubble-body p {
+            margin-bottom: 10px; /* Espaço antes do botão */
+            line-height: 1.4;
+            min-height: 3em; /* Espaço para o texto ser digitado */
+        }
+        .whatsapp-bubble-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 1;
+            padding: 5px;
+        }
+        .whatsapp-bubble-close:hover { color: #555; }
+
+        /* Cursor de Digitação */
+        #whatsappMessage .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em; /* Altura da linha */
+            background-color: #333;
+            animation: blink 0.7s infinite;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Ajuste mobile para o botão e balão WhatsApp */
+        @media (max-width: 576px) {
+            .whatsapp-container { bottom: 15px; right: 15px; }
+            .whatsapp-float { width: 50px; height: 50px; }
+            .whatsapp-float i { font-size: 1.5em; }
+            .whatsapp-notification { width: 12px; height: 12px; border-width: 1px; }
+            .whatsapp-bubble { width: calc(100vw - 30px); /* Quase largura total */ bottom: 65px; right: -15px; /* Ajusta para centralizar */ }
+            .whatsapp-bubble::after { right: 30px; /* Ajusta seta */ }
+        }
+
+        /* --- ANIMAÇÕES DE SCROLL (Mantidas) --- */
+        .animate-on-scroll { opacity: 0; transition: opacity var(--duracao-animacao) ease-out, transform var(--duracao-animacao) ease-out; will-change: opacity, transform; }
+        .fade-in { transform: translateY(0); }
+        .fade-in-up { transform: translateY(30px); }
+        .fade-in-down { transform: translateY(-30px); }
+        .slide-in-left { transform: translateX(-50px); }
+        .slide-in-right { transform: translateX(50px); }
+        .zoom-in { transform: scale(0.9); }
+        .is-visible { opacity: 1; transform: translate(0, 0) scale(1); }
+
+        /* --- Acessibilidade: Movimento Reduzido --- */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; } /* Desabilita rolagem suave */
+            .animate-on-scroll { opacity: 1; transform: none; transition: none; }
+            .btn-primary:hover, .btn-secondary:hover, .btn-danger:hover, .btn-outline-danger:hover, .btn-outline-secondary:hover,
+            #cta-final .btn-light:hover, #cta-final .btn-outline-light:hover, .card:hover, #publico-alvo .card:hover .fas,
+            #funcionalidades .row:hover img, .whatsapp-float:hover, #precos .card.popular-plan { transform: none !important; } /* Remove transform do popular */
+            .card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+            #precos .card.popular-plan { box-shadow: 0 8px 25px rgba(220, 53, 69, 0.2); } /* Mantém sombra do popular */
+            .progress-bar-scroll { transition: none; } /* Remove transição da barra */
+            .whatsapp-float { transition: background-color var(--duracao-transicao) ease; } /* Mantém transição segura */
+            .whatsapp-bubble { transition: none; } /* Remove transição do balão */
+            #whatsappMessage .typing-cursor { animation: none; opacity: 0; } /* Esconde cursor piscando */
+            #exit-popup { transition: none; } /* Remove transição do popup */
+            #exit-popup .popup-content { transition: none; }
+        }
+
+        /* --- Ajustes Gerais de Responsividade --- */
+        section {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        #hero {
+             padding-top: 80px;
+             padding-bottom: 80px;
+        }
+        @media (max-width: 991.98px) {
+             section { padding-top: 40px; padding-bottom: 40px; }
+             #hero { padding-top: 60px; padding-bottom: 60px; }
+             h1 { font-size: 2.2rem; }
+             h2 { font-size: 1.6rem; }
+             h3 { font-size: 1.4rem; }
+             h4 { font-size: 1.1rem; }
+             #precos .card.popular-plan { transform: scale(1); } /* Remove scale no mobile para evitar sobreposição */
+             #precos .card.popular-plan:hover { transform: translateY(-6px); }
+        }
+        @media (max-width: 767.98px) {
+             h1 { font-size: 1.8rem; }
+             h2 { font-size: 1.4rem; }
+             h3 { font-size: 1.2rem; }
+             .btn-lg { font-size: 1rem; padding: 10px 20px; }
+             #funcionalidades .row { margin-bottom: 1rem !important; } /* Reduz margem entre features no mobile */
+             #funcionalidades .col-md-6 { margin-bottom: 1.5rem; } /* Espaço abaixo da imagem/texto no mobile */
+             /* #comparativo .table já estilizado acima */
+             #precos .card { margin-bottom: 1.5rem !important; } /* Espaço entre cards de preço */
+             #precos .card-title { font-size: 2rem; } /* Preço menor no mobile */
+             #precos .list-unstyled li { font-size: 0.85rem; }
+        }
+
+        /* --- Pop-up de Saída Otimizado --- */
+        #exit-popup {
+            display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.75); /* Fundo mais escuro */
+            z-index: 2000;
+            align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.4s ease; backdrop-filter: blur(5px);
+        }
+        #exit-popup .popup-content {
+            background-color: white; padding: 2rem; border-radius: 10px; /* Mais padding e radius */
+            max-width: 90%; width: 500px; /* Largura máxima e fallback */
+            text-align: center; position: relative;
+            transform: scale(0.9); transition: transform 0.4s ease, opacity 0.4s ease; /* Adicionado opacity */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra mais pronunciada */
+            opacity: 0; /* Começa invisível para transição */
+        }
+        #exit-popup .popup-icon { /* Ícone opcional */
+            font-size: 2.5rem;
+            color: var(--cor-primaria);
+            margin-bottom: 1rem;
+        }
+        #exit-popup h3 {
+            font-size: 1.6rem; /* Título maior */
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+        #exit-popup p {
+            font-size: 1rem; /* Texto ligeiramente menor */
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        #exit-popup .offer-highlight { /* Destaque da oferta */
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--cor-perigo);
+            margin-bottom: 1rem;
+        }
+        #exit-popup .coupon-code {
+            font-size: 1.4rem; /* Cupom maior */
+            font-weight: bold; background-color: var(--cor-fundo-claro);
+            padding: 0.75rem 1rem; border: 2px dashed var(--cor-perigo); /* Borda mais forte */
+            display: inline-block;
+            border-radius: 5px; word-break: break-all;
+            margin-top: 0.5rem; margin-bottom: 1.5rem; /* Mais margem inferior */
+            color: var(--cor-perigo);
+        }
+        #exit-popup .btn-cta-popup { /* Botão principal */
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+            width: 100%; /* Ocupa largura total */
+            margin-bottom: 0.5rem; /* Espaço antes do link */
+        }
+        #exit-popup .btn-secondary-popup { /* Link secundário */
+            color: var(--cor-secundaria);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        #exit-popup .btn-secondary-popup:hover {
+            text-decoration: underline;
+        }
+        #exit-popup .close-btn {
+            position: absolute; top: 10px; right: 10px; background: none; border: none;
+            font-size: 1.8em; cursor: pointer; color: #aaa; line-height: 1; padding: 5px;
+        }
+        #exit-popup .close-btn:hover { color: #555; }
+
+        @media (max-width: 576px) {
+            #exit-popup .popup-content { padding: 1.5rem; }
+            #exit-popup h3 { font-size: 1.4rem; }
+            #exit-popup p { font-size: 0.9rem; }
+            #exit-popup .offer-highlight { font-size: 1.1rem; }
+            #exit-popup .coupon-code { font-size: 1.2rem; padding: 0.5rem 1rem; }
+            #exit-popup .btn-cta-popup { font-size: 1rem; padding: 0.6rem 1.2rem; }
+        }
+
+    </style>
+</head>
+<body> <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#hero">leadObras.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav"> <ul class="navbar-nav ml-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#hero">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#comparativo">Comparativo</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#demonstracao">Demonstração</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#precos">Planos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger btn-sm btn-cta" href="#cta-final">Comece Agora</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="progress-container">
+    <div class="progress-bar-scroll" id="scrollProgressBar"></div>
+</div>
+
+<section id="hero" style="background-color: var(--cor-fundo-claro); text-align: center;">
+    <div class="container">
+        <h1 class="animate-on-scroll fade-in-down">Chega de Pular Entre Ferramentas!</h1>
+        <h2 class="animate-on-scroll fade-in-down" style="transition-delay: 0.1s;">Encontre, Qualifique e Gerencie Leads de Obras com Dados CNO e CRM Integrado, Tudo em Um Só Lugar.</h2>
+        <p style="font-size: 1.1em; margin-top: 20px;" class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">A leadObras.com combina a inteligência dos dados oficiais do CNO (Cadastro Nacional de Obras), filtrados por cidade, com um CRM poderoso e especializado para o setor da construção. Prospete de forma mais inteligente, gerencie seu funil de vendas sem esforço e feche mais negócios.</p>
+        <div class="mt-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+            <a href="#demonstracao" class="btn btn-primary btn-lg mb-2 mb-md-0 mr-md-2">Experimente a Demonstração</a>
+            <a href="#precos" class="btn btn-secondary btn-lg mb-2 mb-md-0">Veja Nossos Planos</a>
+        </div>
+        <img src="https://placehold.co/800x450/f8f9fa/c00000?text=Dashboard+leadObras"
+             onerror="this.onerror=null; this.src='https://placehold.co/800x450/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+             alt="Dashboard leadObras.com"
+             class="img-fluid mt-5 animate-on-scroll zoom-in"
+             style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
+             loading="lazy">
+    </div>
+</section>
+
+<section id="problema-solucao">
+ <div class="container text-center">
+  <h2 class="animate-on-scroll fade-in-down">Sua Prospecção de Obras Parece Complicada Demais?</h2>
+  <div class="row mt-5">
+   <div class="col-md-4 mb-4 animate-on-scroll fade-in-up">
+    <div class="p-4 border rounded shadow-sm h-100">
+     <i class="fas fa-table fa-3x problem-icon-red mb-3"></i>
+     <h4>Planilhas Intermináveis?</h4>
+     <p class="mb-0">Perder tempo gerenciando leads em planilhas complexas e desorganizadas.</p>
+    </div>
+   </div>
+   <div class="col-md-4 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+    <div class="p-4 border rounded shadow-sm h-100">
+     <i class="fas fa-puzzle-piece fa-3x problem-icon-red mb-3"></i>
+     <h4>CRMs Genéricos?</h4>
+     <p class="mb-0">Tentar adaptar CRMs que não entendem as etapas e necessidades da construção civil.</p>
+    </div>
+   </div>
+   <div class="col-md-4 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+    <div class="p-4 border rounded shadow-sm h-100">
+     <i class="fas fa-search-dollar fa-3x problem-icon-red mb-3"></i>
+     <h4>Prospecção Manual e Cara?</h4>
+     <p class="mb-0">Gastar horas buscando obras sem a certeza de encontrar os contatos certos ou dados atualizados.</p>
+    </div>
+   </div>
+  </div>
+  <h3 class="mt-5 animate-on-scroll fade-in">A Solução: leadObras.com - Inteligência e Gestão Unificadas</h3>
+  <p class="lead mt-3 animate-on-scroll fade-in">Somos a plataforma <strong>tudo-em-um</strong> que centraliza sua prospecção e gestão de vendas na construção civil. Integramos dados oficiais e um CRM feito sob medida para você vender mais, com menos esforço.</p>
+ </div>
+</section>
+
+<section id="funcionalidades" style="background-color: var(--cor-fundo-claro);">
+ <div class="container">
+  <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Transforme Dados em Negócios Fechados</h2>
+   <div class="row align-items-center mb-5">
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=CRM+Especializado"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="CRM Especializado leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-right">
+     <h4><i class="fas fa-users-cog icon-red mr-2"></i>CRM Especializado para Construção</h4>
+     <p>Gerencie todo o seu processo comercial, da prospecção ao fechamento, em uma ferramenta pensada para o seu negócio. Funil de vendas adaptado (Qualificação, Visita, Orçamento, Negociação), campos específicos de obra (tipo, metragem, fase CNO), gestão de tarefas e histórico completo. Chega de adaptações!</p>
+    </div>
+   </div>
+   <div class="row align-items-center mb-5 flex-md-row-reverse"> <div class="col-md-6 animate-on-scroll slide-in-right">
+     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Dados+CNO"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="Dados CNO leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <h4><i class="fas fa-database icon-red mr-2"></i>Inteligência CNO Acionável por Cidade</h4>
+     <p>Acesse dados oficiais do Cadastro Nacional de Obras <strong>diretamente no CRM</strong>. Filtre oportunidades por cidade, status da obra, tipo e muito mais. Encontre as obras certas, na sua área de atuação, no momento ideal. Prospecção ultra-focada com dados atualizados.</p>
+    </div>
+   </div>
+   <div class="row align-items-center mb-5">
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Mapas+e+Dashboards"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="Mapas e Dashboards leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-right">
+     <h4><i class="fas fa-chart-line icon-red mr-2"></i>Mapas e Dashboards Visuais</h4>
+     <p>Visualize suas oportunidades no mapa interativo para planejar rotas e estratégias. Acompanhe o desempenho da sua equipe e seus resultados em tempo real com dashboards intuitivos e personalizáveis. Tenha uma visão 360º da sua prospecção.</p>
+    </div>
+   </div>
+   <div class="row align-items-center flex-md-row-reverse"> <div class="col-md-6 animate-on-scroll slide-in-right">
+     <img src="https://placehold.co/600x400/f8f9fa/25D366?text=Contato+WhatsApp"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+          alt="Contato WhatsApp leadObras" class="img-fluid rounded shadow-sm" loading="lazy">
+    </div>
+    <div class="col-md-6 animate-on-scroll slide-in-left">
+     <h4><i class="fab fa-whatsapp mr-2" style="color: var(--cor-whatsapp);"></i>Comunicação Ágil via WhatsApp</h4>
+     <p>Nosso principal canal de contato é o WhatsApp. Fale diretamente conosco para tirar dúvidas, obter suporte ou discutir planos personalizados. Respostas rápidas para você não perder tempo.</p>
+    </div>
+   </div>
+ </div>
+</section>
+
+<section id="comparativo">
+ <div class="container">
+  <h2 class="text-center mb-4 animate-on-scroll fade-in-down">Compare e Veja a Diferença</h2>
+  <p class="text-center lead mb-5 animate-on-scroll fade-in">Veja como a leadObras.com se destaca das alternativas do mercado.</p>
+  <div class="table-responsive animate-on-scroll zoom-in">
+   <table class="table table-bordered table-hover table-comparison text-center">
+    <thead>
+     <tr>
+      <th scope="col" style="width: 30%;">Funcionalidade Chave</th>
+      <th scope="col" class="leadobras-col-header" style="width: 23%;">
+          <img src="https://placehold.co/100x30/c00000/ffffff?text=leadObras" alt="leadObras.com Logo" style="height: 25px; width: auto;"> <br>leadObras.com
+      </th>
+      <th scope="col" style="width: 23%;">Concorrente A</th>
+      <th scope="col" style="width: 23%;">Concorrente B</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td class="text-left font-weight-bold">CRM Integrado e Especializado (Construção)</td>
+      <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, Nativo</span>
+      </td>
+      <td>
+          <i class="fas fa-minus-circle comp-icon"></i>
+          <span class="comp-text">Genérico</span>
+      </td>
+      <td>
+           <i class="fas fa-times-circle comp-icon"></i>
+          <span class="comp-text">Não Integrado</span>
+      </td>
+     </tr>
+     <tr>
+      <td class="text-left font-weight-bold">Dados CNO Acionáveis por Cidade (no CRM)</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, com Filtros</span>
+      </td>
+      <td>
+           <i class="fas fa-minus-circle comp-icon"></i>
+          <span class="comp-text">Informativo</span>
+      </td>
+      <td>
+           <i class="fas fa-times-circle comp-icon"></i>
+          <span class="comp-text">Não</span>
+      </td>
+     </tr>
+     <tr>
+      <td class="text-left font-weight-bold">Preços Transparentes e Públicos</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim</span>
+      </td>
+      <td>
+           <i class="fas fa-times-circle comp-icon"></i>
+          <span class="comp-text">Sob Orçamento</span>
+      </td>
+      <td>
+           <i class="fas fa-minus-circle comp-icon"></i>
+          <span class="comp-text">Complexo</span>
+      </td>
+     </tr>
+      <tr>
+      <td class="text-left font-weight-bold">Demonstração Interativa Online</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, Imediata</span>
+      </td>
+      <td>
+           <i class="fas fa-minus-circle comp-icon"></i>
+          <span class="comp-text">Apenas Vídeo</span>
+      </td>
+      <td>
+           <i class="fas fa-times-circle comp-icon"></i>
+          <span class="comp-text">Agendamento</span>
+      </td>
+     </tr>
+      <tr>
+      <td class="text-left font-weight-bold">Contato Primário via WhatsApp</td>
+       <td class="leadobras-col-data">
+          <i class="fas fa-check-circle comp-icon"></i>
+          <span class="comp-text">Sim, Direto</span>
+      </td>
+      <td>
+           <i class="fas fa-minus-circle comp-icon"></i>
+          <span class="comp-text">Formulário</span>
+      </td>
+      <td>
+           <i class="fas fa-minus-circle comp-icon"></i>
+          <span class="comp-text">Telefone</span>
+      </td>
+     </tr>
+     </tbody>
+   </table>
+  </div>
+  <p class="text-center mt-4 animate-on-scroll fade-in"><small><em>*Características dos concorrentes baseadas em análise de mercado. Verifique os sites oficiais para informações atualizadas.</em></small></p>
+ </div>
+</section>
+
+
+<section id="demonstracao" class="section-bg-light-red">
+ <div class="container text-center">
+  <h2 class="animate-on-scroll fade-in-down">Não Acredite Apenas na Nossa Palavra. Experimente Agora!</h2>
+  <p class="lead mt-3 mb-4 animate-on-scroll fade-in">Navegue pela nossa demonstração interativa e veja na prática como a leadObras.com funciona. Filtre obras por cidade usando dados CNO, visualize um lead no CRM e explore o mapa.</p>
+  <div class="embed-responsive embed-responsive-16by9 border rounded shadow-sm animate-on-scroll zoom-in" style="max-width: 900px; margin: auto; background-color: white;">
+   <iframe class="embed-responsive-item" src="URL_DA_SUA_DEMO" title="Demonstração Interativa leadObras.com" allowfullscreen loading="lazy"></iframe>
+   </div>
+  <a href="#precos" class="btn btn-danger btn-lg mt-4 animate-on-scroll fade-in-up">Gostou? Veja os Planos!</a>
+ </div>
+</section>
+
+<section id="publico-alvo">
+ <div class="container">
+  <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Ideal para Quem Vende na Construção Civil</h2>
+  <div class="row text-center">
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-hard-hat fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Fornecedores de Materiais</h4>
+      <p class="card-text">Encontre obras que precisam dos seus produtos no momento certo da compra.</p>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-tools fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Prestadores de Serviços</h4>
+      <p class="card-text">Identifique projetos que necessitam de instalação, manutenção ou serviços especializados.</p>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-building fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Empreiteiros e Construtoras</h4>
+      <p class="card-text">Monitore novas obras e gerencie seu pipeline de projetos e parcerias.</p>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-body">
+      <i class="fas fa-user-tie fa-3x mb-3 icon-red"></i>
+      <h4 class="card-title">Representantes Comerciais</h4>
+      <p class="card-text">Otimize suas rotas e abordagens com leads qualificados e informações precisas.</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="precos" style="background-color: var(--cor-fundo-claro);">
+ <div class="container">
+  <h2 class="text-center mb-4 animate-on-scroll fade-in-down">Planos Transparentes para Impulsionar Suas Vendas</h2>
+  <p class="text-center lead mb-5 animate-on-scroll fade-in">Escolha o plano ideal para sua necessidade, baseado na sua área de atuação. <strong>Sem taxas escondidas, sem burocracia.</strong></p>
+  <div class="row">
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up">
+    <div class="card h-100 shadow-sm">
+     <div class="card-header text-center pricing-header-red">
+      <h4 class="my-0 font-weight-normal">Foco Local</h4>
+     </div>
+     <div class="card-body d-flex flex-column">
+      <h1 class="card-title pricing-card-title text-center">R$ 149<small class="text-muted">/mês</small></h1>
+      <ul class="list-unstyled mt-3 mb-4 text-left"> <li><i class="fas fa-check check-icon-red"></i>CRM Completo</li>
+       <li><i class="fas fa-check check-icon-red"></i>Dados CNO: <strong>1 Cidade</strong></li>
+       <li><i class="fas fa-check check-icon-red"></i>Mapas Interativos</li>
+       <li><i class="fas fa-check check-icon-red"></i>Dashboards</li>
+       <li><i class="fas fa-check check-icon-red"></i>1 Usuário</li>
+       <li><i class="fab fa-whatsapp" style="color: var(--cor-whatsapp);"></i>Suporte WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Foco%20Local%20da%20leadObras." target="_blank" class="btn btn-lg btn-block btn-outline-danger mt-auto">Quero o Foco Local</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up popular-plan" style="transition-delay: 0.1s;"> <div class="card h-100 shadow border-danger"> <div class="card-header text-center pricing-header-red-popular">
+      <h4 class="my-0 font-weight-normal">Expansão Regional</h4>
+      <span class="badge badge-light">Popular</span>
+     </div>
+     <div class="card-body d-flex flex-column">
+      <h1 class="card-title pricing-card-title text-center">R$ 399<small class="text-muted">/mês</small></h1>
+      <ul class="list-unstyled mt-3 mb-4 text-left"> <li><i class="fas fa-check check-icon-red"></i>CRM Completo</li>
+       <li><i class="fas fa-check check-icon-red"></i>Dados CNO: <strong>5 Cidades</strong></li>
+       <li><i class="fas fa-check check-icon-red"></i>Mapas Interativos</li>
+       <li><i class="fas fa-check check-icon-red"></i>Dashboards</li>
+       <li><i class="fas fa-check check-icon-red"></i>3 Usuários</li>
+       <li><i class="fab fa-whatsapp" style="color: var(--cor-whatsapp);"></i>Suporte WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Expans%C3%A3o%20Regional%20da%20leadObras." target="_blank" class="btn btn-lg btn-block btn-danger mt-auto">Quero Expandir</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-header text-center pricing-header-red">
+      <h4 class="my-0 font-weight-normal">Cobertura Estadual</h4>
+     </div>
+     <div class="card-body d-flex flex-column">
+      <h1 class="card-title pricing-card-title text-center">R$ 899<small class="text-muted">/mês</small></h1>
+      <ul class="list-unstyled mt-3 mb-4 text-left"> <li><i class="fas fa-check check-icon-red"></i>CRM Completo</li>
+       <li><i class="fas fa-check check-icon-red"></i>Dados CNO: <strong>1 Estado</strong></li>
+       <li><i class="fas fa-check check-icon-red"></i>Mapas Interativos</li>
+       <li><i class="fas fa-check check-icon-red"></i>Dashboards</li>
+       <li><i class="fas fa-check check-icon-red"></i>5 Usuários</li>
+       <li><i class="fab fa-whatsapp" style="color: var(--cor-whatsapp);"></i>Suporte Prioritário</li>
+      </ul>
+      <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Cobertura%20Estadual." target="_blank" class="btn btn-lg btn-block btn-outline-danger mt-auto">Quero o Estado Todo</a>
+     </div>
+    </div>
+   </div>
+
+   <div class="col-lg-3 col-md-6 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
+    <div class="card h-100 shadow-sm">
+     <div class="card-header text-center card-header-custom"> <h4 class="my-0 font-weight-normal">Personalizado</h4>
+     </div>
+     <div class="card-body d-flex flex-column">
+      <h1 class="card-title pricing-card-title text-center">Sob Consulta</h1>
+      <ul class="list-unstyled mt-3 mb-4"> <li class="custom-feature"><i class="fas fa-map-marker-alt"></i>Mais cidades?</li>
+       <li class="custom-feature"><i class="fas fa-users"></i>Mais usuários?</li>
+       <li class="custom-feature"><i class="fas fa-globe-americas"></i>Cobertura Nacional?</li>
+       <li class="custom-feature"><i class="fas fa-cogs"></i>Integrações?</li>
+       <li class="custom-feature"><i class="fas fa-chalkboard-teacher"></i>Treinamento?</li>
+       <li class="mt-3 text-center"><strong>Montamos o plano ideal!</strong></li>
+      </ul>
+      <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20discutir%20um%20Plano%20Personalizado%20da%20leadObras." target="_blank" class="btn btn-lg btn-block btn-outline-secondary mt-auto">Solicitar Orçamento</a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <p class="text-center mt-3 animate-on-scroll fade-in"><small>Todos os planos podem ser cancelados a qualquer momento, sem multa.</small></p>
+  <p class="text-center animate-on-scroll fade-in"><small>Prefere pagar anualmente? Fale conosco no WhatsApp e ganhe <strong>2 meses grátis!</strong></small></p>
+ </div>
+</section>
+
+<section id="faq">
+ <div class="container animate-on-scroll zoom-in">
+  <h2 class="text-center mb-5">Perguntas Frequentes (FAQ)</h2>
+  <div class="accordion" id="faqAccordion">
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingOne">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+       Como a leadObras.com se diferencia?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseOne" class="collapse show" aria-labelledby="faqHeadingOne" data-parent="#faqAccordion">
+     <div class="card-body">
+      Nossa principal diferença é a <strong>combinação única</strong> de um <strong>CRM especializado</strong> para construção, <strong>dados CNO acionáveis</strong> e filtráveis por cidade, <strong>preços transparentes</strong> e uma <strong>demonstração interativa</strong>. Somos uma solução completa e integrada.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingTwo">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+       Como os dados CNO ajudam a vender?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseTwo" class="collapse" aria-labelledby="faqHeadingTwo" data-parent="#faqAccordion">
+     <div class="card-body">
+      O CNO é o registro oficial de obras. Ao integrá-lo ao CRM com filtros por cidade, garantimos que você encontre oportunidades reais e relevantes na sua área, resultando em prospecção mais precisa e leads mais qualificados.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingThree">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+       O CRM é específico para construção?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseThree" class="collapse" aria-labelledby="faqHeadingThree" data-parent="#faqAccordion">
+     <div class="card-body">
+      Sim! Ele foi desenvolvido pensando nas particularidades do ciclo de vendas da construção, com funil adaptado (Visita Técnica, Orçamento), campos específicos da obra (tipo, metragem, fase CNO), gestão de tarefas e histórico completo.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingFour">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+       Com que frequência os dados são atualizados?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseFour" class="collapse" aria-labelledby="faqHeadingFour" data-parent="#faqAccordion">
+     <div class="card-body">
+      Atualizamos nossa base constantemente, buscando informações de fontes oficiais como o CNO e outras fontes públicas. Nosso objetivo é fornecer os dados mais recentes possíveis, variando conforme a disponibilidade das fontes.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingFive">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+       Como funciona o plano por cidade? Posso trocar?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive" data-parent="#faqAccordion">
+     <div class="card-body">
+      Nossos planos são flexíveis. Você escolhe o número de cidades ao contratar. Se precisar alterar ou adicionar mais, basta entrar em contato conosco via WhatsApp para ajustarmos seu plano.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingSix">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseSix" aria-expanded="false" aria-controls="faqCollapseSix">
+       Existe um período de teste gratuito?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix" data-parent="#faqAccordion">
+     <div class="card-body">
+      A melhor forma de conhecer é através da nossa <strong>Demonstração Interativa</strong> na página! Para acesso completo, oferecemos planos mensais acessíveis e sem fidelidade, que você pode cancelar a qualquer momento.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingSeven">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseSeven" aria-expanded="false" aria-controls="faqCollapseSeven">
+       Como funciona o suporte via WhatsApp?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseSeven" class="collapse" aria-labelledby="faqHeadingSeven" data-parent="#faqAccordion">
+     <div class="card-body">
+      O WhatsApp é nosso canal principal e mais rápido. Nossa equipe está disponível em horário comercial para responder suas dúvidas, ajudar com a plataforma ou discutir ajustes no seu plano. Buscamos um atendimento ágil e direto.
+     </div>
+    </div>
+   </div>
+   <div class="card mb-2">
+    <div class="card-header" id="faqHeadingEight">
+     <h5 class="mb-0">
+      <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseEight" aria-expanded="false" aria-controls="faqCollapseEight">
+       Posso cancelar minha assinatura a qualquer momento?
+       <i class="fas fa-chevron-down fa-xs ml-2"></i>
+      </button>
+     </h5>
+    </div>
+    <div id="faqCollapseEight" class="collapse" aria-labelledby="faqHeadingEight" data-parent="#faqAccordion">
+     <div class="card-body">
+      Sim! Acreditamos na flexibilidade. Você pode cancelar sua assinatura mensal a qualquer momento, sem multas ou burocracia. Seu acesso permanecerá ativo até o final do período já pago.
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="cta-final" class="text-white" style="padding: 60px 0; text-align: center;">
+ <div class="container">
+  <h2 class="animate-on-scroll fade-in-down">Pronto para Transformar Sua Prospecção de Obras?</h2>
+  <p class="lead mt-3 animate-on-scroll fade-in">Deixe a complexidade para trás. Comece a usar a inteligência de dados CNO e um CRM especializado para encontrar e fechar mais negócios na construção civil.</p>
+  <div class="mt-4 animate-on-scroll fade-in-up">
+   <a href="#precos" class="btn btn-light btn-lg mb-2 mb-md-0 mr-md-2">Escolha Seu Plano Agora</a>
+   <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20leadObras." target="_blank" class="btn btn-outline-light btn-lg mb-2 mb-md-0">Fale Conosco no WhatsApp</a>
+  </div>
+ </div>
+</section>
+
+<footer style="background-color: #343a40; color: var(--cor-texto-cinza); padding: 40px 0; font-size: 0.9em;">
+    <div class="container text-center">
+        <p class="mb-1">&copy; 2025 leadObras.com - Todos os direitos reservados.</p>
+        <p class="mb-1">CNPJ: XX.XXX.XXX/0001-XX | Endereço: Sua Rua, 123 - Sua Cidade/UF</p>
+        <p class="mb-0"><a href="/termos-de-uso" class="text-white-50">Termos de Uso</a> | <a href="/politica-de-privacidade" class="text-white-50">Política de Privacidade</a></p>
+    </div>
+</footer>
+
+<div class="whatsapp-container">
+    <div class="whatsapp-bubble" id="whatsappBubble">
+        <button class="whatsapp-bubble-close" aria-label="Fechar balão de chat" onclick="toggleWhatsAppBubble(false)">&times;</button>
+        <div class="whatsapp-bubble-header">
+            <div class="whatsapp-bubble-avatar">
+                <i class="fas fa-headset"></i>
+                </div>
+            <div class="whatsapp-bubble-info">
+                <h5>leadObras Suporte</h5>
+                <span>Online</span>
+            </div>
+        </div>
+        <div class="whatsapp-bubble-body">
+            <p id="whatsappMessage"></p>
+            <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20leadObras." target="_blank" class="btn btn-success btn-sm mt-2 w-100">
+                <i class="fab fa-whatsapp mr-1"></i> Iniciar Conversa
+            </a>
+        </div>
+    </div>
+
+    <button class="whatsapp-float" id="whatsappBtn" aria-label="Abrir chat do WhatsApp" title="Fale Conosco!">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-notification"></span> </button>
+</div>
+
+
+<div id="exit-popup" aria-live="polite" aria-modal="true" role="dialog" aria-labelledby="exitPopupTitle">
+    <div class="popup-content">
+        <button onclick="closeExitPopup()" class="close-btn" aria-label="Fechar Pop-up">&times;</button>
+        <div class="popup-icon">
+            <i class="fas fa-gift"></i> </div>
+        <h3 id="exitPopupTitle">Quase lá! Uma Oferta Para Você</h3>
+        <p>Não perca a chance de otimizar sua prospecção. Use o cupom abaixo e comece com desconto!</p>
+        <p class="offer-highlight">Ganhe 15% OFF no seu primeiro mês!</p>
+        <p>Seu cupom:</p>
+        <p class="coupon-code">LEAD15</p>
+        <a href="#precos" onclick="closeExitPopup()" class="btn btn-danger btn-cta-popup">
+            <i class="fas fa-check mr-1"></i> Quero Meu Desconto!
+        </a>
+        <button onclick="closeExitPopup()" class="btn btn-link btn-secondary-popup mt-2">Continuar navegando</button>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // --- Script Animação de Scroll com Intersection Observer ---
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Anima apenas uma vez
+                    }
+                });
+            }, { threshold: 0.1 }); // Gatilho com 10% visível
+            animatedElements.forEach(el => observer.observe(el));
+        } else {
+            // Mostra elementos imediatamente se movimento reduzido for preferido
+            animatedElements.forEach(el => el.classList.add('is-visible'));
+        }
+
+        // --- Script Ícone do Acordeão FAQ ---
+        $('#faqAccordion .collapse').on('show.bs.collapse', function () {
+            $(this).prev('.card-header').find('.fas.fa-chevron-down, .fas.fa-chevron-up').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        }).on('hide.bs.collapse', function () {
+            $(this).prev('.card-header').find('.fas.fa-chevron-down, .fas.fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        });
+        // Garante ícone inicial correto para item já aberto
+        $('#faqAccordion .collapse.show').prev('.card-header').find('.fas.fa-chevron-down, .fas.fa-chevron-up').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+
+        // --- Script Pop-up de Saída ---
+        const exitPopup = document.getElementById('exit-popup');
+        let exitPopupShown = sessionStorage.getItem('exitPopupShown') === 'true';
+
+        // Torna as funções globais para serem acessíveis pelo onclick no HTML
+        window.showExitPopup = function() {
+            if (!exitPopupShown && exitPopup && !prefersReducedMotion) { // Não mostra se prefere movimento reduzido
+                exitPopup.style.display = 'flex';
+                setTimeout(() => {
+                    exitPopup.style.opacity = '1';
+                    exitPopup.querySelector('.popup-content').style.transform = 'scale(1)';
+                    exitPopup.querySelector('.popup-content').style.opacity = '1'; // Garante opacidade do conteúdo
+                }, 10); // Pequeno delay para transição
+                exitPopupShown = true;
+                sessionStorage.setItem('exitPopupShown', 'true');
+            }
+        }
+        window.closeExitPopup = function() {
+            if (exitPopup) {
+                exitPopup.style.opacity = '0';
+                exitPopup.querySelector('.popup-content').style.transform = 'scale(0.9)';
+                exitPopup.querySelector('.popup-content').style.opacity = '0';
+                setTimeout(() => {
+                    exitPopup.style.display = 'none';
+                }, 400); // Duração da transição CSS
+            }
+        }
+
+        // Listener de Saída do Mouse (mouseleave)
+        document.addEventListener('mouseleave', function(e) {
+            // Só ativa se o mouse sair pela parte superior da janela
+            if (e.clientY < 10) { // Ajustado para 10px do topo para mais sensibilidade
+                showExitPopup();
+            }
+        });
+        // Listener para fechar com a tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && exitPopup && exitPopup.style.display === 'flex') {
+                closeExitPopup();
+            }
+        });
+
+        // --- Script Barra de Progresso de Rolagem ---
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        function updateProgressBar() {
+            const windowHeight = document.documentElement.clientHeight; // Altura visível da janela
+            const fullHeight = document.documentElement.scrollHeight; // Altura total do documento
+            const scrolledY = window.pageYOffset; // Quanto já foi rolado
+
+            // Evita divisão por zero se a página não for rolável
+            const scrollableHeight = fullHeight - windowHeight;
+            if (scrollableHeight <= 0) {
+                 if (scrollProgressBar) scrollProgressBar.style.width = "0%";
+                 return;
+            }
+
+            const scrolledPercent = (scrolledY / scrollableHeight) * 100;
+
+            if (scrollProgressBar) {
+                // Garante que a largura não exceda 100% nem seja negativa
+                scrollProgressBar.style.width = Math.min(100, Math.max(0, scrolledPercent)) + "%";
+            }
+        }
+        window.addEventListener('scroll', updateProgressBar, { passive: true }); // Otimização
+        window.addEventListener('resize', updateProgressBar); // Recalcula se a janela for redimensionada
+        updateProgressBar(); // Calcula ao carregar a página
+
+        // --- Script Menu Ativo na Rolagem ---
+        const navLinks = document.querySelectorAll('#navbarNav .nav-link[href^="#"]');
+        const sections = [];
+        const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 60; // Pega a altura do menu do CSS
+
+        navLinks.forEach(link => {
+            const section = document.querySelector(link.getAttribute('href'));
+            if (section) {
+                sections.push({ link: link, section: section });
+            }
+        });
+
+        function activateMenuLink() {
+            let currentSectionId = null;
+            // Ponto de referência um pouco abaixo do menu fixo
+            const scrollTriggerPoint = window.pageYOffset + navbarHeight + 50;
+
+            sections.forEach(item => {
+                const sectionTop = item.section.offsetTop;
+                const sectionBottom = sectionTop + item.section.offsetHeight;
+
+                // Verifica se o ponto de gatilho está dentro desta seção
+                // Ou se a seção começa acima do ponto e termina abaixo (para seções longas)
+                if (scrollTriggerPoint >= sectionTop && scrollTriggerPoint < sectionBottom) {
+                    currentSectionId = item.section.id;
+                }
+            });
+
+             // Se nenhuma seção foi encontrada (ex: no topo antes da primeira seção ou no final após a última)
+             if (!currentSectionId) {
+                 // Se estiver perto do topo, ativa o primeiro link
+                 if (window.pageYOffset < sections[0]?.section.offsetTop - navbarHeight - 50) {
+                     currentSectionId = sections[0]?.section.id;
+                 }
+                 // Se estiver perto do fim (último pixel rolável), ativa o último link
+                 else if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 5) { // 5px de tolerância
+                     currentSectionId = sections[sections.length - 1]?.section.id;
+                 }
+             }
+
+            // Aplica a classe 'active'
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', activateMenuLink, { passive: true });
+        activateMenuLink(); // Ativa o link correto ao carregar a página
+
+
+        // --- Script Menu Fixo (Fechar menu mobile ao clicar no link) ---
+        $('.navbar-nav .nav-link').on('click', function(){
+            // Verifica se o menu está colapsado (visível em telas pequenas)
+            if ($('.navbar-toggler').is(':visible') && $('.navbar-collapse').hasClass('show')) {
+                $('.navbar-collapse').collapse('hide');
+            }
+        });
+
+        // --- Script Novo Botão WhatsApp com Balão e Efeito de Digitação ---
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const whatsappBubble = document.getElementById('whatsappBubble');
+        const whatsappMessageEl = document.getElementById('whatsappMessage');
+        const fullMessage = "Olá! 👋 Tem alguma dúvida? Fale conosco diretamente pelo WhatsApp!"; // Texto completo
+        const typingSpeed = 50; // Velocidade de digitação em milissegundos
+        let typingTimeout; // Referência para o timeout da digitação
+        let autoShowTimeout; // Referência para o timeout de aparição automática
+        let hasTyped = false; // Flag para controlar se a animação já rodou
+
+        // Função para iniciar a digitação
+        function startTyping() {
+            if (!whatsappMessageEl || hasTyped || prefersReducedMotion) { // Não digita se já digitou ou prefere movimento reduzido
+                if (whatsappMessageEl) whatsappMessageEl.innerHTML = fullMessage; // Mostra texto completo
+                return;
+            }
+
+            let i = 0;
+            whatsappMessageEl.innerHTML = ''; // Limpa o texto inicial
+            const cursorSpan = '<span class="typing-cursor"></span>'; // Cria o cursor
+            whatsappMessageEl.innerHTML = cursorSpan; // Adiciona o cursor inicial
+
+            function typeChar() {
+                if (i < fullMessage.length) {
+                    whatsappMessageEl.innerHTML = fullMessage.substring(0, i + 1) + cursorSpan;
+                    i++;
+                    typingTimeout = setTimeout(typeChar, typingSpeed);
+                } else {
+                    // Remove o cursor piscando após terminar
+                    whatsappMessageEl.innerHTML = fullMessage;
+                    hasTyped = true; // Marca que a animação terminou
+                }
+            }
+            // Inicia a digitação após um pequeno delay para o balão aparecer
+            clearTimeout(typingTimeout); // Limpa timeouts anteriores
+            typingTimeout = setTimeout(typeChar, 300); // Delay de 300ms
+        }
+
+        // Função para mostrar/esconder o balão
+        window.toggleWhatsAppBubble = function(show) {
+            clearTimeout(autoShowTimeout); // Cancela o timeout de aparição automática se o usuário interagir
+
+            if (whatsappBubble) {
+                if (show) {
+                    whatsappBubble.classList.add('show');
+                    // Se o balão está sendo aberto e a digitação ainda não ocorreu
+                    if (!hasTyped && !prefersReducedMotion) { // Só digita se não tiver digitado E não preferir movimento reduzido
+                        startTyping();
+                    } else {
+                        // Se já digitou antes ou prefere movimento reduzido, mostra texto completo
+                        if(whatsappMessageEl) whatsappMessageEl.innerHTML = fullMessage;
+                    }
+                } else {
+                    whatsappBubble.classList.remove('show');
+                    // Para a digitação se o balão for fechado no meio
+                    clearTimeout(typingTimeout);
+                     // Garante texto completo ao fechar (se o elemento existir)
+                    if (whatsappMessageEl) whatsappMessageEl.innerHTML = fullMessage;
+                }
+            }
+        }
+
+        // Evento de clique no botão principal
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Impede que o clique feche o balão imediatamente
+                toggleWhatsAppBubble(!whatsappBubble.classList.contains('show'));
+            });
+        }
+
+        // Evento para fechar o balão se clicar fora dele
+        document.addEventListener('click', function(event) {
+            if (whatsappBubble && whatsappBubble.classList.contains('show')) {
+                // Verifica se o clique foi fora do balão E fora do botão principal
+                if (!whatsappBubble.contains(event.target) && !whatsappBtn.contains(event.target)) {
+                    toggleWhatsAppBubble(false);
+                }
+            }
+        });
+
+        // Aparição automática do balão após um tempo (ex: 5 segundos)
+        // Só inicia o timeout se o usuário não preferir movimento reduzido
+        if (!prefersReducedMotion) {
+            autoShowTimeout = setTimeout(() => {
+                 // Só mostra automaticamente se não estiver já aberto
+                 if (whatsappBubble && !whatsappBubble.classList.contains('show')) {
+                     toggleWhatsAppBubble(true);
+                 }
+            }, 5000); // 5000ms = 5 segundos
+        }
+
+    }); // Fim do DOMContentLoaded
+</script>
+
+</body>
+</html>
