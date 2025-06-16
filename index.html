@@ -207,11 +207,33 @@
              h1 { font-size: 2.2rem; } h2 { font-size: 1.6rem; } h3 { font-size: 1.4rem; } h4 { font-size: 1.1rem; }
         }
         @media (max-width: 767.98px) {
+             .progress-container, .navbar-toggler, #navbarNav { display: none; }
+             #mainNav .container { justify-content: center; }
+
              h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.2rem; }
              .btn-lg { font-size: 1rem; padding: 10px 20px; }
              #funcionalidades .row { margin-bottom: 1rem !important; }
              #funcionalidades .col-md-6 { margin-bottom: 1.5rem; }
              #demonstracao .nav-tabs .nav-link { padding: 0.4rem 0.8rem; font-size: 0.8rem;}
+
+             /* --- Responsividade Mobile Adicional --- */
+             .whatsapp-container { display: none; }
+             #desktop-tab-li { display: none; }
+             #demoDesktop { display: none !important; }
+             #mobile-tab.nav-link { background-color: var(--cor-primaria); color: white; }
+             #demoMobile { display: block !important; opacity: 1 !important; }
+             #demoMobile.tab-pane {
+                display: block !important;
+                opacity: 1 !important;
+             }
+             .nav-tabs .nav-item .nav-link.active {
+                background-color: transparent;
+                color: var(--cor-secundaria);
+             }
+             #mobile-tab-li .nav-link {
+                background-color: var(--cor-primaria);
+                color: white;
+            }
         }
 
         /* --- Pop-up de Saída Otimizado --- */
@@ -338,57 +360,57 @@
             <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Transforme Dados em Negócios Fechados</h2>
             <div class="row align-items-center mb-5">
                 <div class="col-md-6 animate-on-scroll slide-in-left">
-                    <h4><i class="fas fa-users-cog icon-red mr-2"></i>Gerencie Vendas Como um Profissional</h4>
-                    <p>Nosso CRM especializado para construção organiza seu processo comercial, da prospecção ao fechamento. Funil adaptado, campos específicos de obra, gestão de tarefas e histórico completo. Chega de adaptações!</p>
-                </div>
-                <div class="col-md-6 animate-on-scroll slide-in-right">
                     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=CRM+Especializado"
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                          alt="CRM Especializado Lead Obras" class="img-fluid rounded shadow-sm" loading="lazy">
                 </div>
+                <div class="col-md-6 animate-on-scroll slide-in-right">
+                    <h4><i class="fas fa-users-cog icon-red mr-2"></i>Gerencie Vendas Como um Profissional</h4>
+                    <p>Nosso CRM especializado para construção organiza seu processo comercial, da prospecção ao fechamento. Funil adaptado, campos específicos de obra, gestão de tarefas e histórico completo. Chega de adaptações!</p>
+                </div>
             </div>
             <div class="row align-items-center mb-5 flex-md-row-reverse">
                 <div class="col-md-6 animate-on-scroll slide-in-right">
-                    <h4><i class="fas fa-database icon-red mr-2"></i>Encontre Obras Antes da Concorrência</h4>
-                    <p>Acesse dados oficiais do CNO <strong>diretamente no CRM</strong>. Filtre oportunidades por cidade, status, tipo e mais. Encontre as obras certas, na sua área, no momento ideal. Prospecção ultra-focada com dados atualizados.</p>
-                </div>
-                <div class="col-md-6 animate-on-scroll slide-in-left">
                     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Dados+CNO"
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                          alt="Dados CNO Lead Obras" class="img-fluid rounded shadow-sm" loading="lazy">
                 </div>
+                <div class="col-md-6 animate-on-scroll slide-in-left">
+                    <h4><i class="fas fa-database icon-red mr-2"></i>Encontre Obras Antes da Concorrência</h4>
+                    <p>Acesse dados oficiais do CNO <strong>diretamente no CRM</strong>. Filtre oportunidades por cidade, status, tipo e mais. Encontre as obras certas, na sua área, no momento ideal. Prospecção ultra-focada com dados atualizados.</p>
+                </div>
             </div>
             <div class="row align-items-center mb-5">
                 <div class="col-md-6 animate-on-scroll slide-in-left">
-                    <h4><i class="fas fa-chart-line icon-red mr-2"></i>Visualize Seu Sucesso</h4>
-                    <p>Planeje rotas e estratégias com mapas interativos. Acompanhe o desempenho da sua equipe e seus resultados em tempo real com dashboards intuitivos e personalizáveis. Tenha uma visão 360º da sua prospecção.</p>
-                </div>
-                <div class="col-md-6 animate-on-scroll slide-in-right">
                     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Mapas+e+Dashboards"
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                          alt="Mapas e Dashboards Lead Obras" class="img-fluid rounded shadow-sm" loading="lazy">
                 </div>
+                <div class="col-md-6 animate-on-scroll slide-in-right">
+                    <h4><i class="fas fa-chart-line icon-red mr-2"></i>Visualize Seu Sucesso</h4>
+                    <p>Planeje rotas e estratégias com mapas interativos. Acompanhe o desempenho da sua equipe e seus resultados em tempo real com dashboards intuitivos e personalizáveis. Tenha uma visão 360º da sua prospecção.</p>
+                </div>
             </div>
              <div class="row align-items-center mb-5 flex-md-row-reverse">
                 <div class="col-md-6 animate-on-scroll slide-in-right">
-                    <h4><i class="fas fa-mobile-alt icon-red mr-2"></i>Prospecção em Campo, na Palma da Mão</h4>
-                    <p>App para celular para prospecção em campo com foto e geolocalização para acompanhamento das obras e localização precisa.</p>
-                </div>
-                <div class="col-md-6 animate-on-scroll slide-in-left">
                     <img src="https://placehold.co/600x400/f8f9fa/c00000?text=App+Mobile+em+Campo"
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                          alt="App para celular para prospecção em campo" class="img-fluid rounded shadow-sm" loading="lazy">
                 </div>
+                <div class="col-md-6 animate-on-scroll slide-in-left">
+                    <h4><i class="fas fa-mobile-alt icon-red mr-2"></i>Prospecção em Campo, na Palma da Mão</h4>
+                    <p>App para celular para prospecção em campo com foto e geolocalização para acompanhamento das obras e localização precisa.</p>
+                </div>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-6 animate-on-scroll slide-in-left">
-                    <h4><i class="fab fa-whatsapp mr-2" style="color: var(--cor-whatsapp);"></i>Suporte Rápido e Direto</h4>
-                    <p>Nosso principal canal de contato é o WhatsApp. Fale diretamente conosco para tirar dúvidas, obter suporte ou discutir soluções personalizadas. Respostas rápidas para você não perder tempo.</p>
-                </div>
-                <div class="col-md-6 animate-on-scroll slide-in-right">
                     <img src="https://placehold.co/600x400/f8f9fa/25D366?text=Contato+WhatsApp"
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                          alt="Contato WhatsApp Lead Obras" class="img-fluid rounded shadow-sm" loading="lazy">
+                </div>
+                <div class="col-md-6 animate-on-scroll slide-in-right">
+                    <h4><i class="fab fa-whatsapp mr-2" style="color: var(--cor-whatsapp);"></i>Suporte Rápido e Direto</h4>
+                    <p>Nosso principal canal de contato é o WhatsApp. Fale diretamente conosco para tirar dúvidas, obter suporte ou discutir soluções personalizadas. Respostas rápidas para você não perder tempo.</p>
                 </div>
             </div>
         </div>
@@ -486,12 +508,12 @@
             <p class="lead mt-3 mb-4 animate-on-scroll fade-in">Navegue pela nossa demonstração interativa e veja na prática como a Lead Obras funciona. Escolha a visualização:</p>
 
             <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="demoTab" role="tablist">
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" id="desktop-tab-li">
                     <a class="nav-link active" id="desktop-tab" data-toggle="tab" href="#demoDesktop" role="tab" aria-controls="demoDesktop" aria-selected="true">
                         <i class="fas fa-desktop"></i> Desktop
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" id="mobile-tab-li">
                     <a class="nav-link" id="mobile-tab" data-toggle="tab" href="#demoMobile" role="tab" aria-controls="demoMobile" aria-selected="false">
                         <i class="fas fa-mobile-alt"></i> Mobile
                     </a>
@@ -511,7 +533,7 @@
                     </div>
                 </div>
             </div>
-
+            <p class="text-muted d-md-none mt-3">Para a experiência completa, acesse em um computador e veja a versão desktop.</p>
             <a href="https://wa.me/SEUNUMEROWHATSAPP/?text=Ol%C3%A1!%20Gostei%20da%20demonstra%C3%A7%C3%A3o%20e%20quero%20conversar%20sobre%20a%20contrata%C3%A7%C3%A3o." target="_blank" class="btn btn-danger btn-lg mt-4 animate-on-scroll fade-in-up">Gostou? Fale Conosco!</a>
         </div>
     </section>
@@ -1046,6 +1068,26 @@
                 });
                 startCompetitorCycle();
             }
+
+            // --- Script para Abas de Demonstração em Mobile ---
+            function handleDemoTabs() {
+                if (window.innerWidth < 768) {
+                    $('#desktop-tab').removeClass('active');
+                    $('#demoDesktop').removeClass('show active');
+                    $('#mobile-tab').addClass('active');
+                    $('#demoMobile').addClass('show active');
+                } else {
+                    // Garante que o estado padrão seja restaurado em telas maiores
+                    $('#mobile-tab').removeClass('active');
+                    $('#demoMobile').removeClass('show active');
+                    $('#desktop-tab').addClass('active');
+                    $('#demoDesktop').addClass('show active');
+                }
+            }
+
+            // Executa na carga da página e no redimensionamento
+            handleDemoTabs();
+            window.addEventListener('resize', handleDemoTabs);
 
         }); // Fim do DOMContentLoaded
     </script>
