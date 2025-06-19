@@ -153,6 +153,7 @@
         .icon-red { color: var(--cor-primaria); }
         .problem-icon-red { color: var(--cor-perigo); }
         .check-icon-red { color: var(--cor-primaria); }
+        .check-icon-green { color: var(--cor-sucesso); }
         #cta-final { background: linear-gradient(45deg, var(--cor-primaria), var(--cor-perigo)); color: white; }
         #faq .btn-link { color: var(--cor-primaria); text-decoration: none; transition: color var(--duracao-transicao) ease; font-weight: 500; }
         #faq .btn-link:hover { color: var(--cor-primaria-hover); text-decoration: underline; }
@@ -170,30 +171,31 @@
         #funcionalidades img { transition: transform 0.4s ease, box-shadow 0.4s ease; border-radius: 8px; }
         #funcionalidades .row:hover img { transform: scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
 
-        /* --- ESTILOS TABELA COMPARATIVA --- */
-        #comparativo .table { vertical-align: middle; border: 1px solid var(--cor-cinza-borda); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        #comparativo .table thead th { background-color: var(--cor-fundo-claro); border-bottom: 2px solid var(--cor-cinza-borda); padding: 1rem 0.75rem; font-weight: 600; color: #495057; white-space: nowrap; }
-        #comparativo .table .leadobras-col-header { background-color: var(--cor-fundo-vermelho-claro); color: var(--cor-primaria); font-weight: bold; }
-        #comparativo .table thead th .competitor-select { display: inline-block; width: auto; min-width: 150px; max-width: 100%; padding: 0.375rem 1.75rem 0.375rem 0.75rem; font-size: 0.9rem; font-weight: 600; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 8px 10px; }
-        #comparativo .table thead th .competitor-select:focus { border-color: var(--cor-primaria); outline: 0; box-shadow: 0 0 0 0.2rem rgba(192, 0, 0, 0.25); }
-        #comparativo .table tbody tr { transition: background-color 0.2s ease; }
-        #comparativo .table tbody tr:hover { background-color: #f8f9fa; }
-        #comparativo .table tbody td { border-top: 1px solid var(--cor-cinza-borda); padding: 0.9rem 0.75rem; }
-        #comparativo .table .feature-col { text-align: left; font-weight: 500; }
-        #comparativo .table .leadobras-col-data { background-color: var(--cor-fundo-vermelho-claro); }
-        #comparativo .table .competitor-col-data { transition: background-color 0.3s ease; }
-        #comparativo .table .comp-icon { font-size: 1.4em; vertical-align: middle; }
-        #comparativo .table .fa-check-circle { color: var(--cor-sucesso); }
-        #comparativo .table .fa-times-circle { color: var(--cor-perigo); }
-        #comparativo .table .fa-minus-circle { color: var(--cor-aviso); }
-        #comparativo .table .comp-text { display: block; font-size: 0.75rem; color: #6c757d; margin-top: 3px; }
-        #comparativo .table .comp-text a { font-weight: bold; color: var(--cor-primaria); }
-        #comparativo .table .comp-text a:hover { text-decoration: underline; }
-        @media (max-width: 767.98px) { #comparativo .table .comp-text { display: none; } #comparativo .table thead th, #comparativo .table tbody td { padding: 0.6rem 0.5rem; font-size: 0.85rem; } #comparativo .table .comp-icon { font-size: 1.2em; } #comparativo .table thead th .competitor-select { font-size: 0.8rem; min-width: 120px; } }
-        #comparativo .competitor-link { display: block; padding: 0.5rem 0.75rem; background-color: var(--cor-fundo-claro); border-radius: 5px; text-decoration: none; color: var(--cor-secundaria-hover); font-size: 0.85rem; transition: background-color 0.2s ease, color 0.2s ease; border: 1px solid var(--cor-cinza-borda); text-align: center; }
-        #comparativo .competitor-link:hover { background-color: var(--cor-primaria); color: white; border-color: var(--cor-primaria-hover); }
-        #comparativo .competitor-link i { margin-right: 5px; opacity: 0.7; }
-
+        /* --- ESTILOS VANTAGENS (ANTIGO COMPARATIVO) --- */
+        #vantagens .advantage-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid var(--cor-cinza-borda);
+        }
+        #vantagens .advantage-list {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+        }
+        #vantagens .advantage-list li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        #vantagens .advantage-list i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
 
         /* --- ESTILOS DEMONSTRAÇÃO COM ABAS (Ajustado) --- */
         #demonstracao .nav-tabs { border-bottom: none; justify-content: flex-end; margin-bottom: 1.5rem; }
@@ -342,7 +344,7 @@
                         <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#comparativo">Comparativo</a>
+                        <a class="nav-link" href="#vantagens">Vantagens</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#demonstracao">Demonstração</a>
@@ -367,9 +369,8 @@
 
     <header id="hero" style="background-color: var(--cor-fundo-claro); text-align: center;" role="banner">
         <div class="container">
-            <h1 class="animate-on-scroll fade-in-down">Pare de Perder Vendas!</h1>
-            <h2 class="animate-on-scroll fade-in-down" style="transition-delay: 0.1s;">Unifique Sua Prospecção de Obras com Dados CNO + CRM Especialista AGORA!</h2>
-            <p style="font-size: 1.1em; margin-top: 20px;" class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">A Lead Obras combina a inteligência dos dados oficiais do CNO (Cadastro Nacional de Obras), filtrados por cidade, com um CRM poderoso e especializado para o setor da construção. Prospete de forma mais inteligente, gerencie seu funil de vendas sem esforço e feche mais negócios.</p>
+            <h1 class="animate-on-scroll fade-in-down">Pare de perder oportunidades: Otimize sua prospecção no mercado da construção civil</h1>
+            <p style="font-size: 1.1em; margin-top: 20px;" class="lead animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Somos uma plataforma completa que ajuda você a encontrar clientes e organizar suas vendas na construção civil. Reunimos informações confiáveis e um sistema simples feito sob medida para você vender mais, com menos esforço.</p>
             <div class="mt-4 animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
                 <a href="#demonstracao" class="btn btn-primary btn-lg mb-2 mb-md-0 mr-md-2"><i class="fas fa-play-circle mr-1"></i> Ver Demonstração</a>
                 <a href="https://wa.me/5543988418642/?text=Ol%C3%A1!%20Tenho%20interesse%20em%20contratar%20a%20solu%C3%A7%C3%A3o%20da%20Lead%20Obras%20e%20gostaria%20de%20conversar." target="_blank" class="btn btn-secondary btn-lg mb-2 mb-md-0"><i class="fab fa-whatsapp mr-1"></i> Contratar Agora</a>
@@ -387,27 +388,14 @@
         <section id="problema-solucao">
             <div class="container text-center">
                 <h2 class="animate-on-scroll fade-in-down">Sua Prospecção de Obras te Deixa para Trás?</h2>
-                <div class="row mt-5">
-                    <div class="col-md-4 mb-4 animate-on-scroll fade-in-up">
-                        <div class="p-4 border rounded shadow-sm h-100">
-                            <i class="fas fa-table fa-3x problem-icon-red mb-3"></i>
-                            <h4>Planilhas te Atrasam?</h4>
-                            <p class="mb-0">Perder tempo gerenciando leads em planilhas complexas e desorganizadas.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                        <div class="p-4 border rounded shadow-sm h-100">
-                            <i class="fas fa-puzzle-piece fa-3x problem-icon-red mb-3"></i>
-                            <h4>CRM Genérico te Limita?</h4>
-                            <p class="mb-0">Tentar adaptar CRMs que não entendem as etapas e necessidades da construção civil.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4 animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                        <div class="p-4 border rounded shadow-sm h-100">
-                            <i class="fas fa-search-dollar fa-3x problem-icon-red mb-3"></i>
-                            <h4>Prospecção Manual Custa Caro?</h4>
-                            <p class="mb-0">Gastar horas buscando obras sem a certeza de encontrar os contatos certos ou dados atualizados.</p>
-                        </div>
+                 <div class="row mt-5 justify-content-center">
+                    <div class="col-lg-8">
+                        <ul class="list-unstyled text-left">
+                            <li class="mb-3 h5"><i class="fas fa-times-circle text-danger mr-2"></i>A prospecção da sua equipe de vendas não está acontecendo como você deseja?</li>
+                            <li class="mb-3 h5"><i class="fas fa-times-circle text-danger mr-2"></i>Você ainda depende muito do cliente vir atrás do seu produto?</li>
+                            <li class="mb-3 h5"><i class="fas fa-times-circle text-danger mr-2"></i>A sua carteira de clientes está estagnada?</li>
+                            <li class="mb-3 h5"><i class="fas fa-times-circle text-danger mr-2"></i>Quer vender mais para as cidades da sua região?</li>
+                        </ul>
                     </div>
                 </div>
                 <h3 class="mt-5 animate-on-scroll fade-in">A Solução Definitiva: Lead Obras</h3>
@@ -418,28 +406,60 @@
         <section id="funcionalidades" style="background-color: var(--cor-fundo-claro);">
             <div class="container">
                 <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Transforme Dados em Negócios Fechados</h2>
+                
+                <!-- Item 1: Imagem à Esquerda, Texto à Direita -->
                 <div class="row align-items-center mb-5">
                     <div class="col-md-6 animate-on-scroll slide-in-left">
-                        <img src="https://placehold.co/600x400/f8f9fa/c00000?text=CRM+Especializado"
+                        <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Lista+de+Clientes"
                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
-                             alt="Tela do CRM especializado da Lead Obras com um funil de vendas visível." class="img-fluid rounded shadow-sm" loading="lazy">
+                             alt="Lista de potenciais clientes da construção civil." class="img-fluid rounded shadow-sm" loading="lazy">
                     </div>
                     <div class="col-md-6 animate-on-scroll slide-in-right">
-                        <h4><i class="fas fa-users-cog icon-red mr-2"></i>Gerencie Vendas Como um Profissional</h4>
-                        <p>Nosso CRM especializado para construção organiza seu processo comercial, da prospecção ao fechamento. Funil adaptado, campos específicos de obra, gestão de tarefas e histórico completo. Chega de adaptações!</p>
+                        <h4><i class="fas fa-users icon-red mr-2"></i>Clientes Potenciais na Sua Mão</h4>
+                        <p>Entregamos uma listagem completa de diversos possíveis clientes que cadastraram sua obra recentemente em bancos de dados governamentais.</p>
                     </div>
                 </div>
+
+                <!-- Item 2: Texto à Esquerda, Imagem à Direita -->
                 <div class="row align-items-center mb-5 flex-md-row-reverse">
                     <div class="col-md-6 animate-on-scroll slide-in-right">
-                        <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Dados+CNO"
+                        <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Sistema+Tudo-em-Um"
                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
-                             alt="Mapa mostrando obras encontradas através dos dados do CNO." class="img-fluid rounded shadow-sm" loading="lazy">
+                             alt="Tela do sistema Lead Obras mostrando a organização de clientes e etapas de venda." class="img-fluid rounded shadow-sm" loading="lazy">
                     </div>
                     <div class="col-md-6 animate-on-scroll slide-in-left">
-                        <h4><i class="fas fa-database icon-red mr-2"></i>Encontre Obras Antes da Concorrência</h4>
-                        <p>Acesse dados oficiais do CNO <strong>diretamente no CRM</strong>. Filtre oportunidades por cidade, status, tipo e mais. Encontre as obras certas, na sua área, no momento ideal. Prospecção ultra-focada com dados atualizados.</p>
+                        <h4><i class="fas fa-sitemap icon-red mr-2"></i>Sistema Tudo-em-Um</h4>
+                        <p>Um sistema que reúne tudo em um só lugar: quem são seus possíveis clientes, o que eles precisam, e em que etapa da venda eles estão.</p>
                     </div>
                 </div>
+
+                <!-- Item 3: Imagem à Esquerda, Texto à Direita -->
+                <div class="row align-items-center mb-5">
+                    <div class="col-md-6 animate-on-scroll slide-in-left">
+                        <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Equipe+Externa"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+                             alt="Dashboard mostrando a performance da equipe de vendas externa." class="img-fluid rounded shadow-sm" loading="lazy">
+                    </div>
+                    <div class="col-md-6 animate-on-scroll slide-in-right">
+                        <h4><i class="fas fa-route icon-red mr-2"></i>Coordene sua Equipe de Vendas Externa</h4>
+                        <p>Analise e coordene o trabalho da sua equipe de vendas em campo, otimizando rotas e acompanhando resultados em tempo real.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Texto à Esquerda, Imagem à Direita -->
+                 <div class="row align-items-center mb-5 flex-md-row-reverse">
+                    <div class="col-md-6 animate-on-scroll slide-in-right">
+                         <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Vendas+Internas"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
+                             alt="Gráfico de crescimento de vendas internas." class="img-fluid rounded shadow-sm" loading="lazy">
+                    </div>
+                    <div class="col-md-6 animate-on-scroll slide-in-left">
+                        <h4><i class="fas fa-chart-line icon-red mr-2"></i>Potencialize suas Vendas Internas</h4>
+                        <p>Forneça leads qualificados e ferramentas de gestão para que seus vendedores internos foquem no que realmente importa: fechar negócios.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5: Imagem à Esquerda, Texto à Direita -->
                 <div class="row align-items-center mb-5">
                     <div class="col-md-6 animate-on-scroll slide-in-left">
                         <img src="https://placehold.co/600x400/f8f9fa/c00000?text=Mapas+e+Dashboards"
@@ -447,13 +467,15 @@
                              alt="Dashboard com gráficos de desempenho de vendas e um mapa de prospecção." class="img-fluid rounded shadow-sm" loading="lazy">
                     </div>
                     <div class="col-md-6 animate-on-scroll slide-in-right">
-                        <h4><i class="fas fa-chart-line icon-red mr-2"></i>Visualize Seu Sucesso</h4>
+                        <h4><i class="fas fa-chart-pie icon-red mr-2"></i>Visualize Seu Sucesso</h4>
                         <p>Planeje rotas e estratégias com mapas interativos. Acompanhe o desempenho da sua equipe e seus resultados em tempo real com dashboards intuitivos e personalizáveis. Tenha uma visão 360º da sua prospecção.</p>
                     </div>
                 </div>
+
+                <!-- Item 6: Texto à Esquerda, Imagem à Direita -->
                  <div class="row align-items-center mb-5 flex-md-row-reverse">
                     <div class="col-md-6 animate-on-scroll slide-in-right">
-                        <img src="https://placehold.co/600x400/f8f9fa/c00000?text=App+Mobile+em+Campo"
+                         <img src="https://placehold.co/600x400/f8f9fa/c00000?text=App+Mobile+em+Campo"
                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                              alt="Smartphone exibindo o aplicativo móvel da Lead Obras para prospecção em campo." class="img-fluid rounded shadow-sm" loading="lazy">
                     </div>
@@ -462,9 +484,11 @@
                         <p>App para celular para prospecção em campo com foto e geolocalização para acompanhamento das obras e localização precisa.</p>
                     </div>
                 </div>
+
+                <!-- Item 7: Imagem à Esquerda, Texto à Direita -->
                 <div class="row align-items-center">
                     <div class="col-md-6 animate-on-scroll slide-in-left">
-                        <img src="https://placehold.co/600x400/f8f9fa/25D366?text=Contato+WhatsApp"
+                         <img src="https://placehold.co/600x400/f8f9fa/25D366?text=Contato+WhatsApp"
                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/666666?text=Imagem+Indispon%C3%ADvel';"
                              alt="Ícone do WhatsApp indicando suporte rápido e direto." class="img-fluid rounded shadow-sm" loading="lazy">
                     </div>
@@ -476,88 +500,21 @@
             </div>
         </section>
 
-        <section id="comparativo">
+        <section id="vantagens">
             <div class="container">
-                <h2 class="text-center mb-4 animate-on-scroll fade-in-down">A Vantagem CLARA da Lead Obras</h2>
-                <p class="text-center lead mb-5 animate-on-scroll fade-in">Selecione um concorrente para comparar lado a lado.</p>
-                <div class="table-responsive animate-on-scroll zoom-in">
-                    <table class="table table-hover text-center" id="comparisonTable">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="text-left" style="width: 34%;">Funcionalidade Chave</th>
-                                <th scope="col" class="leadobras-col-header" style="width: 33%;">
-                                    <img src="https://i.imgur.com/xG3X8k6.png" alt="Logotipo Lead Obras" style="height: 25px; width: auto; margin-bottom: 5px;">
-                                    <br>Lead Obras
-                                </th>
-                                <th scope="col" style="width: 33%;">
-                                    <select id="competitorSelector" class="form-control form-control-sm competitor-select" aria-label="Selecione um concorrente para comparar">
-                                        <option value="">Selecione para Comparar</option>
-                                        <option value="obrasonline">Obras Online</option>
-                                        <option value="prospectaobras">Prospecta Obras</option>
-                                        <option value="obraai">Obra.ai</option>
-                                        <option value="intecbrasil">Intec Brasil</option>
-                                        <option value="rededeobras">Rede de Obras</option>
-                                        <option value="hoffanalytics">Hoff Analytics</option>
-                                        <option value="obras10">Obras10</option>
-                                        <option value="conectaobras">Conecta Obras</option>
-                                        <option value="maisobras">Mais Obras</option>
-                                    </select>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-feature="crm">
-                                <td class="feature-col">CRM Integrado e Especializado (Construção)</td>
-                                <td class="leadobras-col-data">
-                                    <i class="fas fa-check-circle comp-icon"></i>
-                                    <span class="comp-text">Sim, Nativo</span>
-                                </td>
-                                <td class="competitor-col-data">
-                                    <span class="text-muted">Selecione acima</span>
-                                </td>
-                            </tr>
-                            <tr data-feature="cno">
-                                <td class="feature-col">Dados CNO Acionáveis por Cidade (no CRM)</td>
-                                <td class="leadobras-col-data">
-                                    <i class="fas fa-check-circle comp-icon"></i>
-                                    <span class="comp-text">Sim, com Filtros</span>
-                                </td>
-                                <td class="competitor-col-data">
-                                    <span class="text-muted">Selecione acima</span>
-                                </td>
-                            </tr>
-                            <tr data-feature="demo">
-                                <td class="feature-col">Demonstração Interativa Online</td>
-                                <td class="leadobras-col-data">
-                                    <i class="fas fa-check-circle comp-icon"></i>
-                                    <span class="comp-text">Sim<br><a href="#demonstracao">Conferir</a></span>
-                                </td>
-                                <td class="competitor-col-data">
-                                    <span class="text-muted">Selecione acima</span>
-                                </td>
-                            </tr>
-                            <tr data-feature="contato">
-                                <td class="feature-col">Suporte ágil via WhatsApp</td>
-                                <td class="leadobras-col-data">
-                                    <i class="fas fa-check-circle comp-icon"></i>
-                                    <span class="comp-text">Sim, Direto</span>
-                                </td>
-                                <td class="competitor-col-data">
-                                    <span class="text-muted">Selecione acima</span>
-                                </td>
-                            </tr>
-                            <tr data-feature="mobile">
-                                <td class="feature-col">App Mobile para Campo (Fotos, Geo)</td>
-                                <td class="leadobras-col-data">
-                                    <i class="fas fa-check-circle comp-icon"></i>
-                                    <span class="comp-text">Sim, Completo</span>
-                                </td>
-                                <td class="competitor-col-data">
-                                    <span class="text-muted">Selecione acima</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2 class="text-center mb-5 animate-on-scroll fade-in-down">Vantagens Claras da Lead Obras</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-10">
+                         <div class="advantage-card animate-on-scroll zoom-in">
+                             <ul class="advantage-list">
+                                 <li><i class="fas fa-mouse-pointer check-icon-green"></i> Software fácil de utilizar</li>
+                                 <li><i class="fas fa-map-marked-alt check-icon-green"></i> Dados de possíveis clientes por Cidade (no CRM)</li>
+                                 <li><i class="fas fa-mobile-alt check-icon-green"></i> App Mobile para preenchimento em campo (Fotos, Geolocalização)</li>
+                                 <li><i class="fas fa-infinity check-icon-green"></i> Número ilimitado de clientes</li>
+                                 <li><i class="fab fa-whatsapp check-icon-green"></i> Suporte ágil via WhatsApp</li>
+                             </ul>
+                         </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -569,7 +526,6 @@
 
                 <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="demoTab" role="tablist">
                     <li class="nav-item" role="presentation" id="desktop-tab-li">
-                        <!-- CORREÇÃO: Removida a classe 'active' daqui. O script vai adicionar. -->
                         <a class="nav-link" id="desktop-tab" data-toggle="tab" href="#demoDesktop" role="tab" aria-controls="demoDesktop" aria-selected="false">
                             <i class="fas fa-desktop"></i> Desktop
                         </a>
@@ -582,7 +538,6 @@
                 </ul>
 
                 <div class="tab-content mt-4" id="demoTabContent">
-                    <!-- CORREÇÃO: Removidas as classes 'show' e 'active' daqui. O script vai adicionar. -->
                     <div class="tab-pane fade" id="demoDesktop" role="tabpanel" aria-labelledby="desktop-tab">
                         <p class="text-muted small mb-3">Visualização em tela de computador:</p>
                         <iframe src="https://www.appsheet.com/start/7ed57e1d-47e0-436e-8a3c-071c1b78c23c" title="Demonstração Desktop Lead Obras" allowfullscreen loading="lazy" style="width: 100%; height: 700px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></iframe>
@@ -664,21 +619,6 @@
                         </div>
                     </div>
                     <div class="card mb-2">
-                        <div class="card-header" id="faqHeadingTwo">
-                            <h3 class="mb-0 h5">
-                                <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
-                                    Como os dados CNO ajudam a vender?
-                                    <i class="fas fa-chevron-down fa-xs ml-2"></i>
-                                </button>
-                            </h3>
-                        </div>
-                        <div id="faqCollapseTwo" class="collapse" aria-labelledby="faqHeadingTwo" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                O CNO é o registro oficial de obras. Ao integrá-lo ao CRM com filtros por cidade, garantimos que você encontre oportunidades reais e relevantes na sua área, resultando em prospecção mais precisa e leads mais qualificados.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
                         <div class="card-header" id="faqHeadingThree">
                             <h3 class="mb-0 h5">
                                 <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
@@ -720,36 +660,6 @@
                         <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive" data-parent="#faqAccordion">
                             <div class="card-body">
                                É tudo feito de forma simples e direta pelo WhatsApp. Você entra em contato conosco, conversamos para entender sua necessidade, definimos a melhor solução e o valor para o seu caso e, após o acerto, liberamos seu acesso. Sem burocracia.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-header" id="faqHeadingSix">
-                            <h3 class="mb-0 h5">
-                                <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseSix" aria-expanded="false" aria-controls="faqCollapseSix">
-                                    Existe um período de teste gratuito?
-                                    <i class="fas fa-chevron-down fa-xs ml-2"></i>
-                                </button>
-                            </h3>
-                        </div>
-                        <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                A melhor forma de conhecer é através da nossa <strong>Demonstração Interativa</strong> na página! Para acesso completo e personalizado, entre em contato conosco para discutirmos a melhor solução para você.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-header" id="faqHeadingSeven">
-                            <h3 class="mb-0 h5">
-                                <button class="btn btn-link btn-block text-left collapsed d-flex justify-content-between align-items-center" type="button" data-toggle="collapse" data-target="#faqCollapseSeven" aria-expanded="false" aria-controls="faqCollapseSeven">
-                                    Como funciona o suporte via WhatsApp?
-                                    <i class="fas fa-chevron-down fa-xs ml-2"></i>
-                                </button>
-                            </h3>
-                        </div>
-                        <div id="faqCollapseSeven" class="collapse" aria-labelledby="faqHeadingSeven" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                O WhatsApp é nosso canal principal e mais rápido. Nossa equipe está disponível em horário comercial para responder suas dúvidas, ajudar com a plataforma ou discutir ajustes na sua solução. Buscamos um atendimento ágil e direto.
                             </div>
                         </div>
                     </div>
@@ -1058,78 +968,6 @@
                         toggleWhatsAppBubble(true);
                     }
                 }, 5000);
-            }
-
-            // --- Script para Tabela Comparativa Dinâmica ---
-            const competitorSelector = document.getElementById('competitorSelector');
-            const comparisonTableBody = document.getElementById('comparisonTable')?.querySelector('tbody');
-            let competitorIntervalId = null;
-            const cycleDelay = 5000;
-
-            const competitorData = {
-                "obrasonline": { crm: { icon: "times", text: "Não Integrado" }, cno: { icon: "minus", text: "Limitado" }, demo: { icon: "minus", text: "Vídeo/Agendado" }, contato: { icon: "envelope", text: "Formulário" }, mobile: { icon: "times", text: "Não" } },
-                "prospectaobras": { crm: { icon: "minus", text: "Básico" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "clock", text: "Agendamento" }, contato: { icon: "phone", text: "Telefone" }, mobile: { icon: "minus", text: "Limitado" } },
-                "obraai": { crm: { icon: "check", text: "Sim" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "check", text: "Sim" }, contato: { icon: "envelope", text: "Formulário" }, mobile: { icon: "check", text: "Sim" } },
-                "intecbrasil": { crm: { icon: "times", text: "Não" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "times", text: "Não" }, contato: { icon: "phone", text: "Telefone" }, mobile: { icon: "times", text: "Não" } },
-                "rededeobras": { crm: { icon: "minus", text: "Básico" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "clock", text: "Agendamento" }, contato: { icon: "envelope", text: "Formulário" }, mobile: { icon: "minus", text: "Limitado" } },
-                "hoffanalytics": { crm: { icon: "times", text: "Não" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "clock", text: "Agendamento" }, contato: { icon: "phone", text: "Telefone" }, mobile: { icon: "times", text: "Não" } },
-                "obras10": { crm: { icon: "times", text: "Não" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "minus", text: "Limitado" }, contato: { icon: "envelope", text: "Formulário" }, mobile: { icon: "times", text: "Não" } },
-                "conectaobras": { crm: { icon: "minus", text: "Básico" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "clock", text: "Agendamento" }, contato: { icon: "phone", text: "Telefone" }, mobile: { icon: "minus", text: "Limitado" } },
-                "maisobras": { crm: { icon: "times", text: "Não" }, cno: { icon: "check", text: "Sim" }, demo: { icon: "clock", text: "Agendamento" }, contato: { icon: "envelope", text: "Formulário" }, mobile: { icon: "times", text: "Não" } }
-            };
-
-            function updateComparisonTable(selectedCompetitorKey) {
-                if (!comparisonTableBody || !selectedCompetitorKey || !competitorData[selectedCompetitorKey]) {
-                    comparisonTableBody.querySelectorAll('.competitor-col-data').forEach(cell => {
-                        cell.innerHTML = '<span class="text-muted">-</span>';
-                    });
-                    return;
-                }
-                const data = competitorData[selectedCompetitorKey];
-                comparisonTableBody.querySelectorAll('tr[data-feature]').forEach(row => {
-                    const featureKey = row.dataset.feature;
-                    const cell = row.querySelector('.competitor-col-data');
-                    const featureData = data[featureKey];
-                    if (cell && featureData) {
-                        let iconClass = '', iconColorClass = '';
-                        switch (featureData.icon) {
-                            case 'check': iconClass = 'fas fa-check-circle'; iconColorClass = 'text-success'; break;
-                            case 'times': iconClass = 'fas fa-times-circle'; iconColorClass = 'text-danger'; break;
-                            case 'minus': iconClass = 'fas fa-minus-circle'; iconColorClass = 'text-warning'; break;
-                            case 'clock': iconClass = 'fas fa-clock'; iconColorClass = 'text-warning'; break;
-                            case 'envelope': iconClass = 'fas fa-envelope'; iconColorClass = 'text-secondary'; break;
-                            case 'phone': iconClass = 'fas fa-phone'; iconColorClass = 'text-secondary'; break;
-                            default: iconClass = 'fas fa-question-circle'; iconColorClass = 'text-muted';
-                        }
-                        cell.innerHTML = `<i class="${iconClass} comp-icon ${iconColorClass}"></i>${featureData.text ? `<span class="comp-text">${featureData.text}</span>` : ''}`;
-                    } else if (cell) {
-                        cell.innerHTML = '<i class="fas fa-question-circle comp-icon text-muted"></i><span class="comp-text">Não informado</span>';
-                    }
-                });
-            }
-
-            function startCompetitorCycle() {
-                if (prefersReducedMotion || !competitorSelector || competitorSelector.options.length <= 1) return;
-                let currentIndex = 1;
-                competitorSelector.selectedIndex = currentIndex;
-                updateComparisonTable(competitorSelector.value);
-                clearInterval(competitorIntervalId);
-                competitorIntervalId = setInterval(() => {
-                    currentIndex++;
-                    if (currentIndex >= competitorSelector.options.length) {
-                        currentIndex = 1;
-                    }
-                    competitorSelector.selectedIndex = currentIndex;
-                    updateComparisonTable(competitorSelector.value);
-                }, cycleDelay);
-            }
-
-            if (competitorSelector) {
-                competitorSelector.addEventListener('change', function() {
-                    clearInterval(competitorIntervalId);
-                    updateComparisonTable(this.value);
-                });
-                startCompetitorCycle();
             }
 
             // --- CORREÇÃO: Script para Abas de Demonstração ---
