@@ -1,0 +1,2372 @@
+/* CSS from index.html */
+/* --- Configurações Globais e Variáveis --- */
+:root {
+    --cor-primaria: #c00000;
+    --cor-primaria-hover: #a00000;
+    --cor-secundaria: #495057;
+    /* Cinza mais escuro para texto */
+    --cor-secundaria-hover: #343a40;
+    --cor-perigo: #dc3545;
+    --cor-perigo-hover: #c82333;
+    --cor-sucesso: #28a745;
+    /* Verde para 'sim' */
+    --cor-aviso: #ffc107;
+    /* Amarelo para 'parcial' */
+    --cor-pix: #32BCAD;
+    /* Cor do PIX */
+    --cor-cinza-claro: #f8f9fa;
+    --cor-cinza-borda: #dee2e6;
+    --cor-fundo-claro: #f8f9fa;
+    --cor-fundo-vermelho-claro: #fdf2f2;
+    /* Fundo sutil para coluna leadObras */
+    --cor-texto-cinza: #adb5bd;
+    --cor-whatsapp: #25D366;
+    --cor-whatsapp-hover: #128C7E;
+    --navbar-height: 60px;
+    /* Altura estimada do menu */
+    --duracao-transicao: 0.3s;
+    --duracao-animacao: 0.7s;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height);
+}
+
+body {
+    overflow-x: hidden;
+    padding-top: var(--navbar-height);
+    font-family: 'Roboto', sans-serif;
+    color: var(--cor-secundaria);
+    position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.lead {
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+/* --- Estilos Barra de Progresso --- */
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background-color: #e9ecef;
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    z-index: 1029;
+    pointer-events: none;
+}
+
+.progress-bar-scroll {
+    height: 100%;
+    background-color: var(--cor-primaria);
+    width: 0%;
+    transition: width 0.05s linear;
+}
+
+/* --- Estilos Menu Fixo (Navbar) --- */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    min-height: var(--navbar-height);
+}
+
+.navbar-brand {
+    color: var(--cor-primaria) !important;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.navbar-brand img {
+    height: 30px;
+}
+
+.navbar .nav-link {
+    color: #343a40 !important;
+    margin: 0 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color var(--duracao-transicao) ease, color var(--duracao-transicao) ease;
+    font-weight: 500;
+}
+
+.navbar .nav-item .nav-link.active,
+.navbar .nav-link:hover {
+    color: white !important;
+    background-color: var(--cor-primaria);
+}
+
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(192, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 10px 0;
+    margin-top: 5px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 992px) {
+    .navbar-collapse {
+        background-color: transparent;
+        padding: 0;
+        margin-top: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+.navbar .btn-cta {
+    margin-left: 10px;
+    padding: 6px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .btn-cta {
+        margin-left: 0;
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 5px;
+    }
+}
+
+/* --- Botões com Mais Impacto --- */
+.btn {
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-lg {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-primaria-hover);
+    border-color: var(--cor-primaria-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(192, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--cor-secundaria);
+    border-color: var(--cor-secundaria);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--cor-secundaria-hover);
+    border-color: var(--cor-secundaria-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger {
+    background-color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--cor-perigo-hover);
+    border-color: var(--cor-perigo-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+}
+
+.btn-outline-danger {
+    color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+}
+
+.btn-outline-light {
+    color: white;
+    border-color: white;
+    background-color: transparent;
+}
+
+.btn-outline-light:hover {
+    color: var(--cor-primaria);
+    background-color: white;
+    border-color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* --- Outros Estilos (Mantidos e Ajustados) --- */
+.text-primary {
+    color: var(--cor-primaria) !important;
+}
+
+.icon-red {
+    color: var(--cor-primaria);
+}
+
+.problem-icon-red {
+    color: var(--cor-perigo);
+}
+
+.check-icon-red {
+    color: var(--cor-primaria);
+}
+
+.check-icon-green {
+    color: var(--cor-sucesso);
+}
+
+#cta-final {
+    background: linear-gradient(45deg, var(--cor-primaria), var(--cor-perigo));
+    color: white;
+}
+
+#faq .btn-link {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: color var(--duracao-transicao) ease;
+    font-weight: 500;
+}
+
+#faq .btn-link:hover {
+    color: var(--cor-primaria-hover);
+    text-decoration: underline;
+}
+
+#faq .btn-link:focus {
+    box-shadow: none;
+}
+
+#faq .card-header {
+    background-color: #fff;
+}
+
+#faq .card {
+    border: 1px solid #e0e0e0;
+}
+
+.section-bg-light-red {
+    background-color: var(--cor-fundo-vermelho-claro);
+}
+
+.card {
+    transition: transform var(--duracao-transicao) ease, box-shadow var(--duracao-transicao) ease;
+    border: none;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#publico-alvo .card {
+    border: 1px solid var(--cor-cinza-borda);
+    box-shadow: none;
+}
+
+#publico-alvo .card:hover {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#publico-alvo .card:hover .fas {
+    transform: scale(1.15);
+    transition: transform var(--duracao-transicao) ease;
+}
+
+#publico-alvo .fas {
+    transition: transform var(--duracao-transicao) ease;
+}
+
+#funcionalidades img {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 8px;
+}
+
+#funcionalidades .row:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- ESTILOS VANTAGENS (ANTIGO COMPARATIVO) --- */
+#vantagens .advantage-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--cor-cinza-borda);
+}
+
+#vantagens .advantage-list {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+#vantagens .advantage-list li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+#vantagens .advantage-list i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+/* --- ESTILOS DEMONSTRAÇÃO COM ABAS (Ajustado) --- */
+#demonstracao .nav-tabs {
+    border-bottom: none;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+#demonstracao .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-radius: 50px;
+    margin: 0 3px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: var(--cor-secundaria);
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all var(--duracao-transicao) ease;
+}
+
+#demonstracao .nav-tabs .nav-link i {
+    margin-right: 4px;
+}
+
+#demonstracao .nav-tabs .nav-link.active {
+    background-color: var(--cor-primaria);
+    color: white;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 4px 10px rgba(192, 0, 0, 0.3);
+}
+
+#demonstracao .nav-tabs .nav-link:not(.active):hover {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+#demonstracao .tab-content {
+    position: relative;
+}
+
+#demonstracao .tab-pane {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#demonstracao #demoMobile iframe {
+    max-width: 375px;
+    height: 667px;
+    display: block;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#demonstracao #demoDesktop iframe {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#demonstracao #demoMobile .mobile-description {
+    max-width: 375px;
+    margin: 1.5rem auto 0;
+    font-size: 0.9rem;
+    color: #555;
+    background-color: var(--cor-fundo-vermelho-claro);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed var(--cor-primaria);
+    text-align: left;
+}
+
+#demonstracao #demoMobile .mobile-description strong {
+    color: var(--cor-primaria);
+}
+
+#demonstracao #demoMobile .mobile-description i {
+    color: var(--cor-primaria);
+    margin-right: 5px;
+}
+
+
+/* --- Novo Botão Flutuante WhatsApp e Balão --- */
+.whatsapp-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.whatsapp-float {
+    background-color: var(--cor-whatsapp);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform var(--duracao-transicao) ease, background-color var(--duracao-transicao) ease;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    padding: 0;
+}
+
+.whatsapp-float:hover {
+    background-color: var(--cor-whatsapp-hover);
+    transform: scale(1.1);
+}
+
+.whatsapp-float i {
+    font-size: 1.8em;
+    line-height: 1;
+}
+
+.whatsapp-notification {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.whatsapp-bubble {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.whatsapp-bubble.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.whatsapp-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
+
+.whatsapp-bubble-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.whatsapp-bubble-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: var(--cor-secundaria);
+}
+
+.whatsapp-bubble-avatar i {
+    font-size: 1.5em;
+}
+
+.whatsapp-bubble-info h5 {
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.whatsapp-bubble-info span {
+    font-size: 0.8rem;
+    color: var(--cor-secundaria);
+}
+
+.whatsapp-bubble-body p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+    min-height: 3em;
+}
+
+.whatsapp-bubble-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #aaa;
+    line-height: 1;
+    padding: 5px;
+}
+
+.whatsapp-bubble-close:hover {
+    color: #555;
+}
+
+#whatsappMessage .typing-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background-color: #333;
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .whatsapp-container {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsapp-float i {
+        font-size: 1.5em;
+    }
+
+    .whatsapp-notification {
+        width: 12px;
+        height: 12px;
+        border-width: 1px;
+    }
+
+    .whatsapp-bubble {
+        width: calc(100vw - 30px);
+        bottom: 65px;
+        right: -15px;
+    }
+
+    .whatsapp-bubble::after {
+        right: 30px;
+    }
+}
+
+/* --- ANIMAÇÕES DE SCROLL (Mantidas) --- */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity var(--duracao-animacao) ease-out, transform var(--duracao-animacao) ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in {
+    transform: translateY(0);
+}
+
+.fade-in-up {
+    transform: translateY(30px);
+}
+
+.fade-in-down {
+    transform: translateY(-30px);
+}
+
+.slide-in-left {
+    transform: translateX(-50px);
+}
+
+.slide-in-right {
+    transform: translateX(50px);
+}
+
+.zoom-in {
+    transform: scale(0.9);
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+}
+
+/* --- Acessibilidade: Movimento Reduzido --- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .animate-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-danger:hover,
+    .btn-outline-danger:hover,
+    .btn-outline-secondary:hover,
+    #cta-final .btn-light:hover,
+    #cta-final .btn-outline-light:hover,
+    .card:hover,
+    #publico-alvo .card:hover .fas,
+    #funcionalidades .row:hover img,
+    .whatsapp-float:hover {
+        transform: none !important;
+    }
+
+    .card:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .progress-bar-scroll {
+        transition: none;
+    }
+
+    .whatsapp-float {
+        transition: background-color var(--duracao-transicao) ease;
+    }
+
+    .whatsapp-bubble {
+        transition: none;
+    }
+
+    #whatsappMessage .typing-cursor {
+        animation: none;
+        opacity: 0;
+    }
+
+    #exit-popup {
+        transition: none;
+    }
+
+    #exit-popup .popup-content {
+        transition: none;
+    }
+}
+
+/* --- Ajustes Gerais de Responsividade --- */
+section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#hero {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+@media (max-width: 991.98px) {
+    section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #hero {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    .progress-container,
+    .navbar-toggler,
+    #navbarNav {
+        display: none;
+    }
+
+    #mainNav .container {
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    #funcionalidades .row {
+        margin-bottom: 1rem !important;
+    }
+
+    #funcionalidades .col-md-6 {
+        margin-bottom: 1.5rem;
+    }
+
+    #demonstracao .nav-tabs .nav-link {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    /* --- Responsividade Mobile Adicional --- */
+    .whatsapp-container {
+        display: none;
+    }
+
+    #desktop-tab-li {
+        display: none;
+    }
+
+    #demoDesktop {
+        display: none !important;
+    }
+
+    #mobile-tab.nav-link {
+        background-color: var(--cor-primaria);
+        color: white;
+    }
+
+    #demoMobile {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    #demoMobile.tab-pane {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .nav-tabs .nav-item .nav-link.active {
+        background-color: transparent;
+        color: var(--cor-secundaria);
+    }
+
+    #mobile-tab-li .nav-link {
+        background-color: var(--cor-primaria);
+        color: white;
+    }
+}
+
+/* --- Pop-up de Saída Otimizado --- */
+#exit-popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+#exit-popup .popup-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 500px;
+    text-align: center;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
+
+#exit-popup .popup-icon {
+    font-size: 2.5rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
+}
+
+#exit-popup h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #333;
+}
+
+#exit-popup p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+#exit-popup .offer-highlight {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--cor-perigo);
+    margin-bottom: 1rem;
+}
+
+#exit-popup .coupon-code {
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: var(--cor-fundo-claro);
+    padding: 0.75rem 1rem;
+    border: 2px dashed var(--cor-perigo);
+    display: inline-block;
+    border-radius: 5px;
+    word-break: break-all;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--cor-perigo);
+}
+
+#exit-popup .btn-cta-popup {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+#exit-popup .btn-secondary-popup {
+    color: var(--cor-secundaria);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+#exit-popup .btn-secondary-popup:hover {
+    text-decoration: underline;
+}
+
+#exit-popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #aaa;
+    line-height: 1;
+    padding: 5px;
+}
+
+#exit-popup .close-btn:hover {
+    color: #555;
+}
+
+@media (max-width: 576px) {
+    #exit-popup .popup-content {
+        padding: 1.5rem;
+    }
+
+    #exit-popup h3 {
+        font-size: 1.4rem;
+    }
+
+    #exit-popup p {
+        font-size: 0.9rem;
+    }
+
+    #exit-popup .offer-highlight {
+        font-size: 1.1rem;
+    }
+
+    #exit-popup .coupon-code {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    #exit-popup .btn-cta-popup {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+/* --- SEÇÃO PARCEIROS --- */
+#parceiros {
+    background-color: var(--cor-fundo-claro);
+    padding: 40px 0;
+}
+
+#parceiros h4 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--cor-secundaria);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+#parceiros .partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+#parceiros .partner-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+#parceiros .partner-logo img {
+    max-height: 100%;
+    max-width: 150px;
+    width: auto;
+}
+
+#parceiros .partner-placeholder {
+    font-size: 1.5rem;
+    color: #adb5bd;
+}
+
+#parceiros .partner-placeholder span {
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 5px;
+}
+
+#parceiros .pix-info {
+    color: var(--cor-secundaria);
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+}
+
+#parceiros .pix-info svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+    fill: var(--cor-pix);
+}
+
+/* CSS PORTADO DA SESSAO INICIAL */
+
+/* --- Configurações Globais e Variáveis --- */
+:root {
+    --cor-primaria: #c00000;
+    --cor-primaria-hover: #a00000;
+    --cor-secundaria: #495057;
+    --cor-sucesso: #28a745;
+    --cor-perigo: #dc3545;
+    --cor-fundo-claro: #f8f9fa;
+    --cor-whatsapp: #25D366;
+    --cor-whatsapp-hover: #128C7E;
+    --navbar-height: 60px;
+    /* Mantido para scroll-padding, embora navbar tenha sido removida */
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height);
+}
+
+body {
+    /* padding-top: var(--navbar-height); */
+    /* Removido pois a navbar se foi */
+    font-family: 'Roboto', sans-serif;
+    color: var(--cor-secundaria);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.lead {
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+section {
+    padding: 60px 0;
+}
+
+/* --- Componentes --- */
+/* Estilos da Navbar removidos pois a navbar foi removida */
+.btn {
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-primaria-hover);
+    border-color: var(--cor-primaria-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(192, 0, 0, 0.3);
+}
+
+.btn-success {
+    background-color: var(--cor-sucesso);
+    border-color: var(--cor-sucesso);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.btn-danger {
+    background-color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.text-primary {
+    color: var(--cor-primaria) !important;
+}
+
+.icon-red {
+    color: var(--cor-primaria);
+}
+
+/* --- Seção Dashboard Estilo Power BI (Removida) --- */
+/* --- Seção de Vantagens (Estratégias) (Removida) --- */
+
+/* --- Seção Perguntas e Respostas Dinâmicas (HERO) --- */
+#hero {
+    background-color: #fff;
+    color: var(--cor-secundaria);
+    padding: 80px 0 120px 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* Definindo uma altura mínima para ocupar a tela */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    /* Small overlap to prevent gaps */
+    left: 0;
+    width: 100%;
+    height: 100px;
+    /* A cor de fundo clara foi removida, então mudamos para branco */
+    background: linear-gradient(to top, #ffffff 30%, transparent);
+    z-index: 2;
+}
+
+#hero .lead {
+    color: var(--cor-secundaria);
+}
+
+.typing-container {
+    font-size: 2.8rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor-primaria);
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing-container .text-highlight {
+    color: #ffc107;
+    /* Amarelo para destaque */
+}
+
+.cursor {
+    animation: blink 0.7s infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+#answers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    min-height: 120px;
+    position: relative;
+    z-index: 3;
+}
+
+.column-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: fit-content;
+    min-width: 180px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: float 6s ease-in-out infinite;
+    overflow: hidden;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.column-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.column-card-title {
+    background-color: var(--cor-primaria);
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+
+.column-card-example {
+    font-size: 1.2rem;
+    color: var(--cor-secundaria);
+    font-weight: 500;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+#obras-counter {
+    font-size: 2rem;
+    color: #6c757d;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    margin-top: 1.5rem;
+    min-height: 30px;
+}
+
+#obras-counter.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#obras-counter .counter-number {
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+.cta-hero {
+    background-color: var(--cor-primaria);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0.8rem 2.5rem;
+    margin-top: 2.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+.cta-hero:hover {
+    background-color: var(--cor-primaria-hover);
+    color: #fff;
+}
+
+/* --- Estilos de Modal, FAQ, WhatsApp, etc. Removidos --- */
+
+@media (max-width: 767.98px) {
+
+    h1,
+    .typing-container {
+        font-size: 1.8rem;
+        min-height: 120px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    /* .navbar-nav { display: none; } */
+    /* Removido */
+    /* .indicator-card .value { font-size: 1.8rem; } */
+    /* Removido */
+    /* .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px;} */
+    /* Removido */
+    /* .my-float { margin-top: 10px; font-size: 24px;} */
+    /* Removido */
+    #obras-counter {
+        font-size: 1.5rem;
+    }
+
+    /* Estilos de .racer e .milestone removidos */
+}
+
+/* CSS PORTADO DO DASHBOARD */
+
+/* ... (CSS unchanged until .columns-grid) ... */
+:root {
+    --cor-primaria: #c00000;
+    --cor-primaria-hover: #a00000;
+    --cor-secundaria: #495057;
+    --cor-sucesso: #28a745;
+    --cor-perigo: #dc3545;
+    --cor-fundo-claro: #f8f9fa;
+    --cor-whatsapp: #25D366;
+    --cor-whatsapp-hover: #128C7E;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--cor-secundaria);
+    background-color: var(--cor-fundo-claro);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.lead {
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+section {
+    padding: 40px 0;
+}
+
+/* Padding reduzido */
+
+/* --- Componentes --- */
+.btn {
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-primaria-hover);
+    border-color: var(--cor-primaria-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(192, 0, 0, 0.3);
+}
+
+.btn-success {
+    background-color: var(--cor-sucesso);
+    border-color: var(--cor-sucesso);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.btn-danger {
+    background-color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-lg {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+}
+
+.text-primary {
+    color: var(--cor-primaria) !important;
+}
+
+.icon-red {
+    color: var(--cor-primaria);
+}
+
+/* --- Classe para "Falso Desabilitado" --- */
+.btn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* --- Seção Dashboard Estilo Power BI --- */
+#compre-leads {
+    background-color: transparent;
+    padding-top: 0;
+}
+
+.dashboard-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    /* Padding reduzido */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.indicator-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    height: 100%;
+    border: 1px solid #eee;
+    position: relative;
+    /* Mantido para popovers */
+}
+
+.indicator-card .title {
+    font-size: 0.85rem;
+    /* Fonte menor */
+    color: #6c757d;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    /* Para alinhar ícone ao lado */
+    align-items: center;
+    /* Alinha ícone verticalmente */
+    justify-content: center;
+    /* Centraliza */
+    width: 100%;
+    /* Ocupa largura para centralizar */
+}
+
+.indicator-card .value {
+    font-size: 1.8rem;
+    /* Valor menor */
+    font-weight: 700;
+    color: #343a40;
+    line-height: 1.2;
+}
+
+.indicator-card .icon {
+    font-size: 1.5rem;
+    /* Ícone menor */
+    color: var(--cor-primaria);
+    margin-right: 0.75rem;
+}
+
+.indicator-card .d-flex {
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    /* Padding reduzido */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    border: 1px solid #eee;
+    position: relative;
+    /* Mantido para popovers */
+}
+
+.chart-card h5,
+.dados-exemplo-card h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 1rem;
+    /* Margem reduzida */
+    text-align: center;
+    font-size: 0.9rem;
+    /* Fonte menor */
+    display: inline-flex;
+    /* MODIFICADO: Para alinhar ícone */
+    align-items: center;
+    /* MODIFICADO: Alinha ícone verticalmente */
+    justify-content: center;
+    /* MODIFICADO: Centraliza texto + ícone */
+    width: 100%;
+    /* Garante que o H5 ocupe a largura para centralizar */
+}
+
+.chart-wrapper {
+    position: relative;
+}
+
+.filter-card {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.action-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* --- NOVO FILTRO HIERÁRQUICO --- */
+.hierarchical-filter {
+    position: relative;
+}
+
+.hierarchical-filter .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    color: #495057;
+    font-weight: 400;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+}
+
+.hierarchical-filter .dropdown-menu {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.hierarchical-filter ul,
+.hierarchical-filter li {
+    list-style: none;
+    padding-left: 0;
+}
+
+.hierarchical-filter .filter-list-item {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.hierarchical-filter .city-list {
+    padding-left: 25px;
+    display: none;
+    /* Cidades ocultas por padrão */
+}
+
+.hierarchical-filter .state-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.3rem 0;
+    border-radius: 4px;
+}
+
+.hierarchical-filter .state-item:hover,
+.hierarchical-filter .filter-list-item:hover {
+    background-color: #fdeeee;
+}
+
+.hierarchical-filter .expand-caret {
+    width: 20px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.hierarchical-filter .state-item.expanded .expand-caret {
+    transform: rotate(90deg);
+}
+
+.hierarchical-filter .search-box {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.hierarchical-filter .search-box input {
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+}
+
+/* --- ESTILO CHECKBOX CUSTOMIZADO --- */
+.hierarchical-filter input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.hierarchical-filter label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 28px;
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    margin-bottom: 0;
+    font-weight: normal;
+    flex-grow: 1;
+}
+
+.hierarchical-filter .state-item label {
+    font-weight: bold;
+    color: var(--cor-primaria);
+}
+
+.hierarchical-filter label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
+.hierarchical-filter label::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: translateY(-60%) rotate(45deg) scale(0);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.hierarchical-filter input[type="checkbox"]:checked+label::before {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.hierarchical-filter input[type="checkbox"]:checked+label::after {
+    transform: translateY(-60%) rotate(45deg) scale(1);
+    opacity: 1;
+}
+
+.hierarchical-filter label.indeterminate::before {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.hierarchical-filter label.indeterminate::after {
+    content: '';
+    left: 4px;
+    top: 50%;
+    width: 10px;
+    height: 0;
+    border: none;
+    border-top: 3px solid white;
+    transform: translateY(-50%) rotate(0deg) scale(1);
+    opacity: 1;
+}
+
+.dados-exemplo-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+}
+
+/* MODIFICADO: Removido blurry-text */
+/* .blurry-text { ... } */
+
+#dados-exemplo-table thead th {
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+#dados-exemplo-table tbody td {
+    font-size: 0.8rem;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Estilos do Modal de Checkout (MODIFICADO) --- */
+.modal-header {
+    align-items: center;
+    /* NOVO: Para centralizar verticalmente o título e o botão X */
+}
+
+.modal-header .close {
+    /* MODIFICADO: Removidas regras de padding/margin customizadas */
+    /* padding: 1rem; */
+    /* margin: -1rem -1rem -1rem auto; */
+    /* O Bootstrap 4.5.2 deve lidar com isso nativamente agora */
+}
+
+.modal-body {
+    /* REMOVIDO: text-align: center; (Agora o step 1 é alinhado à esquerda) */
+}
+
+.checkout-step {
+    display: none;
+}
+
+.checkout-step.active {
+    display: block;
+}
+
+/* Título principal do passo */
+.checkout-step h4.step-title,
+.checkout-step h5.step-title {
+    /* Aplicado ao h5 também */
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    /* Centraliza títulos */
+}
+
+/* Título do resumo (passo 1) - Removido */
+/* .checkout-summary h4 { ... } */
+.checkout-summary .highlight-value {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    vertical-align: middle;
+}
+
+.checkout-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.checkout-footer p {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.checkout-footer .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.checkout-footer-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.checkout-footer-actions>div {
+    flex: 1;
+}
+
+/* MODIFICADO: Wrapper e Grid de Colunas Step 1 (REMOVIDO) */
+/* #checkout-description-wrapper { ... } */
+/* .columns-grid { ... } */
+/* .column-tag { ... } */
+
+/* --- NOVO: Estilos do Passo 1 (Opções) --- */
+.checkout-options-form {
+    text-align: left;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.checkout-options-form .form-group {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+.checkout-options-form .form-group strong {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #343a40;
+}
+
+.checkout-options-form .form-check-label {
+    margin-left: 0.5rem;
+    font-weight: 500;
+}
+
+/* Mensagens de info */
+#api-frequency-info {
+    font-weight: 500;
+    color: #555;
+    background-color: #f0f0f0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+#crm-info-message {
+    font-weight: 500;
+    color: var(--cor-primaria);
+    background-color: #fdeeee;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Custom Radio */
+.form-check-input[type="radio"] {
+    margin-top: .2em;
+}
+
+.form-check-input[type="radio"]:checked {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+/* --- NOVO: Estilos do Passo 2 (Resumo) --- */
+.checkout-summary-final {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.checkout-summary-final h5 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.checkout-summary-final p {
+    font-size: 1rem;
+    color: var(--cor-secundaria);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* Destaque em vermelho */
+.summary-highlight {
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+/* === INÍCIO DA MODIFICAÇÃO (Checkout Step 2 Price) === */
+
+/* Regra MODIFICADA para .final-price-display (para imitar .price-display) */
+.final-price-display {
+    color: var(--cor-primaria);
+    font-weight: 700;
+    font-size: 2.2rem;
+    /* Tamanho da imagem */
+    line-height: 1.2;
+    margin-top: 0.5rem;
+    /* Espaço entre toggle e preço */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza */
+}
+
+/* NOVO: Regra para o span de valor (para imitar o span do whatsapp) */
+.final-price-display #summary-price-value {
+    /* font-size: 1.8em; */
+    /* Removido, o pai controla o tamanho */
+    /* font-weight: 700; */
+    /* Removido, o pai controla o peso */
+}
+
+/* Regra MODIFICADA para #summary-frequency (para imitar .price-period) */
+.final-price-display #summary-frequency {
+    font-size: 0.5em;
+    /* Relativo ao 2.2rem do pai */
+    font-weight: 400;
+    color: #6c757d;
+    margin-left: 0;
+    /* REMOVIDO o margin-left */
+}
+
+/* === FIM DA MODIFICAÇÃO === */
+
+/* === INÍCIO DA MODIFICAÇÃO (Checkout Step 2 Toggle Label) === */
+/* Nova regra para forçar o label "Anual" a ser sempre vermelho e bold */
+#modal-annual-label {
+    color: var(--cor-primaria) !important;
+    font-weight: 700 !important;
+}
+
+/* === FIM DA MODIFICAÇÃO === */
+
+/* --- NOVO: Estilos Layout Step 2 (Baseado na Imagem) --- */
+.summary-details-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    /* MODIFICADO: de left para center */
+}
+
+.summary-toggle-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    /* margin-bottom: 1rem; */
+    /* MODIFICADO: Removido, pois o wrapper pai controla o espaçamento */
+    display: inline-block;
+}
+
+#modal-toggle-wrapper {
+    display: none;
+    /* JS controla a visibilidade */
+}
+
+.summary-actions-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+}
+
+#step2-summary .btn {
+    width: 100%;
+    border-radius: 8px !important;
+    /* !important para sobrepor .btn */
+    padding: 0.8rem 1rem;
+    font-weight: 700;
+}
+
+#step2-summary .btn-lg {
+    font-size: 1.3rem;
+    /* MODIFICADO: Aumentado para 'Ir para pagamento' */
+}
+
+/* --- FIM: Estilos Layout Step 2 --- */
+
+
+/* --- ESTILO DO ÍCONE DE INFO (POPOVER) --- */
+/* MODIFICADO: Remove posicionamento absoluto e ajusta margem */
+.info-popover-trigger {
+    font-size: 1rem;
+    color: #adb5bd;
+    cursor: pointer;
+    margin-left: 0.3rem;
+    /* Pequena margem para separar do texto */
+    vertical-align: middle;
+    /* Alinha melhor com o texto */
+}
+
+.info-popover-trigger:hover {
+    color: var(--cor-primaria);
+}
+
+/* MODIFICADO: Remove padding extra do h5 */
+/* .chart-card h5 { padding-right: 20px; } */
+
+
+/* --- NOVA SEÇÃO WHATSAPP --- */
+#notificacoes-whatsapp {
+    background-color: #f1f3f5;
+    /* Um cinza um pouco mais escuro que o fundo */
+}
+
+.phone-mockup {
+    background: #fff;
+    border: 10px solid #333;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 280px;
+    /* Largura do mockup */
+    margin: 0 auto;
+}
+
+.phone-mockup img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.whatsapp-purchase-bar {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite quebra de linha em telas pequenas */
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.whatsapp-purchase-bar .price-display {
+    color: var(--cor-primaria);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.whatsapp-purchase-bar .price-display span {
+    font-size: 1.8em;
+    /* Tamanho maior para o valor */
+    font-weight: 700;
+}
+
+/* NOVO: Estilo para /Mês */
+.whatsapp-purchase-bar .price-display .price-period {
+    font-size: 0.5em;
+    font-weight: 400;
+    color: #6c757d;
+    margin-left: 5px;
+}
+
+.whatsapp-purchase-bar .city-info {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+    flex-grow: 1;
+    /* Ocupa espaço disponível */
+}
+
+/* --- NOVO: Plan Toggle Switch (MODIFICADO) --- */
+.plan-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+    /* Margem vertical reduzida */
+    /* flex-grow: 1; */
+    /* Removido para não esticar */
+}
+
+.plan-toggle-container .toggle-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+.plan-toggle-container #monthly-label {
+    color: #343a40;
+    /* Ativo por padrão */
+}
+
+/* MODIFICADO: Switch 30% menor */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    /* 30% menor que 44px */
+    height: 18px;
+    /* 30% menor que 24px */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+/* MODIFICADO: Slider:before 30% menor */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    /* 30% menor que 18px */
+    width: 12px;
+    /* 30% menor que 18px */
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--cor-primaria);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--cor-primaria);
+}
+
+/* MODIFICADO: translateX ajustado */
+input:checked+.slider:before {
+    transform: translateX(12px);
+    /* 30px - 12px - 3px - 3px = 12px */
+}
+
+/* Bordas arredondadas */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* --- NOVO: Correção Alerta Whatsapp --- */
+/* Permite que o JS capture o clique no link desabilitado para mostrar o alerta */
+#btn-whatsapp-contratar.disabled {
+    pointer-events: auto !important;
+}
+
+/* --- NOVO: Wrapper Preço/Toggle --- */
+.price-toggle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza o toggle e o preço */
+    gap: 0.25rem;
+    /* Espaço pequeno entre eles */
+    flex-grow: 1;
+    /* Ajuda a empurrar o botão para a direita no desktop */
+    justify-content: center;
+    /* Centraliza no espaço */
+}
+
+
+@media (max-width: 991.98px) {
+
+    /* Ajustes para tablets */
+    .chart-wrapper {
+        height: 300px !important;
+        /* Altura fixa menor para tablets */
+    }
+
+    .price-toggle-wrapper {
+        flex-grow: 0;
+        /* Não cresce em telas menores */
+    }
+
+    /* Grid de colunas: 2 colunas */
+    /* .columns-grid { ... } (REMOVIDO) */
+}
+
+@media (max-width: 767.98px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .indicator-card .value {
+        font-size: 1.6rem;
+    }
+
+    /* Menor em mobile */
+    .indicator-card .icon {
+        font-size: 1.3rem;
+    }
+
+    .action-card {
+        margin-top: 1rem;
+    }
+
+    .chart-wrapper {
+        height: 250px !important;
+        /* Altura fixa menor para mobile */
+    }
+
+    /* MODIFICADO: Checkout footer mobile */
+    .checkout-footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .checkout-footer-actions>div {
+        flex: none;
+        width: 100%;
+    }
+
+    .checkout-footer-actions .btn {
+        width: 100%;
+    }
+
+    /* Ajustes na barra de compra do whatsapp */
+    .whatsapp-purchase-bar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* ATUALIZADO: Ordenação dos itens no mobile */
+    .price-toggle-wrapper {
+        order: 1;
+        /* O grupo todo fica primeiro */
+        width: 100%;
+        /* Ocupa a largura toda */
+    }
+
+    .whatsapp-purchase-bar .btn {
+        width: 100%;
+        /* Botão ocupa largura total */
+        order: 2;
+        /* Botão vem depois */
+    }
+
+    /* Remover a ordem individual do toggle e preço */
+    .plan-toggle-container {
+        order: unset;
+    }
+
+    .whatsapp-purchase-bar .price-display {
+        order: unset;
+    }
+
+    /* Grid de colunas em 2 colunas no mobile */
+    /* .columns-grid { ... } (REMOVIDO) */
+}
+
+/* CSS from blog.html */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 80px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-primary {
+    color: #c00000 !important;
+}
+
+.btn-primary {
+    background-color: #c00000;
+    border-color: #c00000;
+}
+
+.btn-primary:hover {
+    background-color: #a00000;
+    border-color: #a00000;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: #c00000 !important;
+    font-weight: bold;
+}
+
+/* CSS from blog/post-1.html */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    padding-top: 80px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-primary {
+    color: #c00000 !important;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: #c00000 !important;
+    font-weight: bold;
+}
