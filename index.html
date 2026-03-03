@@ -265,7 +265,7 @@
                                         <div class="title">
                                             Total Obras
                                             <i class="fas fa-info-circle info-popover-trigger"
-                                                data-content="Soma de todas as obras (ativas, paralisadas, etc.) que correspondem aos filtros selecionados."
+                                                data-content="Soma de todas as obras ATIVAS que correspondem aos Municipios selecionados."
                                                 data-placement="top" data-toggle="popover" tabindex="0"
                                                 title="Total de Obras">
                                             </i>
@@ -328,7 +328,7 @@
                         <div class="col-lg-7 mb-4 mb-lg-0">
                             <div class="chart-card">
                                 <h5>
-                                    Top 10 Obras por Munic&iacute;pio
+                                    Top 10 Munic&iacute;pios com mais Obras
                                     <i class="fas fa-info-circle info-popover-trigger"
                                         data-content="Exibe os 10 munic&iacute;pios com o maior n&uacute;mero de obras, com base nos filtros aplicados."
                                         data-placement="top" data-toggle="popover" tabindex="0"
@@ -364,7 +364,7 @@
                                 <h5>
                                     Obras por Tipo
                                     <i class="fas fa-info-circle info-popover-trigger"
-                                        data-content="Divide as obras pelo material de constru&ccedil;&atilde;o principal (ex: Alvenaria, Madeira, Mista). Mostra os 7 principais."
+                                        data-content="Divide as obras pelo material de constru&ccedil;&atilde;o principal (ex: Alvenaria, Madeira, Mista)."
                                         data-placement="top" data-toggle="popover" tabindex="0" title="Obras por Tipo">
                                     </i>
                                 </h5>
@@ -379,7 +379,7 @@
                                 <h5>
                                     Obras por Categoria
                                     <i class="fas fa-info-circle info-popover-trigger"
-                                        data-content="Classifica as obras pela sua natureza (ex: Obra Nova, Reforma, Acr&eacute;scimo). Mostra as 7 principais."
+                                        data-content="Classifica as obras pela sua natureza (ex: Obra Nova, Reforma, Acr&eacute;scimo)."
                                         data-placement="top" data-toggle="popover" tabindex="0"
                                         title="Obras por Categoria">
                                     </i>
@@ -1174,10 +1174,9 @@
                             <div class="form-group">
                                 <strong>
                                     Gostaria de usar nosso CRM para trabalhar com a sua equipe?
-                                    <a class="text-danger" href="#"
+                                    <a class="text-danger" href="crm.html"
                                         style="font-weight: 500; text-decoration: underline;">
-                                        Teste
-                                        aqui
+                                        Teste aqui
                                     </a>
                                 </strong>
                                 <div class="form-check form-check-inline">
@@ -1824,7 +1823,7 @@
             // NOVO: Salva o step atual do modal
             let currentCheckoutStep = '#step1-options';
 
-            const CRM_PRICE = 209.99;
+            const CRM_PRICE = 259.99;
             const API_PRICE = 1499.99;
             const ONCE_OFF_PRICE = 349.99;
             const PER_OBRA_PRICE = 0.10;
@@ -1880,7 +1879,7 @@
                     const btnMaisFiltros = document.getElementById('btn-mais-filtros');
                     if (btnMaisFiltros) {
                         btnMaisFiltros.addEventListener('click', function () {
-                            const message = "Quero contratar o projeto de segmentação de Obras";
+                            const message = "Quero contratar a Consultoria em segmentação de Obras para obter acesso ao banco de dados completo e segmentado por filtros avançados por R$ 899,90 por Mês. Podendo extrair até 10.000 obras por mês, com atualização semanal. Quais são os próximos passos?";
                             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
                             window.open(whatsappUrl, '_blank');
                         });
@@ -2603,11 +2602,21 @@
                             } else { // delivery === 'excel'
                                 currentCheckoutPlanDetails.type = "Excel/CSV";
                                 if (frequency === 'once') {
-                                    price = ONCE_OFF_PRICE;
+                                    // Preço fixo por faixa de quantidade de obras
+                                    if (totalObrasCheckout > 800000) {
+                                        price = 4599.90;
+                                    } else if (totalObrasCheckout > 500000) {
+                                        price = 2499.90;
+                                    } else if (totalObrasCheckout > 100000) {
+                                        price = 1499.90;
+                                    } else if (totalObrasCheckout > 10000) {
+                                        price = 899.90;
+                                    } else {
+                                        price = ONCE_OFF_PRICE;
+                                    }
                                     frequencyText = "pagamento único";
                                     currentCheckoutPlanDetails.frequencyLabel = "Única";
                                 } else { // weekly or monthly
-                                    // === INÍCIO DA MODIFICAÇÃO: Nova regra de preço ===
                                     let basePriceMonthly = 0;
                                     if (totalObrasCheckout <= 5000) {
                                         basePriceMonthly = 149.99;
@@ -2616,7 +2625,6 @@
                                     } else { // > 15000
                                         basePriceMonthly = 599.99;
                                     }
-
                                     if (frequency === 'weekly') {
                                         price = basePriceMonthly + 100.00;
                                         currentCheckoutPlanDetails.frequencyLabel = 'Semanal';
@@ -2624,9 +2632,7 @@
                                         price = basePriceMonthly;
                                         currentCheckoutPlanDetails.frequencyLabel = 'Mensal';
                                     }
-
                                     frequencyText = "por mês";
-                                    // === FIM DA MODIFICAÇÃO ===
                                 }
                             }
                         }
