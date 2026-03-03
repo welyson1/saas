@@ -172,6 +172,10 @@
         </div>
     </section>
     <main>
+        <!-- Alerta customizado (toast) usado pelo dashboard JS -->
+        <div id="custom-alert"
+            style="display:none; position:fixed; top:80px; left:50%; transform:translateX(-50%); z-index:9999; background:#c00000; color:#fff; padding:12px 24px; border-radius:8px; font-weight:600; box-shadow:0 4px 16px rgba(0,0,0,0.2); white-space:nowrap;">
+        </div>
         <section id="compre-leads">
             <div class="container">
                 <div class="text-center mb-4">
@@ -888,9 +892,9 @@
             </button>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
     </script>
@@ -994,7 +998,9 @@
             const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 60;
 
             navLinks.forEach(link => {
-                const section = document.querySelector(link.getAttribute('href'));
+                const href = link.getAttribute('href');
+                if (!href || href === '#') return; // skip bare-hash links (dropdown toggles)
+                const section = document.querySelector(href);
                 if (section) {
                     sections.push({ link: link, section: section });
                 }
@@ -1138,10 +1144,7 @@
 
         }); // Fim do DOMContentLoaded
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js">
-    </script>
+    <!-- Chart.js e plugin de datalabels (necessários para o dashboard) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js">
@@ -1869,21 +1872,10 @@
                     const locationFilterBtn = document.getElementById('location-filter-btn');
                     const locationFilterMenu = document.getElementById('location-filter-menu');
 
-                    // --- Elementos do DOM (Filtro WhatsApp) ---
-                    const whatsappCidadeCountEl = document.getElementById('whatsapp-cidades-count');
-                    const whatsappPriceEl = document.getElementById('whatsapp-price');
-                    const whatsappPriceDisplay = document.querySelector('.whatsapp-purchase-bar .price-display');
-                    const btnWhatsappContratar = document.getElementById('btn-whatsapp-contratar');
-                    const whatsappWarningMessage = document.getElementById('whatsapp-warning-message');
-                    const whatsappLocationFilterList = document.getElementById('whatsapp-filter-list');
-                    const whatsappLocationFilterBtn = document.getElementById('whatsapp-filter-btn');
-                    const whatsappLocationFilterMenu = document.getElementById('whatsapp-filter-menu');
-                    const priceToggleWrapper = document.querySelector('.price-toggle-wrapper');
-
-                    // --- NOVO: Elementos do Switch ---
-                    const planToggleSwitch = document.getElementById('plan-toggle-switch');
-                    const monthlyLabel = document.getElementById('monthly-label');
-                    const annualLabel = document.getElementById('annual-label');
+                    // Nota: Filtro WhatsApp não existe nesta página (apenas em Dashboard_e_whatsapp.html)
+                    const whatsappLocationFilterList = null;
+                    const whatsappLocationFilterBtn = null;
+                    const whatsappLocationFilterMenu = null;
 
                     const btnMaisFiltros = document.getElementById('btn-mais-filtros');
                     if (btnMaisFiltros) {
@@ -1894,7 +1886,7 @@
                         });
                     }
 
-                    let cidadeChart, destinacaoChart, tipoChart, categoriaChart, recentesChart, whatsappRecentesChart;
+                    let cidadeChart, destinacaoChart, tipoChart, categoriaChart, recentesChart;
                     const chartColors = ['#c00000', '#495057', '#28a745', '#ffc107', '#17a2b8', '#6610f2', '#fd7e14'];
 
                     // --- Funções Utilitárias ---
@@ -2002,13 +1994,7 @@
                             type: 'bar', data: { labels: [], datasets: [{ data: [] }] }, options: recentesChartOptions
                         });
 
-                        const whatsappRecentesCanvas = document.getElementById('whatsapp-recentes-chart');
-                        if (whatsappRecentesCanvas) {
-                            let whatsappRecentesOptions = JSON.parse(JSON.stringify(recentesChartOptions));
-                            whatsappRecentesChart = new Chart(whatsappRecentesCanvas.getContext('2d'), {
-                                type: 'bar', data: { labels: [], datasets: [{ data: [] }] }, options: whatsappRecentesOptions
-                            });
-                        }
+                        // whatsapp-recentes-chart não existe nesta página
                     }
 
                     function normalizeText(text) {
@@ -2106,90 +2092,6 @@
                             }
                         });
 
-                        // --- CÁLCULO PARA OBRAS RECENTES (7 DIAS) ---
-                        let totalObras7Dias = 0;
-                        filteredData.forEach(item => {
-                            if (item.ContagemPorPeriodoInicio && item.ContagemPorPeriodoInicio.Ultimos7Dias) {
-                                totalObras7Dias += item.ContagemPorPeriodoInicio.Ultimos7Dias;
-                            }
-                        });
-                        // A regra só se aplica se alguma cidade for selecionada
-                        const maisDe150Leads = (selectedCidades.length > 0) && (totalObras7Dias > 150);
-
-
-                        // --- ATUALIZAÇÃO DA SEÇÃO WHATSAPP (NOVA LÓGICA DE PREÇO E MENSAGEM) ---
-                        // Guarda: só executa se os elementos da seção WhatsApp existirem na página
-                        if (btnWhatsappContratar && whatsappPriceEl && whatsappWarningMessage) {
-                            const selectedCityCount = selectedCidades.length;
-
-                            if (maisDe150Leads) {
-                                // MODIFICADO: Esconde preço, toggle e botão, mostra mensagem
-                                if (priceToggleWrapper) priceToggleWrapper.style.display = 'none'; // Oculta o wrapper
-                                btnWhatsappContratar.style.display = 'none';
-                                whatsappWarningMessage.style.display = 'block';
-
-                                // Garante que o botão esteja "disabled" logicamente para o listener
-                                if (!btnWhatsappContratar.classList.contains('disabled')) {
-                                    btnWhatsappContratar.classList.add('disabled');
-                                    btnWhatsappContratar.setAttribute('aria-disabled', 'true');
-                                }
-
-                            } else {
-                                // MODIFICADO: Mostra preço, toggle e botão, esconde mensagem (lógica normal)
-                                if (priceToggleWrapper) priceToggleWrapper.style.display = 'flex'; // Mostra o wrapper
-                                btnWhatsappContratar.style.display = 'block'; // 'block' se adapta bem ao flex-column em mobile
-                                whatsappWarningMessage.style.display = 'none';
-
-                                // --- LÓGICA DE PREÇO ATUALIZADA (REQUISIÇÕES 3 e 4) ---
-                                let monthlyPrice;
-                                if (selectedCityCount === 0) {
-                                    monthlyPrice = 0; // REQUISIÇÃO 4: Preço 0 se nada selecionado
-                                } else if (selectedCityCount <= 6) {
-                                    monthlyPrice = 29.99; // Preço para 1-6 cidades
-                                } else {
-                                    monthlyPrice = 29.99 + ((selectedCityCount - 6) * 5);
-                                }
-
-                                // NOVO: Aplicar teto de R$ 159,90
-                                if (monthlyPrice > 159.90) {
-                                    monthlyPrice = 159.90;
-                                }
-
-                                // REQUISIÇÃO 3: Aplicar desconto do switch
-                                const isAnnual = planToggleSwitch ? planToggleSwitch.checked : false;
-                                let displayPrice = monthlyPrice;
-
-                                if (isAnnual && monthlyPrice > 0) {
-                                    // MODIFICADO: Calcula o preço total anual (mensal * 12 * desconto de 15%)
-                                    displayPrice = (monthlyPrice * 12) * 0.85; // 15% desconto
-                                }
-
-                                // REQUISIÇÃO 2: Atualizar período e REQUISIÇÃO 4: Formatar 0,00
-                                const pricePeriodSpan = document.querySelector('.price-display .price-period');
-                                if (pricePeriodSpan) {
-                                    pricePeriodSpan.textContent = isAnnual ? '/Ano' : '/Mês';
-                                }
-
-                                const whatsappPriceString = displayPrice > 0 ? displayPrice.toFixed(2).replace('.', ',') : '0,00';
-                                whatsappPriceEl.textContent = whatsappPriceString;
-                                // --- FIM DA LÓGICA DE PREÇO ---
-
-
-                                if (selectedCityCount > 0) {
-                                    if (btnWhatsappContratar.classList.contains('disabled')) {
-                                        btnWhatsappContratar.classList.remove('disabled');
-                                        btnWhatsappContratar.removeAttribute('aria-disabled');
-                                    }
-                                } else {
-                                    if (!btnWhatsappContratar.classList.contains('disabled')) {
-                                        btnWhatsappContratar.classList.add('disabled');
-                                        btnWhatsappContratar.setAttribute('aria-disabled', 'true');
-                                    }
-                                }
-                            }
-                        }
-                        // --- FIM DA ATUALIZAÇÃO WHATSAPP ---
-
                         // Atualização dos Gráficos
                         updateCidadeChart(filteredData);
                         updateDoughnutChart(destinacaoChart, aggregateData(filteredData, 'Destinação'));
@@ -2197,11 +2099,8 @@
                         updateBarChart(categoriaChart, aggregateData(filteredData, 'Categorias'));
                         updateRecentesChart(filteredData);
 
-                        // Atualiza o texto de AMBOS os botões de filtro
+                        // Atualiza o texto do botão de filtro principal
                         updateFilterButtonText(locationFilterList, locationFilterBtn);
-                        if (whatsappLocationFilterList && whatsappLocationFilterBtn) {
-                            updateFilterButtonText(whatsappLocationFilterList, whatsappLocationFilterBtn);
-                        }
                     }
 
                     // Atualiza o texto de UM botão de filtro
@@ -2221,6 +2120,7 @@
 
                     // Função de sincronização: copia o estado do sourceList para o targetList
                     function syncFilters(sourceList, targetList) {
+                        if (!sourceList || !targetList) return; // One of the filter lists doesn't exist on this page
                         const sourcePrefix = sourceList.id === 'location-filter-list' ? 'main' : 'whatsapp';
                         const targetPrefix = targetList.id === 'location-filter-list' ? 'main' : 'whatsapp';
 
@@ -2452,15 +2352,7 @@
                         recentesChart.options.scales.x.max = niceMaxValue;
                         recentesChart.update();
 
-                        // Atualiza o gráfico da seção WhatsApp
-                        if (whatsappRecentesChart) {
-                            whatsappRecentesChart.data.labels = labels;
-                            const datasetWhatsapp = whatsappRecentesChart.data.datasets[0];
-                            datasetWhatsapp.data = dataValues;
-                            datasetWhatsapp.backgroundColor = chartColors[1];
-                            whatsappRecentesChart.options.scales.x.max = niceMaxValue;
-                            whatsappRecentesChart.update();
-                        }
+                        // whatsapp-recentes-chart não existe nesta página
                     }
 
                     // --- Inicialização ---
@@ -2495,22 +2387,7 @@
                     });
 
 
-                    // --- NOVO: Event Listener para o Switch de Plano (WHATSAPP) ---
-                    if (planToggleSwitch) {
-                        planToggleSwitch.addEventListener('change', function () {
-                            // Atualiza cores dos labels
-                            if (this.checked) { // Anual
-                                monthlyLabel.style.color = '#6c757d';
-                                annualLabel.style.color = '#343a40';
-                            } else { // Mensal
-                                monthlyLabel.style.color = '#343a40';
-                                annualLabel.style.color = '#6c757d';
-                            }
-
-                            // Roda o updateDashboard para recalcular o preço e atualizar o texto /Mês /Ano
-                            updateDashboard();
-                        });
-                    }
+                    // Switch de plano WhatsApp não existe nesta página (apenas em Dashboard_e_whatsapp.html)
 
 
                     // --- LÓGICA DO MODAL DE CHECKOUT (REFEITA PARA 2 PASSOS) ---
@@ -2925,29 +2802,7 @@
                     // --- FIM DA LÓGICA DO MODAL DE CHECKOUT ---
 
 
-                    // Botão "Contratar Agora" (Seção WhatsApp) - Lógica de Alerta
-                    if (btnWhatsappContratar) {
-                        btnWhatsappContratar.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            const isDisabled = e.currentTarget.classList.contains('disabled');
-
-                            if (isDisabled) {
-                                showCustomAlert("Selecione pelo menos uma cidade para contratar.");
-                                return;
-                            }
-
-                            // MODIFICADO: Passa o 'whatsappLocationFilterList' como argumento
-                            const { citiesText, count } = getWhatsappSelectionDetails(whatsappLocationFilterList);
-                            const currentWhatsappPrice = whatsappPriceEl.textContent;
-                            const isAnnual = planToggleSwitch.checked;
-                            const planType = isAnnual ? "Anual" : "Mensal";
-
-                            const message = `Olá! Tenho interesse no serviço de Notificação por WhatsApp.\n\nPlano: ${planType}\nCidades Selecionadas: ${count}\nValor: R$ ${currentWhatsappPrice}\n\nDetalhes: ${citiesText}`;
-
-                            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-                            window.open(whatsappUrl, '_blank');
-                        });
-                    }
+                    // Botão "Contratar Agora" (Seção WhatsApp) não existe nesta página
 
                     // Função auxiliar para pegar detalhes da seleção (Usada pelo WhatsApp e Checkout)
                     // MODIFICADO: Função agora aceita o listElement (o <ul>) como argumento
