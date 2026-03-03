@@ -2002,10 +2002,13 @@
                             type: 'bar', data: { labels: [], datasets: [{ data: [] }] }, options: recentesChartOptions
                         });
 
-                        let whatsappRecentesOptions = JSON.parse(JSON.stringify(recentesChartOptions));
-                        whatsappRecentesChart = new Chart(document.getElementById('whatsapp-recentes-chart').getContext('2d'), {
-                            type: 'bar', data: { labels: [], datasets: [{ data: [] }] }, options: whatsappRecentesOptions
-                        });
+                        const whatsappRecentesCanvas = document.getElementById('whatsapp-recentes-chart');
+                        if (whatsappRecentesCanvas) {
+                            let whatsappRecentesOptions = JSON.parse(JSON.stringify(recentesChartOptions));
+                            whatsappRecentesChart = new Chart(whatsappRecentesCanvas.getContext('2d'), {
+                                type: 'bar', data: { labels: [], datasets: [{ data: [] }] }, options: whatsappRecentesOptions
+                            });
+                        }
                     }
 
                     function normalizeText(text) {
@@ -2115,70 +2118,73 @@
 
 
                         // --- ATUALIZAÇÃO DA SEÇÃO WHATSAPP (NOVA LÓGICA DE PREÇO E MENSAGEM) ---
-                        const selectedCityCount = selectedCidades.length;
+                        // Guarda: só executa se os elementos da seção WhatsApp existirem na página
+                        if (btnWhatsappContratar && whatsappPriceEl && whatsappWarningMessage) {
+                            const selectedCityCount = selectedCidades.length;
 
-                        if (maisDe150Leads) {
-                            // MODIFICADO: Esconde preço, toggle e botão, mostra mensagem
-                            if (priceToggleWrapper) priceToggleWrapper.style.display = 'none'; // Oculta o wrapper
-                            btnWhatsappContratar.style.display = 'none';
-                            whatsappWarningMessage.style.display = 'block';
+                            if (maisDe150Leads) {
+                                // MODIFICADO: Esconde preço, toggle e botão, mostra mensagem
+                                if (priceToggleWrapper) priceToggleWrapper.style.display = 'none'; // Oculta o wrapper
+                                btnWhatsappContratar.style.display = 'none';
+                                whatsappWarningMessage.style.display = 'block';
 
-                            // Garante que o botão esteja "disabled" logicamente para o listener
-                            if (!btnWhatsappContratar.classList.contains('disabled')) {
-                                btnWhatsappContratar.classList.add('disabled');
-                                btnWhatsappContratar.setAttribute('aria-disabled', 'true');
-                            }
-
-                        } else {
-                            // MODIFICADO: Mostra preço, toggle e botão, esconde mensagem (lógica normal)
-                            if (priceToggleWrapper) priceToggleWrapper.style.display = 'flex'; // Mostra o wrapper
-                            btnWhatsappContratar.style.display = 'block'; // 'block' se adapta bem ao flex-column em mobile
-                            whatsappWarningMessage.style.display = 'none';
-
-                            // --- LÓGICA DE PREÇO ATUALIZADA (REQUISIÇÕES 3 e 4) ---
-                            let monthlyPrice;
-                            if (selectedCityCount === 0) {
-                                monthlyPrice = 0; // REQUISIÇÃO 4: Preço 0 se nada selecionado
-                            } else if (selectedCityCount <= 6) {
-                                monthlyPrice = 29.99; // Preço para 1-6 cidades
-                            } else {
-                                monthlyPrice = 29.99 + ((selectedCityCount - 6) * 5);
-                            }
-
-                            // NOVO: Aplicar teto de R$ 159,90
-                            if (monthlyPrice > 159.90) {
-                                monthlyPrice = 159.90;
-                            }
-
-                            // REQUISIÇÃO 3: Aplicar desconto do switch
-                            const isAnnual = planToggleSwitch.checked;
-                            let displayPrice = monthlyPrice;
-
-                            if (isAnnual && monthlyPrice > 0) {
-                                // MODIFICADO: Calcula o preço total anual (mensal * 12 * desconto de 15%)
-                                displayPrice = (monthlyPrice * 12) * 0.85; // 15% desconto
-                            }
-
-                            // REQUISIÇÃO 2: Atualizar período e REQUISIÇÃO 4: Formatar 0,00
-                            const pricePeriodSpan = document.querySelector('.price-display .price-period');
-                            if (pricePeriodSpan) {
-                                pricePeriodSpan.textContent = isAnnual ? '/Ano' : '/Mês';
-                            }
-
-                            const whatsappPriceString = displayPrice > 0 ? displayPrice.toFixed(2).replace('.', ',') : '0,00';
-                            whatsappPriceEl.textContent = whatsappPriceString;
-                            // --- FIM DA LÓGICA DE PREÇO ---
-
-
-                            if (selectedCityCount > 0) {
-                                if (btnWhatsappContratar.classList.contains('disabled')) {
-                                    btnWhatsappContratar.classList.remove('disabled');
-                                    btnWhatsappContratar.removeAttribute('aria-disabled');
-                                }
-                            } else {
+                                // Garante que o botão esteja "disabled" logicamente para o listener
                                 if (!btnWhatsappContratar.classList.contains('disabled')) {
                                     btnWhatsappContratar.classList.add('disabled');
                                     btnWhatsappContratar.setAttribute('aria-disabled', 'true');
+                                }
+
+                            } else {
+                                // MODIFICADO: Mostra preço, toggle e botão, esconde mensagem (lógica normal)
+                                if (priceToggleWrapper) priceToggleWrapper.style.display = 'flex'; // Mostra o wrapper
+                                btnWhatsappContratar.style.display = 'block'; // 'block' se adapta bem ao flex-column em mobile
+                                whatsappWarningMessage.style.display = 'none';
+
+                                // --- LÓGICA DE PREÇO ATUALIZADA (REQUISIÇÕES 3 e 4) ---
+                                let monthlyPrice;
+                                if (selectedCityCount === 0) {
+                                    monthlyPrice = 0; // REQUISIÇÃO 4: Preço 0 se nada selecionado
+                                } else if (selectedCityCount <= 6) {
+                                    monthlyPrice = 29.99; // Preço para 1-6 cidades
+                                } else {
+                                    monthlyPrice = 29.99 + ((selectedCityCount - 6) * 5);
+                                }
+
+                                // NOVO: Aplicar teto de R$ 159,90
+                                if (monthlyPrice > 159.90) {
+                                    monthlyPrice = 159.90;
+                                }
+
+                                // REQUISIÇÃO 3: Aplicar desconto do switch
+                                const isAnnual = planToggleSwitch ? planToggleSwitch.checked : false;
+                                let displayPrice = monthlyPrice;
+
+                                if (isAnnual && monthlyPrice > 0) {
+                                    // MODIFICADO: Calcula o preço total anual (mensal * 12 * desconto de 15%)
+                                    displayPrice = (monthlyPrice * 12) * 0.85; // 15% desconto
+                                }
+
+                                // REQUISIÇÃO 2: Atualizar período e REQUISIÇÃO 4: Formatar 0,00
+                                const pricePeriodSpan = document.querySelector('.price-display .price-period');
+                                if (pricePeriodSpan) {
+                                    pricePeriodSpan.textContent = isAnnual ? '/Ano' : '/Mês';
+                                }
+
+                                const whatsappPriceString = displayPrice > 0 ? displayPrice.toFixed(2).replace('.', ',') : '0,00';
+                                whatsappPriceEl.textContent = whatsappPriceString;
+                                // --- FIM DA LÓGICA DE PREÇO ---
+
+
+                                if (selectedCityCount > 0) {
+                                    if (btnWhatsappContratar.classList.contains('disabled')) {
+                                        btnWhatsappContratar.classList.remove('disabled');
+                                        btnWhatsappContratar.removeAttribute('aria-disabled');
+                                    }
+                                } else {
+                                    if (!btnWhatsappContratar.classList.contains('disabled')) {
+                                        btnWhatsappContratar.classList.add('disabled');
+                                        btnWhatsappContratar.setAttribute('aria-disabled', 'true');
+                                    }
                                 }
                             }
                         }
@@ -2193,7 +2199,9 @@
 
                         // Atualiza o texto de AMBOS os botões de filtro
                         updateFilterButtonText(locationFilterList, locationFilterBtn);
-                        updateFilterButtonText(whatsappLocationFilterList, whatsappLocationFilterBtn);
+                        if (whatsappLocationFilterList && whatsappLocationFilterBtn) {
+                            updateFilterButtonText(whatsappLocationFilterList, whatsappLocationFilterBtn);
+                        }
                     }
 
                     // Atualiza o texto de UM botão de filtro
@@ -2458,16 +2466,25 @@
                     // --- Inicialização ---
                     initCharts();
 
-                    // Popula AMBOS os filtros
+                    // Popula o filtro principal
                     populateLocationFilter(locationFilterList, 'main');
-                    populateLocationFilter(whatsappLocationFilterList, 'whatsapp');
+
+                    // Popula o filtro WhatsApp apenas se o elemento existir na página
+                    if (whatsappLocationFilterList) {
+                        populateLocationFilter(whatsappLocationFilterList, 'whatsapp');
+                    }
 
                     // Adiciona os event listeners
                     locationFilterMenu.addEventListener('click', (e) => handleFilterClick(e, locationFilterList, whatsappLocationFilterList));
-                    whatsappLocationFilterMenu.addEventListener('click', (e) => handleFilterClick(e, whatsappLocationFilterList, locationFilterList));
+                    if (whatsappLocationFilterMenu) {
+                        whatsappLocationFilterMenu.addEventListener('click', (e) => handleFilterClick(e, whatsappLocationFilterList, locationFilterList));
+                    }
 
                     document.getElementById('location-filter-search').addEventListener('input', (e) => handleSearch(e, locationFilterList));
-                    document.getElementById('whatsapp-filter-search').addEventListener('input', (e) => handleSearch(e, whatsappLocationFilterList));
+                    const whatsappFilterSearch = document.getElementById('whatsapp-filter-search');
+                    if (whatsappFilterSearch) {
+                        whatsappFilterSearch.addEventListener('input', (e) => handleSearch(e, whatsappLocationFilterList));
+                    }
 
                     // Carrega o estado inicial do dashboard
                     updateDashboard();
