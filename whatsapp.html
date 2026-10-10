@@ -83,7 +83,7 @@
                         <div class="col-lg-4 mb-4 mb-lg-0 text-center">
                             <div class="phone-mockup">
                                 <div class="whatsapp-demo" role="img"
-                                    aria-label="Animação ilustrativa de mensagens do Lead Obras chegando pelo WhatsApp com dados de novas obras.">
+                                    aria-label="Animação ilustrativa de alertas de obras do Lead Obras, com perguntas do usuário e respostas detalhadas pelo WhatsApp.">
                                     <div class="wa-status-bar">
                                         <span>9:41</span>
                                         <span><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i
@@ -107,26 +107,33 @@
                                             <span><i class="fas fa-ruler-combined" aria-hidden="true"></i> 185 m²</span>
                                             <small>10:24 <i class="fas fa-check-double" aria-hidden="true"></i></small>
                                         </div>
-                                        <div class="wa-message wa-message-two">
-                                            <strong>Obra comercial</strong>
-                                            <span>Maringá/PR</span>
-                                            <span><i class="fas fa-ruler-combined" aria-hidden="true"></i> 420 m²</span>
+                                        <div class="wa-message wa-message-user wa-message-two">
+                                            Pode me passar mais informações?
                                             <small>10:25 <i class="fas fa-check-double" aria-hidden="true"></i></small>
                                         </div>
-                                        <div class="wa-message wa-message-three">
-                                            <strong>Nova obra em andamento</strong>
-                                            <span>Residencial • Curitiba/PR</span>
-                                            <span><i class="fas fa-calendar-alt" aria-hidden="true"></i> Início: esta semana</span>
-                                            <small>10:26 <i class="fas fa-check-double" aria-hidden="true"></i></small>
-                                        </div>
-                                        <div class="wa-typing" aria-hidden="true">
+                                        <div class="wa-typing wa-typing-one" aria-hidden="true">
                                             <span></span><span></span><span></span>
                                         </div>
-                                        <div class="wa-message wa-message-four">
-                                            <strong>Mais uma oportunidade!</strong>
-                                            <span>Industrial • Cascavel/PR</span>
-                                            <span><i class="fas fa-ruler-combined" aria-hidden="true"></i> 760 m²</span>
-                                            <small>10:27 <i class="fas fa-check-double" aria-hidden="true"></i></small>
+                                        <div class="wa-message wa-message-three">
+                                            <strong>Detalhes da obra</strong>
+                                            <span><i class="fas fa-id-card" aria-hidden="true"></i> CNO: 90.123.45678/75</span>
+                                            <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Rua das Flores, Centro</span>
+                                            <span><i class="fas fa-ruler-combined" aria-hidden="true"></i> Área: 185 m²</span>
+                                            <span><i class="fas fa-calendar-alt" aria-hidden="true"></i> Início: mar/2026</span>
+                                            <small>10:25 <i class="fas fa-check-double" aria-hidden="true"></i></small>
+                                        </div>
+                                        <div class="wa-message wa-message-user wa-message-four">
+                                            Tem o contato da construtora?
+                                            <small>10:26 <i class="fas fa-check-double" aria-hidden="true"></i></small>
+                                        </div>
+                                        <div class="wa-typing wa-typing-two" aria-hidden="true">
+                                            <span></span><span></span><span></span>
+                                        </div>
+                                        <div class="wa-message wa-message-five">
+                                            <strong>Responsável pela obra</strong>
+                                            <span><i class="fas fa-building" aria-hidden="true"></i> Construtora Horizonte</span>
+                                            <span><i class="fas fa-phone" aria-hidden="true"></i> (43) 3333-0000</span>
+                                            <small>10:26 <i class="fas fa-check-double" aria-hidden="true"></i></small>
                                         </div>
                                     </div>
                                     <div class="wa-input-bar">
@@ -224,6 +231,46 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const chatBody = document.querySelector('.wa-chat-body');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (chatBody && !reducedMotion) {
+                const chatSequence = [
+                    { selector: '.wa-message-one', duration: 1700 },
+                    { selector: '.wa-message-two', duration: 1500 },
+                    { selector: '.wa-typing-one', duration: 700 },
+                    { selector: '.wa-message-three', duration: 2100, hideSelectors: ['.wa-typing-one'] },
+                    { selector: '.wa-message-four', duration: 1500 },
+                    { selector: '.wa-typing-two', duration: 700 },
+                    { selector: '.wa-message-five', duration: 2600, hideSelectors: ['.wa-typing-two'] }
+                ];
+
+                const wait = duration => new Promise(resolve => setTimeout(resolve, duration));
+
+                (async function playConversation() {
+                    const conversationItems = chatSequence.map(item => ({
+                        element: chatBody.querySelector(item.selector),
+                        duration: item.duration,
+                        hideElements: (item.hideSelectors || [])
+                            .map(selector => chatBody.querySelector(selector))
+                            .filter(Boolean)
+                    }));
+
+                    while (conversationItems.every(item => item.element)) {
+                        for (const item of conversationItems) {
+                            item.hideElements.forEach(element => element.classList.remove('is-visible'));
+                            item.element.classList.add('is-visible');
+                            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' });
+                            await wait(item.duration);
+                        }
+
+                        await wait(1800);
+                        conversationItems.forEach(item => item.element.classList.remove('is-visible'));
+                        chatBody.scrollTo({ top: 0, behavior: 'smooth' });
+                        await wait(900);
+                    }
+                })();
+            }
 
             // --- Variáveis Globais ---
             let fullObrasData = [];

@@ -2033,7 +2033,8 @@ section {
     background: #fff;
     border: 10px solid #333;
     border-radius: 20px;
-    padding: 10px;
+    padding: 0;
+    overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     max-width: 280px;
     /* Largura do mockup */
@@ -2048,7 +2049,7 @@ section {
 
 .whatsapp-demo {
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 0;
     color: #303b43;
     background: #efeae2;
     font-family: 'Roboto', sans-serif;
@@ -2116,19 +2117,27 @@ section {
 }
 
 .wa-chat-body {
-    position: relative;
-    height: 355px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    height: 415px;
+    min-height: 0;
+    padding: 9px 8px 12px;
+    overflow-y: auto;
+    scrollbar-width: none;
     background-color: #efeae2;
     background-image: radial-gradient(rgba(90, 80, 68, 0.08) 1px, transparent 1px);
     background-size: 14px 14px;
 }
 
+.wa-chat-body::-webkit-scrollbar {
+    display: none;
+}
+
 .wa-date {
-    position: absolute;
-    top: 10px;
-    left: 50%;
+    align-self: center;
     padding: 4px 9px;
-    transform: translateX(-50%);
+    margin-bottom: 2px;
     border-radius: 6px;
     color: #68777c;
     background: #fff;
@@ -2137,10 +2146,11 @@ section {
 }
 
 .wa-message {
-    position: absolute;
-    display: flex;
+    position: relative;
+    display: none;
     flex-direction: column;
     gap: 3px;
+    align-self: flex-start;
     max-width: 88%;
     padding: 8px 9px 17px;
     border-radius: 8px;
@@ -2148,8 +2158,11 @@ section {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     font-size: 0.69rem;
     line-height: 1.25;
-    opacity: 0;
-    transform: translateY(7px);
+}
+
+.wa-message.is-visible {
+    display: flex;
+    animation: wa-message-enter 0.25s ease-out both;
 }
 
 .wa-message strong {
@@ -2169,43 +2182,45 @@ section {
     color: #53bdeb;
 }
 
+.wa-message-user {
+    align-self: flex-end;
+    background: #d9fdd3;
+}
+
 .wa-message-one {
-    top: 42px;
-    left: 8px;
-    animation: wa-message-one 12s infinite;
+    animation: wa-message-one 16s infinite;
 }
 
 .wa-message-two {
-    top: 116px;
-    right: 8px;
-    animation: wa-message-two 12s infinite;
+    animation: wa-message-two 16s infinite;
 }
 
 .wa-message-three {
-    top: 188px;
-    left: 8px;
-    animation: wa-message-three 12s infinite;
+    animation: wa-message-three 16s infinite;
 }
 
 .wa-message-four {
-    top: 278px;
-    right: 8px;
-    animation: wa-message-four 12s infinite;
+    animation: wa-message-four 16s infinite;
+}
+
+.wa-message-five {
+    animation: wa-message-five 16s infinite;
 }
 
 .wa-typing {
-    position: absolute;
-    top: 264px;
-    left: 8px;
-    display: flex;
+    display: none;
+    align-self: flex-start;
     align-items: center;
     gap: 4px;
-    height: 24px;
+    min-height: 24px;
     padding: 0 9px;
     border-radius: 8px;
     background: #fff;
-    opacity: 0;
-    animation: wa-typing 12s infinite;
+}
+
+.wa-typing.is-visible {
+    display: flex;
+    animation: wa-message-enter 0.2s ease-out both;
 }
 
 .wa-typing span {
@@ -2255,29 +2270,9 @@ section {
     font-size: 0.7rem;
 }
 
-@keyframes wa-message-one {
-    0%, 5%, 94%, 100% { opacity: 0; transform: translateY(7px); }
-    10%, 90% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes wa-message-two {
-    0%, 15%, 94%, 100% { opacity: 0; transform: translateY(7px); }
-    20%, 90% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes wa-message-three {
-    0%, 31%, 94%, 100% { opacity: 0; transform: translateY(7px); }
-    36%, 90% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes wa-typing {
-    0%, 49%, 65%, 100% { opacity: 0; }
-    54%, 61% { opacity: 1; }
-}
-
-@keyframes wa-message-four {
-    0%, 65%, 94%, 100% { opacity: 0; transform: translateY(7px); }
-    70%, 90% { opacity: 1; transform: translateY(0); }
+@keyframes wa-message-enter {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes wa-typing-dot {
@@ -2285,19 +2280,18 @@ section {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .wa-message,
-    .wa-typing,
-    .wa-typing span {
-        animation: none;
-    }
-
     .wa-message {
-        opacity: 1;
-        transform: none;
+        display: flex;
     }
 
     .wa-typing {
         display: none;
+    }
+
+    .wa-message,
+    .wa-typing,
+    .wa-typing span {
+        animation: none;
     }
 }
 
